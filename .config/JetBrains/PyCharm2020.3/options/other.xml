@@ -87,10 +87,10 @@
     <property name="FindSplitterProportion" value="0.26949152" />
     <property name="INSPECTION_FILTER_HISTORY" value="reference&#10;unexpec&#10;dict" />
     <property name="Ideolog.Settings.TopProportion" value="0.5981912" />
-    <property name="InstalledPluginsSearchHistory" value="wakatime&#10;wakatim&#10;wakat&#10;waka&#10;w" />
+    <property name="InstalledPluginsSearchHistory" value=".env&#10;wakatime&#10;wakatim&#10;wakat&#10;waka" />
     <property name="KEYMAP" value="settings&#10;expand all&#10;collapse" />
     <property name="LOG_FILTER_HISTORY" value="multi-admin" />
-    <property name="MarketplacePluginsSearchHistory" value="wakatime&#10;one dark&#10;on&#10;one da&#10;env" />
+    <property name="MarketplacePluginsSearchHistory" value="toml&#10;to&#10;t&#10;poetry&#10;po" />
     <property name="MoveFile.OpenInEditor" value="false" />
     <property name="NonModalCommitPromotionState" value="ACCEPTED" />
     <property name="PG_DUMP_CLI_PACK_LAST_USED_CONFIGURATION" value="PG_DUMP_PROPERTIES" />
@@ -130,8 +130,8 @@
     <property name="evlsprt3.203" value="11" />
     <property name="experimentalFeature.terminal.shell.command.handling" value="false" />
     <property name="file.chooser.recent.files" value="$USER_HOME$/projects/jacob/.env&#10;/home/dadyarri/.cache/pypoetry/virtualenvs/jacob-R6jX0S4E-py3.9/bin/python&#10;/home/dadyarri/projects/choco&#10;/home/dadyarri/.cache/pypoetry/virtualenvs/jacob-R6jX0S4E-py3.8/bin/python&#10;/home/dadyarri/projects/purple_plane_test_case/app/settings.py&#10;/home/dadyarri/projects/purple_plane_test_case&#10;/home/dadyarri/projects/purple_plane_test_case/.env&#10;/home/dadyarri/projects/purple_plane_test_case/db.sqlite3&#10;/home/dadyarri/.local/share/virtualenvs/jacob-AEoJMjtc/bin/flake8&#10;/home/dadyarri/projects/jacob&#10;/home/dadyarri/projects/bots/vk/jacob/.env&#10;/home/dadyarri/projects/bots/vk/jacob/jacob_2020-08-18_21-12-47_440261.log&#10;/home/dadyarri/projects/bots/vk/jacob/jacob.log&#10;/home/dadyarri/.local&#10;/home/dadyarri/projects/bots/vk/jacob/tests/services/test_call.py&#10;/home/dadyarri/projects/useful/receipt-scanner&#10;/home/dadyarri/projects/libs/vkwave&#10;/home/dadyarri/projects/bots/vk/jacob.new&#10;/home/dadyarri/projects/games/monopoly&#10;/home/dadyarri/projects/bots/vk/jacob&#10;/home/dadyarri/projects/bots/vk/ralph_cms_ivpek&#10;/home/dadyarri/projects/motherland/motherland/frontend/package.json&#10;/home/dadyarri/projects/motherland/motherland/.env&#10;/home/dadyarri/projects/motherland/motherland/motherland/manage.py&#10;/home/dadyarri/projects/motherland/motherland/motherland/motherland/settings.py&#10;/home/dadyarri/projects/motherland/motherland/motherland&#10;/home/dadyarri/projects/motherland/motherland&#10;/home/dadyarri/projects/useful/receipt-scanner/tests&#10;/home/dadyarri/projects/bots/vk/chocolate/.env&#10;/home/dadyarri/projects/useful/receipt-scanner/.env" />
-    <property name="file.gist.reindex.count" value="183570" />
-    <property name="fileTypeChangedCounter" value="44" />
+    <property name="file.gist.reindex.count" value="184274" />
+    <property name="fileTypeChangedCounter" value="47" />
     <property name="got.it.tooltip.reader.mode.got.it" value="1" />
     <property name="ide.memory.adjusted" value="true" />
     <property name="ide.updates.previous.build.number" value="PY-203.6682.179" />
