@@ -13,6 +13,7 @@
     helper = store
 
 [alias]
+    rollback = reset --hard
     unstage = reset HEAD
     last = log -1 HEAD
     latest = show --name-only --oneline HEAD
