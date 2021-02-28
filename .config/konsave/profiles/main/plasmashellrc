@@ -1,0 +1,81 @@
+[ActionsWidget]
+ColumnState=AAAA/wAAAAAAAAABAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAboAAAACAQAAAQAAAAAAAAAAAAAAAGb/////AAAAgQAAAAAAAAACAAAA+gAAAAEAAAAAAAAAwAAAAAEAAAAAAAAD6AAAAABm
+
+[ConfigDialog]
+LVDS-0 Height 800=510
+LVDS-0 Width 1280=839
+
+[DownloadDialog Settings]
+LVDS-0 Height 800=494
+LVDS-0 Width 1280=700
+
+[General]
+Number of Actions=0
+
+[KFileDialog Settings]
+Recent Files[$e]=g6o75dfsh2911.jpg,file:$HOME/pictures/wallpapers/kxblq0jrdkyz.jpg,file:$HOME/pictures/wallpapers/g6o75dfsh2911.jpg
+Recent URLs[$e]=file:$HOME/pictures/wallpapers/,file:$HOME/pictures/
+detailViewIconSize=16
+
+[Notification Messages]
+really_clear_history=true
+
+[PlasmaRunnerManager]
+LaunchCounts=1 services_applications:appimagekit_f34aaec545fdc2942f74e307b7bf7de8-JetBrains_Toolbox.desktop,1 shell_shutdown,2 services_applications:timeshift-gtk.desktop,1 services_applications:discord.desktop,3 services_applications:org.kde.kdeconnect.app.desktop,3 services_applications:notion-app.desktop,2 services_applications:mailspring.desktop,1 services_applications:brave-browser.desktop,2 services_applications:Zoom.desktop
+
+[PlasmaViews][Panel 1][Defaults]
+thickness=25
+
+[PlasmaViews][Panel 1][Horizontal1024]
+thickness=45
+
+[PlasmaViews][Panel 1][Horizontal1152]
+thickness=45
+
+[PlasmaViews][Panel 1][Horizontal1200]
+thickness=45
+
+[PlasmaViews][Panel 1][Horizontal1280]
+thickness=25
+
+[PlasmaViews][Panel 1][Horizontal1366]
+thickness=45
+
+[PlasmaViews][Panel 1][Horizontal1440]
+thickness=45
+
+[PlasmaViews][Panel 1][Horizontal1600]
+thickness=45
+
+[PlasmaViews][Panel 1][Horizontal1680]
+thickness=45
+
+[PlasmaViews][Panel 1][Horizontal1900]
+thickness=45
+
+[PlasmaViews][Panel 1][Horizontal1916]
+thickness=45
+
+[PlasmaViews][Panel 1][Horizontal1920]
+thickness=45
+
+[PlasmaViews][Panel 1][Horizontal2048]
+thickness=45
+
+[PlasmaViews][Panel 1][Horizontal800]
+thickness=45
+
+[PlasmaViews][Panel 1][Horizontal864]
+thickness=45
+
+[PlasmaViews][Panel 22][Defaults]
+thickness=25
+
+[PlasmaViews][Panel 22][Horizontal1280]
+thickness=25
+
+[ScreenConnectors]
+0=LVDS-0
+
+[Updates]
+performed=/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates/obsolete_kickoffrc.js,/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates/maintain_existing_desktop_icon_sizes.js,/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates/move_desktop_layout_config.js,/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates/unlock_widgets.js,/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates/containmentactions_middlebutton.js,/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates/systemloadviewer_systemmonitor.js
