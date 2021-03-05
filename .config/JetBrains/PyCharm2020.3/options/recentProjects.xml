@@ -15,13 +15,13 @@
         </entry>
         <entry key="$USER_HOME$/projects/jacob">
           <value>
-            <RecentProjectMetaInfo frameTitle="jacob" opened="true" projectWorkspaceId="1bcKJnDp3W85ywoUpMzKv5HSwsl">
+            <RecentProjectMetaInfo frameTitle="jacob – preferences.py" opened="true" projectWorkspaceId="1bcKJnDp3W85ywoUpMzKv5HSwsl">
               <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
-              <option name="build" value="PY-203.6682.179" />
-              <option name="buildTimestamp" value="1609343828979" />
-              <frame x="0" y="25" width="1280" height="750" extendedState="6" />
+              <option name="build" value="PY-203.7148.72" />
+              <option name="buildTimestamp" value="1611720910446" />
+              <frame x="0" y="0" width="1366" height="743" extendedState="6" />
               <option name="productionCode" value="PY" />
-              <option name="projectOpenTimestamp" value="1611399806106" />
+              <option name="projectOpenTimestamp" value="1614672658397" />
             </RecentProjectMetaInfo>
           </value>
         </entry>

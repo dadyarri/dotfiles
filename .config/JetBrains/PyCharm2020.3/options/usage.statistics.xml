@@ -1,5 +1,5 @@
 <application>
-  <component name="UsagesStatistic">
-    <system-event-id recorder="FUS" id="237738" />
+  <component name="UsagesStatistic" show-notification="false">
+    <system-event-id recorder="FUS" id="254379" />
   </component>
 </application>

@@ -44,9 +44,17 @@
     <size key="GridCell.Tab.-1.center.0.0.1280.800" width="1234" height="242" />
     <size key="GridCell.Tab.-1.right.0.0.1280.800" width="1234" height="242" />
     <size key="GridCell.Tab.-1.bottom.0.0.1280.800" width="1234" height="242" />
+    <size key="GridCell.Tab.0.left.0.0.1366.768" width="1320" height="244" />
+    <size key="GridCell.Tab.0.center.0.0.1366.768" width="1320" height="244" />
+    <size key="GridCell.Tab.0.right.0.0.1366.768" width="1320" height="244" />
+    <size key="GridCell.Tab.0.bottom.0.0.1366.768" width="1320" height="244" />
+    <size key="GridCell.Tab.1.left.0.0.1366.768" width="1320" height="244" />
+    <size key="GridCell.Tab.1.center.0.0.1366.768" width="1320" height="244" />
+    <size key="GridCell.Tab.1.right.0.0.1366.768" width="1320" height="244" />
+    <size key="GridCell.Tab.1.bottom.0.0.1366.768" width="1320" height="244" />
   </component>
   <component name="WindowManager">
-    <frame x="0" y="25" width="1280" height="750" extendedState="6" />
+    <frame x="0" y="0" width="1366" height="743" extendedState="6" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.3184765" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -88,9 +96,14 @@
       <screen x="0" y="26" width="1280" height="774" />
     </state>
     <state x="499" y="161" width="317" height="355" key="FileChooserDialogImpl/0.26.1280.774" timestamp="1608459719128" />
-    <state x="640" y="398" key="WELCOME_SCREEN" timestamp="1610736642976">
-      <screen x="0" y="26" width="1280" height="774" />
+    <state x="631" y="375" key="WELCOME_SCREEN" timestamp="1614671228010">
+      <screen x="0" y="0" width="1366" height="743" />
     </state>
+    <state x="631" y="375" key="WELCOME_SCREEN/0.0.1366.743" timestamp="1614671228010" />
     <state x="640" y="398" key="WELCOME_SCREEN/0.26.1280.774" timestamp="1610736642976" />
+    <state x="499" y="315" width="864" height="350" key="bookmarks" timestamp="1614793547936">
+      <screen x="0" y="0" width="1366" height="743" />
+    </state>
+    <state x="499" y="315" width="864" height="350" key="bookmarks/0.0.1366.743" timestamp="1614793547936" />
   </component>
 </application>
