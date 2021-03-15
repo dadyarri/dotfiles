@@ -47,6 +47,16 @@
             <ProjectPluginTrackerState />
           </value>
         </entry>
+        <entry key="1luvLMuQvDYfIJxEX8p9phB6Muh">
+          <value>
+            <ProjectPluginTrackerState />
+          </value>
+        </entry>
+        <entry key="1pnsoertSUbXex4094j7uXgv2HE">
+          <value>
+            <ProjectPluginTrackerState />
+          </value>
+        </entry>
       </map>
     </option>
   </component>
@@ -106,6 +116,7 @@
     <property name="PyCharm.InitialConfiguration.V5" value="true" />
     <property name="PyCharm.InitialConfiguration.V6" value="true" />
     <property name="PyCharm.InitialConfiguration.V7" value="true" />
+    <property name="PyCharm.Poetry.Path" value="$USER_HOME$/.local/bin/poetry" />
     <property name="PyCharm.initialConfigurationShown" value="true" />
     <property name="PythonUnitTestRunner.Splitter.Proportion" value="0.32357723" />
     <property name="PythonUnitTestRunnerSupport.hidePassedTests" value="false" />
@@ -119,7 +130,7 @@
     <property name="TextEditorWithPreviewLayout" value="Editor only" />
     <property name="UITheme.relaunch" value="true" />
     <property name="Vcs.Log.Text.Filter.History" value="version" />
-    <property name="appcds.runOnSecondStart" value="PY-203.7148.72-47e5cb191bc085879dcb0301a981c95092548b161dc19d71aa4a3e460f9e06ce" />
+    <property name="appcds.runOnSecondStart" value="PY-203.7148.72-3740d4776247d1ebbef518c09ab2f5b0747176c98e0667ff17e33c1600b2ab52" />
     <property name="com.intellij.database.actions.DdlActions$CreateObject$1.previewExpanded" value="true" />
     <property name="com.intellij.database.actions.DdlActions$DeleteProvider2$1.previewExpanded" value="true" />
     <property name="com.intellij.database.view.editors.ObjectEditorWithPreview.proportion" value="-0.5643154" />
@@ -131,8 +142,8 @@
     <property name="evlsprt3.202" value="13" />
     <property name="evlsprt3.203" value="11" />
     <property name="experimentalFeature.terminal.shell.command.handling" value="false" />
-    <property name="file.chooser.recent.files" value="$USER_HOME$/projects/jacob/.env&#10;/home/dadyarri/.cache/pypoetry/virtualenvs/jacob-R6jX0S4E-py3.9/bin/python&#10;/home/dadyarri/projects/choco&#10;/home/dadyarri/.cache/pypoetry/virtualenvs/jacob-R6jX0S4E-py3.8/bin/python&#10;/home/dadyarri/projects/purple_plane_test_case/app/settings.py&#10;/home/dadyarri/projects/purple_plane_test_case&#10;/home/dadyarri/projects/purple_plane_test_case/.env&#10;/home/dadyarri/projects/purple_plane_test_case/db.sqlite3&#10;/home/dadyarri/.local/share/virtualenvs/jacob-AEoJMjtc/bin/flake8&#10;/home/dadyarri/projects/jacob&#10;/home/dadyarri/projects/bots/vk/jacob/.env&#10;/home/dadyarri/projects/bots/vk/jacob/jacob_2020-08-18_21-12-47_440261.log&#10;/home/dadyarri/projects/bots/vk/jacob/jacob.log&#10;/home/dadyarri/.local&#10;/home/dadyarri/projects/bots/vk/jacob/tests/services/test_call.py&#10;/home/dadyarri/projects/useful/receipt-scanner&#10;/home/dadyarri/projects/libs/vkwave&#10;/home/dadyarri/projects/bots/vk/jacob.new&#10;/home/dadyarri/projects/games/monopoly&#10;/home/dadyarri/projects/bots/vk/jacob&#10;/home/dadyarri/projects/bots/vk/ralph_cms_ivpek&#10;/home/dadyarri/projects/motherland/motherland/frontend/package.json&#10;/home/dadyarri/projects/motherland/motherland/.env&#10;/home/dadyarri/projects/motherland/motherland/motherland/manage.py&#10;/home/dadyarri/projects/motherland/motherland/motherland/motherland/settings.py&#10;/home/dadyarri/projects/motherland/motherland/motherland&#10;/home/dadyarri/projects/motherland/motherland&#10;/home/dadyarri/projects/useful/receipt-scanner/tests&#10;/home/dadyarri/projects/bots/vk/chocolate/.env&#10;/home/dadyarri/projects/useful/receipt-scanner/.env" />
-    <property name="file.gist.reindex.count" value="197006" />
+    <property name="file.chooser.recent.files" value="$USER_HOME$/projects/community/vkwave&#10;/home/dadyarri/projects/jacob/scripts/compose.sh&#10;/var/lib/postgres/data&#10;/home/dadyarri/projects/jacob/docker-compose.yml&#10;/home/dadyarri/projects/jacob/.env&#10;/home/dadyarri/.cache/pypoetry/virtualenvs/jacob-R6jX0S4E-py3.9/bin/python&#10;/home/dadyarri/projects/choco&#10;/home/dadyarri/.cache/pypoetry/virtualenvs/jacob-R6jX0S4E-py3.8/bin/python&#10;/home/dadyarri/projects/purple_plane_test_case/app/settings.py&#10;/home/dadyarri/projects/purple_plane_test_case&#10;/home/dadyarri/projects/purple_plane_test_case/.env&#10;/home/dadyarri/projects/purple_plane_test_case/db.sqlite3&#10;/home/dadyarri/.local/share/virtualenvs/jacob-AEoJMjtc/bin/flake8&#10;/home/dadyarri/projects/jacob&#10;/home/dadyarri/projects/bots/vk/jacob/.env&#10;/home/dadyarri/projects/bots/vk/jacob/jacob_2020-08-18_21-12-47_440261.log&#10;/home/dadyarri/projects/bots/vk/jacob/jacob.log&#10;/home/dadyarri/.local&#10;/home/dadyarri/projects/bots/vk/jacob/tests/services/test_call.py&#10;/home/dadyarri/projects/useful/receipt-scanner&#10;/home/dadyarri/projects/libs/vkwave&#10;/home/dadyarri/projects/bots/vk/jacob.new&#10;/home/dadyarri/projects/games/monopoly&#10;/home/dadyarri/projects/bots/vk/jacob&#10;/home/dadyarri/projects/bots/vk/ralph_cms_ivpek&#10;/home/dadyarri/projects/motherland/motherland/frontend/package.json&#10;/home/dadyarri/projects/motherland/motherland/.env&#10;/home/dadyarri/projects/motherland/motherland/motherland/manage.py&#10;/home/dadyarri/projects/motherland/motherland/motherland/motherland/settings.py&#10;/home/dadyarri/projects/motherland/motherland/motherland" />
+    <property name="file.gist.reindex.count" value="201681" />
     <property name="fileTypeChangedCounter" value="73" />
     <property name="got.it.tooltip.reader.mode.got.it" value="1" />
     <property name="ide.memory.adjusted" value="true" />
@@ -142,7 +153,7 @@
     <property name="js.opt.chain.completion" value="true" />
     <property name="js.overrides.completion" value="true" />
     <property name="js.var.names.completion.kind" value="NAMES_ONLY" />
-    <property name="last_opened_file_path" value="$USER_HOME$/.cache/pypoetry/virtualenvs/jacob-R6jX0S4E-py3.9/bin/python" />
+    <property name="last_opened_file_path" value="/var/lib/postgres/data" />
     <property name="quick.doc.font.size.v3" value="MEDIUM" />
     <property name="selected.color.option.type" value="PY.DOC_COMMENT" />
     <property name="tasks.pass.word.conversion.enforced" value="true" />
@@ -157,6 +168,7 @@
       <map>
         <entry key="$USER_HOME$/.cache/pypoetry/virtualenvs/jacob-R6jX0S4E-py3.8/bin/python" value="true" />
         <entry key="$USER_HOME$/.cache/pypoetry/virtualenvs/jacob-R6jX0S4E-py3.9/bin/python" value="true" />
+        <entry key="$USER_HOME$/.cache/pypoetry/virtualenvs/vkwave-Yxqf1Szx-py3.9/bin/python" value="true" />
         <entry key="$USER_HOME$/.local/share/virtualenvs/doors-o1k4jGXK/bin/python" value="false" />
         <entry key="$USER_HOME$/.local/share/virtualenvs/jacob-45jkGjGA/bin/python" value="true" />
         <entry key="$USER_HOME$/.local/share/virtualenvs/jacob-AEoJMjtc/bin/python" value="true" />

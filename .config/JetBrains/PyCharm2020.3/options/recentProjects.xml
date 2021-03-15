@@ -2,26 +2,39 @@
   <component name="RecentProjectsManager">
     <option name="additionalInfo">
       <map>
-        <entry key="$USER_HOME$/projects/choco">
-          <value>
-            <RecentProjectMetaInfo projectWorkspaceId="1luvLMuQvDYfIJxEX8p9phB6Muh">
-              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
-              <option name="build" value="PY-202.8194.22" />
-              <option name="buildTimestamp" value="1606826688251" />
-              <option name="productionCode" value="PY" />
-              <option name="projectOpenTimestamp" value="1608459745485" />
-            </RecentProjectMetaInfo>
-          </value>
-        </entry>
         <entry key="$USER_HOME$/projects/jacob">
           <value>
-            <RecentProjectMetaInfo frameTitle="jacob – preferences.py" opened="true" projectWorkspaceId="1bcKJnDp3W85ywoUpMzKv5HSwsl">
+            <RecentProjectMetaInfo frameTitle="jacob" projectWorkspaceId="1bcKJnDp3W85ywoUpMzKv5HSwsl">
               <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
               <option name="build" value="PY-203.7148.72" />
               <option name="buildTimestamp" value="1611720910446" />
               <frame x="0" y="0" width="1366" height="743" extendedState="6" />
               <option name="productionCode" value="PY" />
               <option name="projectOpenTimestamp" value="1614672658397" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/projects/choco">
+          <value>
+            <RecentProjectMetaInfo frameTitle="choco – main.py" projectWorkspaceId="1luvLMuQvDYfIJxEX8p9phB6Muh">
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="build" value="PY-203.7148.72" />
+              <option name="buildTimestamp" value="1611720922529" />
+              <frame x="0" y="0" width="1366" height="743" extendedState="6" />
+              <option name="productionCode" value="PY" />
+              <option name="projectOpenTimestamp" value="1615827976184" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/projects/community/vkwave">
+          <value>
+            <RecentProjectMetaInfo frameTitle="vkwave – pyproject.toml" opened="true" projectWorkspaceId="1pnsoertSUbXex4094j7uXgv2HE">
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="build" value="PY-203.7148.72" />
+              <option name="buildTimestamp" value="1611720922529" />
+              <frame x="0" y="0" width="1366" height="743" extendedState="6" />
+              <option name="productionCode" value="PY" />
+              <option name="projectOpenTimestamp" value="1615830366496" />
             </RecentProjectMetaInfo>
           </value>
         </entry>
