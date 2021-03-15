@@ -11,7 +11,7 @@ export GPG_TTY=$(tty)
 export EDITOR=$(where vim)
 
 export PATH="$(/home/dadyarri/scripts/get-path 2>&1):$PATH"
-
+export GTK_USE_PORTAL=1
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
 autoload -U promptinit; promptinit
