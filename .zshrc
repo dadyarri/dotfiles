@@ -76,13 +76,28 @@ alias grep='grep --color=auto'
 alias p='sudo pacman'
 alias vi='vim'
 alias pacman='pacman --color=always'
+alias mkdir='mkdir -pv'
+# Print full file path
+alias path='readlink -e'
 
+# Remove directories but ask nicely
+alias rmm='rm -rvI'
+
+# Copy directories but ask nicely
+alias cpp='cp -R'
+
+alias ...='cd ../..'
+
+alias df='df -h'
+alias du='du -ch'
+alias free='free -m'
 
 # Find utilities
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias diff='diff --color=auto'
 alias tldr='tldr -L en'
+
 # Postgres
 alias pgc='sudo su - postgres'
 
@@ -96,6 +111,11 @@ alias tlmgr='/usr/share/texmf-dist/scripts/texlive/tlmgr.pl --usermode'
 
 alias pm='sudo pacman-mirrors --fasttrack'
 
+#  * `disks` command to List disks
+#    - Clearly shows which disks are mounted temporary
+#    - I always run this command before `dd` sd-card, to make 100% sure not to override system partition
+alias disks='lsblk -o HOTPLUG,NAME,SIZE,MODEL,TYPE | awk "NR == 1 || /disk/"'
+alias sizeof="du -hs"
 # Lsd
 command -v lsd &> /dev/null && alias ls='lsd --group-dirs first'
 command -v lsd &> /dev/null && alias lst='lsd --tree --depth 2'
@@ -164,6 +184,40 @@ ex () {
     fi
 }
 
+mkcd () {
+    mkdir "$1"
+    cd "$1"
+}
+
+vim() {
+  if [ -w "$1" ]
+  then
+    /usr/bin/vim $*
+  else
+    sudo /usr/bin/vim $*
+  fi
+}
+
+run() {
+  chmod +x "$1"
+  exec "./$1" &
+}
+
+bak () {
+  mv "$1" "$(basename $1).bak"
+}
+
+launch () {
+    eval "$1 >/dev/null 2>&1 &" & disown
+}
+
+qr () {
+  if [ "$1" = "" ]; then
+    qrencode --size 5 --background=FFFFFF --foreground=000000 -o - | display
+  else
+    printf "$1" | qrencode --size 5 --background=FFFFFF --foreground=000000 -o - | display
+  fi
+}
 
 AUTO_LS_COMMANDS=(lsd)
 
