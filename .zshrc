@@ -77,8 +77,6 @@ alias p='sudo pacman'
 alias vi='vim'
 alias pacman='pacman --color=always'
 
-# Git
-alias go="git checkout"
 
 # Find utilities
 alias fgrep='fgrep --color=auto'
@@ -88,8 +86,6 @@ alias tldr='tldr -L en'
 # Postgres
 alias pgc='sudo su - postgres'
 
-# Docker
-alias docker='sudo docker'
 
 # Xclip
 alias xclip='xclip -selection c'
@@ -97,6 +93,8 @@ alias xclip='xclip -selection c'
 alias pascal="mono $HOME/.pascal/pabcnetc.exe"
 
 alias tlmgr='/usr/share/texmf-dist/scripts/texlive/tlmgr.pl --usermode'
+
+alias pm='sudo pacman-mirrors --fasttrack'
 
 # Lsd
 command -v lsd &> /dev/null && alias ls='lsd --group-dirs first'
@@ -141,6 +139,31 @@ bindkey '^[[B' history-substring-search-down
 auto-ls-lsd () {
   lsd -a
 }
+
+ex () {
+    if [ -f $1 ]; then
+        case $1 in
+            *.tar.bz2)  tar xjf $1      ;;
+            *.tar.gz)   tar xzf $1      ;;
+            *.bz2)      bunzip2 $1      ;;
+            *.rar)      unrar x $1      ;;
+            *.gz)       gunzip $1       ;;
+            *.tar)      tar xf $1       ;;
+            *.tbz2)     tar xjf $1      ;;
+            *.tgz)      tar xzf $1      ;;
+            *.zip)      unzip $1        ;;
+            *.Z)        uncompress $1   ;;
+            *.7z)       7z x $1         ;;
+            *.deb)      ar x $1         ;;
+            *.tar.xz)   tar xf $1       ;;
+            *.tar.zst)  unzstd $1       ;;
+            *) echo "'$1' can't be extracted";;
+        esac
+    else
+        echo "'$1' isn't a valid file"
+    fi
+}
+
 
 AUTO_LS_COMMANDS=(lsd)
 
@@ -771,3 +794,5 @@ function _gh_repo_view {
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+
+export PATH="$HOME/.poetry/bin:$PATH"
