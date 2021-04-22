@@ -9,8 +9,12 @@
       <mapping pattern=".flake8" type="PLAIN_TEXT" />
       <mapping pattern=".gitkeep" type="PLAIN_TEXT" />
       <mapping ext="bak" type="PLAIN_TEXT" />
+      <mapping ext="log" type="PLAIN_TEXT" />
       <mapping pattern=".pages" type="YAML" />
+      <removed_mapping ext="env" approved="true" type="Env File" />
       <removed_mapping ext="ignore" approved="true" type="IgnoreLang file" />
+      <removed_mapping pattern=".env" approved="true" type="Env File" />
+      <removed_mapping pattern=".env.*" approved="true" type="Env File" />
       <removed_mapping pattern="keyboard.py" approved="true" type="PLAIN_TEXT" />
       <removed_mapping pattern="user.json" approved="true" type="PLAIN_TEXT" />
       <removed_mapping pattern="й" approved="true" type="PLAIN_TEXT" />

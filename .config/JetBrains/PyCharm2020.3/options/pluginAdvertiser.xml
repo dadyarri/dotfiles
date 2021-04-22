@@ -1717,6 +1717,14 @@
             </plugin>
           </value>
         </entry>
+        <entry key="Cargo.toml.orig">
+          <value>
+            <plugin>
+              <option name="myPluginId" value="org.toml.lang" />
+              <option name="myPluginName" value="Toml" />
+            </plugin>
+          </value>
+        </entry>
         <entry key="Dockerfile">
           <value>
             <plugin>

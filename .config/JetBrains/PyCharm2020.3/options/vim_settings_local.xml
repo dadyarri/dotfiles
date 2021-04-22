@@ -1,0 +1,179 @@
+<application>
+  <component name="VimHistorySettings">
+    <history>
+      <history-search>
+        <entry encoding="base64">bWFrZV9hZG1pbg==</entry>
+        <entry encoding="base64">TGlzdFN0dWRlbnQ=</entry>
+      </history-search>
+      <history-cmd>
+        <entry encoding="base64">eA==</entry>
+        <entry encoding="base64">dw==</entry>
+      </history-cmd>
+      <history-expr />
+      <history-input />
+    </history>
+  </component>
+  <component name="VimMarksSettings">
+    <globalmarks />
+    <filemarks>
+      <file name="/statestorage" timestamp="1616672577194">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/state [jacob@localhost]" timestamp="1616702497381">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/Dummy.txt" timestamp="1616700530256">
+        <mark key="a" line="0" column="19" />
+        <mark key="[" line="0" column="0" />
+        <mark key="]" line="0" column="40" />
+        <mark key="." line="0" column="39" />
+        <mark key="^" line="0" column="40" />
+      </file>
+      <file name="$USER_HOME$/projects/uni-jacob/jacob/jacob/services/keyboard/call.py" timestamp="1616696481292">
+        <mark key="[" line="9" column="0" />
+        <mark key="]" line="67" column="59" />
+      </file>
+      <file name="$USER_HOME$/projects/uni-jacob/jacob/jacob/blueprints/finances.py" timestamp="1616671839394">
+        <mark key="[" line="318" column="8" />
+      </file>
+      <file name="/list" timestamp="1616699857975">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="$USER_HOME$/projects/uni-jacob/jacob/jacob/main.py" timestamp="1616661255990">
+        <mark key="[" line="26" column="32" />
+        <mark key="]" line="26" column="37" />
+        <mark key="^" line="26" column="37" />
+        <mark key="." line="26" column="36" />
+      </file>
+      <file name="$USER_HOME$/projects/uni-jacob/jacob/jacob/blueprints/group.py" timestamp="1616704139477">
+        <mark key="'" line="133" column="43" />
+        <mark key="i" line="141" column="58" />
+        <mark key="[" line="105" column="4" />
+        <mark key="]" line="142" column="0" />
+        <mark key="." line="142" column="0" />
+        <mark key="^" line="142" column="0" />
+      </file>
+      <file name="$USER_HOME$/projects/uni-jacob/jacob/jacob/database/utils/lists.py" timestamp="1616677346847">
+        <mark key="[" line="7" column="58" />
+        <mark key="]" line="7" column="61" />
+        <mark key="^" line="7" column="61" />
+        <mark key="." line="7" column="60" />
+      </file>
+      <file name="$USER_HOME$/projects/uni-jacob/jacob/jacob/services/keyboard/main.py" timestamp="1616673522362">
+        <mark key="[" line="27" column="78" />
+        <mark key="]" line="27" column="83" />
+        <mark key="^" line="27" column="83" />
+        <mark key="." line="27" column="82" />
+      </file>
+      <file name="/foo.bar" timestamp="1616702497446">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/GridCellEditorTextField" timestamp="1616703333342">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/statestorage [jacob@localhost]" timestamp="1616672577163">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="$USER_HOME$/projects/uni-jacob/jacob/jacob/services/keyboard/group.py" timestamp="1616701734657">
+        <mark key="[" line="108" column="0" />
+        <mark key="]" line="81" column="15" />
+        <mark key="." line="81" column="14" />
+        <mark key="^" line="81" column="15" />
+      </file>
+      <file name="/list [jacob@localhost]" timestamp="1616699857919">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="$USER_HOME$/projects/uni-jacob/jacob/jacob/blueprints/students.py" timestamp="1616660816542">
+        <mark key="a" line="43" column="4" />
+        <mark key="'" line="43" column="4" />
+        <mark key="[" line="0" column="0" />
+        <mark key="]" line="23" column="51" />
+        <mark key="." line="604" column="50" />
+        <mark key="^" line="604" column="51" />
+      </file>
+      <file name="$USER_HOME$/projects/uni-jacob/jacob/jacob/services/keyboard/__init__.py" timestamp="1616660929418">
+        <mark key="[" line="0" column="38" />
+        <mark key="]" line="0" column="45" />
+        <mark key="^" line="0" column="45" />
+        <mark key="." line="0" column="44" />
+      </file>
+      <file name="$USER_HOME$/.ideavimrc" timestamp="1616675083762">
+        <mark key="[" line="0" column="0" />
+        <mark key="]" line="0" column="12" />
+        <mark key="^" line="0" column="12" />
+        <mark key="." line="0" column="11" />
+      </file>
+      <file name="/state" timestamp="1616702497413">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/dummy.sql" timestamp="1616698694187">
+        <mark key="[" line="0" column="0" />
+      </file>
+    </filemarks>
+    <jumps>
+      <jump line="43" column="4" filename="$USER_HOME$/projects/uni-jacob/jacob/jacob/blueprints/students.py" />
+      <jump line="116" column="9" filename="$USER_HOME$/projects/uni-jacob/jacob/jacob/database/models.py" />
+      <jump line="209" column="24" filename="$USER_HOME$/projects/uni-jacob/jacob/jacob/database/models.py" />
+      <jump line="212" column="6" filename="$USER_HOME$/projects/uni-jacob/jacob/jacob/database/models.py" />
+      <jump line="51" column="0" filename="$USER_HOME$/projects/uni-jacob/jacob/jacob/blueprints/group.py" />
+      <jump line="0" column="0" filename="$USER_HOME$/projects/uni-jacob/jacob/jacob/blueprints/group.py" />
+      <jump line="103" column="0" filename="$USER_HOME$/projects/uni-jacob/jacob/jacob/blueprints/group.py" />
+      <jump line="133" column="43" filename="$USER_HOME$/projects/uni-jacob/jacob/jacob/blueprints/group.py" />
+    </jumps>
+  </component>
+  <component name="VimRegisterSettings">
+    <registers>
+      <register name="&quot;" type="4">
+        <text encoding="base64">Z3JvdXBzX3I=</text>
+      </register>
+      <register name="-" type="4">
+        <text encoding="base64">Z3JvdXBzX3I=</text>
+      </register>
+      <register name="/" type="4">
+        <text encoding="base64">TGlzdFN0dWRlbnQ=</text>
+      </register>
+      <register name="0" type="2">
+        <text encoding="base64">ICAgIGFkbWluX2lkID0gc3R1ZGVudHMuZ2V0X3N5c3RlbV9pZF9vZl9zdHVkZW50KGFucy5mcm9tX2lkKQo=</text>
+      </register>
+      <register name="1" type="2">
+        <text encoding="base64">Cg==</text>
+      </register>
+      <register name="2" type="2">
+        <text encoding="base64">ICAgICkK</text>
+      </register>
+      <register name="3" type="2">
+        <text encoding="base64">ICAgICAgICAi0JzQtdC90Y4g0YHQv9C40YHQutCwIHswfSIuZm9ybWF0KGxpc3RfbmFtZSksIGtleWJvYXJkPWticy5ncm91cC5saXN0X21lbnUoKQo=</text>
+      </register>
+      <register name="4" type="2">
+        <text encoding="base64">ICAgIGF3YWl0IGFucy5hbnN3ZXIoCg==</text>
+      </register>
+      <register name="5" type="2">
+        <text encoding="base64">ICAgIHN0YXRlX3N0b3JlLnVwZGF0ZShzdGF0ZT1zdGF0ZV9zdG9yZS5nZXRfaWRfb2Zfc3RhdGUoImdyb3Vwc19zZWxlY3Rfc3R1ZGVudHMiKSkK</text>
+      </register>
+      <register name="6" type="2">
+        <text encoding="base64">ICAgIHN0YXRlX3N0b3JlID0gbWFuYWdlcnMuU3RhdGVTdG9yYWdlTWFuYWdlcihhZG1pbl9pZCkK</text>
+      </register>
+      <register name="7" type="2">
+        <text encoding="base64">ICAgIGFkbWluX2lkID0gc3R1ZGVudHMuZ2V0X3N5c3RlbV9pZF9vZl9zdHVkZW50KGFucy5mcm9tX2lkKQo=</text>
+      </register>
+      <register name="8" type="2">
+        <text encoding="base64">Cg==</text>
+      </register>
+      <register name="9" type="2">
+        <text encoding="base64">ICAgIGxpc3RfbmFtZSA9IG1vZGVscy5MaXN0W2xpc3RfaWRdLm5hbWUK</text>
+      </register>
+      <register name=":" type="4">
+        <text encoding="base64">dw==</text>
+      </register>
+    </registers>
+  </component>
+  <component name="VimSearchSettings">
+    <search>
+      <last-search encoding="base64">TGlzdFN0dWRlbnQ=</last-search>
+      <last-offset encoding="base64" />
+      <last-pattern encoding="base64">TGlzdFN0dWRlbnQ=</last-pattern>
+      <last-dir>1</last-dir>
+      <show-last>false</show-last>
+    </search>
+  </component>
+</application>

@@ -2,6 +2,9 @@
   <component name="DimensionService">
     <location key="find.popup.0.0.1920.1080" x="668" y="157" />
     <location key="find.popup.0.0.1280.800" x="352" y="140" />
+    <location key="find.popup.0.0.1366.768" x="395" y="0" />
+    <location key="find.popup.1440.132.1366.768" x="1835" y="132" />
+    <location key="find.popup.1440.0.1366.768" x="1835" y="0" />
     <size key="GridCell.Tab.0.left.0.0.1920.1080" width="1874" height="312" />
     <size key="GridCell.Tab.0.center.0.0.1920.1080" width="1874" height="312" />
     <size key="GridCell.Tab.0.right.0.0.1920.1080" width="1874" height="312" />
@@ -44,17 +47,44 @@
     <size key="GridCell.Tab.-1.center.0.0.1280.800" width="1234" height="242" />
     <size key="GridCell.Tab.-1.right.0.0.1280.800" width="1234" height="242" />
     <size key="GridCell.Tab.-1.bottom.0.0.1280.800" width="1234" height="242" />
-    <size key="GridCell.Tab.0.left.0.0.1366.768" width="1320" height="244" />
-    <size key="GridCell.Tab.0.center.0.0.1366.768" width="1320" height="244" />
-    <size key="GridCell.Tab.0.right.0.0.1366.768" width="1320" height="244" />
-    <size key="GridCell.Tab.0.bottom.0.0.1366.768" width="1320" height="244" />
-    <size key="GridCell.Tab.1.left.0.0.1366.768" width="1320" height="244" />
-    <size key="GridCell.Tab.1.center.0.0.1366.768" width="1320" height="244" />
-    <size key="GridCell.Tab.1.right.0.0.1366.768" width="1320" height="244" />
-    <size key="GridCell.Tab.1.bottom.0.0.1366.768" width="1320" height="244" />
+    <size key="GridCell.Tab.0.left.0.0.1366.768" width="1320" height="270" />
+    <size key="GridCell.Tab.0.center.0.0.1366.768" width="1320" height="270" />
+    <size key="GridCell.Tab.0.right.0.0.1366.768" width="1320" height="270" />
+    <size key="GridCell.Tab.0.bottom.0.0.1366.768" width="1320" height="270" />
+    <size key="GridCell.Tab.1.left.0.0.1366.768" width="1320" height="270" />
+    <size key="GridCell.Tab.1.center.0.0.1366.768" width="1320" height="270" />
+    <size key="GridCell.Tab.1.right.0.0.1366.768" width="1320" height="270" />
+    <size key="GridCell.Tab.1.bottom.0.0.1366.768" width="1320" height="270" />
+    <size key="find.popup.0.0.1366.768" width="576" height="717" />
+    <size key="find.popup.1440.132.1366.768" width="576" height="742" />
+    <size key="GridCell.Tab.0.left.1440.132.1366.768" width="1320" height="269" />
+    <size key="GridCell.Tab.0.center.1440.132.1366.768" width="1320" height="269" />
+    <size key="GridCell.Tab.0.right.1440.132.1366.768" width="1320" height="269" />
+    <size key="GridCell.Tab.0.bottom.1440.132.1366.768" width="1320" height="269" />
+    <size key="GridCell.Tab.1.left.1440.132.1366.768" width="1320" height="269" />
+    <size key="GridCell.Tab.1.center.1440.132.1366.768" width="1320" height="269" />
+    <size key="GridCell.Tab.1.right.1440.132.1366.768" width="1320" height="269" />
+    <size key="GridCell.Tab.1.bottom.1440.132.1366.768" width="1320" height="269" />
+    <size key="GridCell.Tab.0.left.1440.0.1366.768" width="1320" height="175" />
+    <size key="GridCell.Tab.0.center.1440.0.1366.768" width="1320" height="175" />
+    <size key="GridCell.Tab.0.right.1440.0.1366.768" width="1320" height="175" />
+    <size key="GridCell.Tab.0.bottom.1440.0.1366.768" width="1320" height="175" />
+    <size key="find.popup.1440.0.1366.768" width="576" height="742" />
+    <size key="GridCell.Tab.0.left.0.0.1440.900" width="1394" height="216" />
+    <size key="GridCell.Tab.0.center.0.0.1440.900" width="1394" height="216" />
+    <size key="GridCell.Tab.0.right.0.0.1440.900" width="1394" height="216" />
+    <size key="GridCell.Tab.0.bottom.0.0.1440.900" width="1394" height="216" />
+    <size key="GridCell.Tab.2.left.1440.0.1366.768" width="1320" height="333" />
+    <size key="GridCell.Tab.2.center.1440.0.1366.768" width="1320" height="333" />
+    <size key="GridCell.Tab.2.right.1440.0.1366.768" width="1320" height="333" />
+    <size key="GridCell.Tab.2.bottom.1440.0.1366.768" width="1320" height="333" />
+    <size key="GridCell.Tab.1.left.1440.0.1366.768" width="1320" height="146" />
+    <size key="GridCell.Tab.1.center.1440.0.1366.768" width="1320" height="146" />
+    <size key="GridCell.Tab.1.right.1440.0.1366.768" width="1320" height="146" />
+    <size key="GridCell.Tab.1.bottom.1440.0.1366.768" width="1320" height="146" />
   </component>
   <component name="WindowManager">
-    <frame x="0" y="0" width="1366" height="743" extendedState="6" />
+    <frame x="0" y="0" width="1440" height="867" extendedState="6" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.3184765" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -88,18 +118,11 @@
     </layout>
   </component>
   <component name="WindowStateApplicationService">
-    <state x="323" y="112" width="624" height="525" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1608277162510">
-      <screen x="0" y="26" width="1280" height="774" />
-    </state>
-    <state x="323" y="112" width="624" height="525" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.26.1280.774" timestamp="1608277162510" />
-    <state x="499" y="161" width="317" height="355" key="FileChooserDialogImpl" timestamp="1608459719128">
-      <screen x="0" y="26" width="1280" height="774" />
-    </state>
-    <state x="499" y="161" width="317" height="355" key="FileChooserDialogImpl/0.26.1280.774" timestamp="1608459719128" />
-    <state x="1004" y="586" width="300" height="125" key="ProcessPopupWindow" timestamp="1615831478301">
-      <screen x="0" y="0" width="1366" height="743" />
+    <state x="1440" y="622" width="317" height="146" key="ProcessPopupWindow" timestamp="1618502552959">
+      <screen x="1440" y="0" width="1366" height="768" />
     </state>
     <state x="1004" y="586" width="300" height="125" key="ProcessPopupWindow/0.0.1366.743" timestamp="1615831478301" />
+    <state x="1440" y="622" width="317" height="146" key="ProcessPopupWindow/0.0.1440.867/1440.0.1366.768" timestamp="1618502552959" />
     <state x="631" y="375" key="WELCOME_SCREEN" timestamp="1614671228010">
       <screen x="0" y="0" width="1366" height="743" />
     </state>

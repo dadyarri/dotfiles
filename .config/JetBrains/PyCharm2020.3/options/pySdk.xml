@@ -2,6 +2,6 @@
   <component name="PySdkSettings">
     <option name="PREFERRED_ENVIRONMENT_TYPE" value="Pipenv" />
     <option name="PREFERRED_VIRTUALENV_BASE_PATH" value="$PROJECT_DIR$/venv" />
-    <option name="PREFERRED_VIRTUALENV_BASE_SDK" value="$USER_HOME$/.cache/pypoetry/virtualenvs/jacob-R6jX0S4E-py3.9/bin/python" />
+    <option name="PREFERRED_VIRTUALENV_BASE_SDK" value="$USER_HOME$/.cache/pypoetry/virtualenvs/choco-tg-xxB8xb1x-py3.9/bin/python" />
   </component>
 </application>

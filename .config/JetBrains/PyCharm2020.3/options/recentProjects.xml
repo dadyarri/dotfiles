@@ -2,39 +2,87 @@
   <component name="RecentProjectsManager">
     <option name="additionalInfo">
       <map>
-        <entry key="$USER_HOME$/projects/jacob">
-          <value>
-            <RecentProjectMetaInfo frameTitle="jacob" projectWorkspaceId="1bcKJnDp3W85ywoUpMzKv5HSwsl">
-              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
-              <option name="build" value="PY-203.7148.72" />
-              <option name="buildTimestamp" value="1611720910446" />
-              <frame x="0" y="0" width="1366" height="743" extendedState="6" />
-              <option name="productionCode" value="PY" />
-              <option name="projectOpenTimestamp" value="1614672658397" />
-            </RecentProjectMetaInfo>
-          </value>
-        </entry>
-        <entry key="$USER_HOME$/projects/choco">
-          <value>
-            <RecentProjectMetaInfo frameTitle="choco – main.py" projectWorkspaceId="1luvLMuQvDYfIJxEX8p9phB6Muh">
-              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
-              <option name="build" value="PY-203.7148.72" />
-              <option name="buildTimestamp" value="1611720922529" />
-              <frame x="0" y="0" width="1366" height="743" extendedState="6" />
-              <option name="productionCode" value="PY" />
-              <option name="projectOpenTimestamp" value="1615827976184" />
-            </RecentProjectMetaInfo>
-          </value>
-        </entry>
         <entry key="$USER_HOME$/projects/community/vkwave">
           <value>
-            <RecentProjectMetaInfo frameTitle="vkwave – pyproject.toml" opened="true" projectWorkspaceId="1pnsoertSUbXex4094j7uXgv2HE">
+            <RecentProjectMetaInfo frameTitle="vkwave" projectWorkspaceId="1pnsoertSUbXex4094j7uXgv2HE">
               <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
               <option name="build" value="PY-203.7148.72" />
               <option name="buildTimestamp" value="1611720922529" />
               <frame x="0" y="0" width="1366" height="743" extendedState="6" />
               <option name="productionCode" value="PY" />
               <option name="projectOpenTimestamp" value="1615830366496" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/projects/uni-jacob/cz-jacob-rules">
+          <value>
+            <RecentProjectMetaInfo frameTitle="cz-jacob-rules" projectWorkspaceId="1qldTCon2SiuD8TakbAy015CB6j">
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="build" value="PY-203.7717.81" />
+              <option name="buildTimestamp" value="1616674841850" />
+              <frame x="134" y="30" width="1366" height="742" extendedState="6" />
+              <option name="productionCode" value="PY" />
+              <option name="projectOpenTimestamp" value="1617658119836" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/desktop/1">
+          <value>
+            <RecentProjectMetaInfo frameTitle="1" projectWorkspaceId="1qo7XSC38YRb2HGAl9iUaG14eOc">
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="build" value="PY-203.7717.81" />
+              <option name="buildTimestamp" value="1616674855014" />
+              <frame x="0" y="0" width="1366" height="742" extendedState="6" />
+              <option name="productionCode" value="PY" />
+              <option name="projectOpenTimestamp" value="1617734150345" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/projects/choco">
+          <value>
+            <RecentProjectMetaInfo frameTitle="choco" projectWorkspaceId="1luvLMuQvDYfIJxEX8p9phB6Muh">
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="build" value="PY-203.7717.81" />
+              <option name="buildTimestamp" value="1616674808438" />
+              <frame x="1440" y="0" width="1366" height="742" extendedState="6" />
+              <option name="productionCode" value="PY" />
+              <option name="projectOpenTimestamp" value="1618079585668" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/vlsu/учеба/2-семестр/лабы/дискретка/2">
+          <value>
+            <RecentProjectMetaInfo frameTitle="2 – idea.py" projectWorkspaceId="1qt9EpkAjfsSEnwtb7f52WUUByP">
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="build" value="PY-203.7717.81" />
+              <option name="buildTimestamp" value="1616674836976" />
+              <frame x="1440" y="0" width="1366" height="742" extendedState="6" />
+              <option name="productionCode" value="PY" />
+              <option name="projectOpenTimestamp" value="1618483738999" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/vlsu/учеба/2-семестр/лабы/алгоритмы/2">
+          <value>
+            <RecentProjectMetaInfo frameTitle="2 – external_merge.py" projectWorkspaceId="1rChlCvw6DcKkRa52h96P52BDPS">
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="build" value="PY-203.7717.81" />
+              <option name="buildTimestamp" value="1616674836976" />
+              <frame x="1440" y="0" width="1366" height="742" extendedState="6" />
+              <option name="productionCode" value="PY" />
+              <option name="projectOpenTimestamp" value="1618486132831" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/projects/uni-jacob/jacob">
+          <value>
+            <RecentProjectMetaInfo frameTitle="jacob – menu.py" opened="true" projectWorkspaceId="1bcKJnDp3W85ywoUpMzKv5HSwsl">
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="build" value="PY-203.7717.81" />
+              <option name="buildTimestamp" value="1616674854756" />
+              <frame x="0" y="0" width="1440" height="867" extendedState="6" />
+              <option name="productionCode" value="PY" />
+              <option name="projectOpenTimestamp" value="1618493081618" />
             </RecentProjectMetaInfo>
           </value>
         </entry>
