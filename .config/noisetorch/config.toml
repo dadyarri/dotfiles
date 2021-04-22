@@ -1,3 +1,8 @@
 Threshold = 95
-DisplayMonitorSources = false
+DisplayMonitorSources = true
 EnableUpdates = true
+GuiltTripped = false
+FilterInput = false
+FilterOutput = false
+LastUsedInput = ""
+LastUsedOutput = ""
