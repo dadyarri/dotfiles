@@ -32,7 +32,7 @@
     review= "!f() { git fetch origin pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
 
 [commit]
-    gpgsign = true
+	gpgsign = false
 
 [filter "lfs"]
     clean = git-lfs clean -- %f
