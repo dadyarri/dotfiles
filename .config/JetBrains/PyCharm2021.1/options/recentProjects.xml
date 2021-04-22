@@ -74,15 +74,27 @@
             </RecentProjectMetaInfo>
           </value>
         </entry>
+        <entry key="$USER_HOME$/projects/orders/flask_crud">
+          <value>
+            <RecentProjectMetaInfo frameTitle="flask_crud – routes.py" projectWorkspaceId="1rO2aqmOHMcxwG3htHoWlmWxs7w">
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="build" value="PY-211.6693.115" />
+              <option name="buildTimestamp" value="1617710437339" />
+              <frame x="1440" y="0" width="1366" height="742" extendedState="6" />
+              <option name="productionCode" value="PY" />
+              <option name="projectOpenTimestamp" value="1618928903429" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
         <entry key="$USER_HOME$/projects/uni-jacob/jacob">
           <value>
             <RecentProjectMetaInfo frameTitle="jacob – menu.py" opened="true" projectWorkspaceId="1bcKJnDp3W85ywoUpMzKv5HSwsl">
               <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
-              <option name="build" value="PY-203.7717.81" />
-              <option name="buildTimestamp" value="1616674854756" />
-              <frame x="0" y="0" width="1440" height="867" extendedState="6" />
+              <option name="build" value="PY-211.6693.115" />
+              <option name="buildTimestamp" value="1617710437339" />
+              <frame x="1440" y="0" width="1366" height="742" extendedState="6" />
               <option name="productionCode" value="PY" />
-              <option name="projectOpenTimestamp" value="1618493081618" />
+              <option name="projectOpenTimestamp" value="1618944413214" />
             </RecentProjectMetaInfo>
           </value>
         </entry>
