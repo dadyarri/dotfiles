@@ -43,6 +43,16 @@
             <ProjectPluginTracker />
           </value>
         </entry>
+        <entry key="1rVsbAuflJjLN2XO4i5FEH2tEQP">
+          <value>
+            <ProjectPluginTracker />
+          </value>
+        </entry>
+        <entry key="1rVzjdcMx1GOAHC1wWiH9kCxBKA">
+          <value>
+            <ProjectPluginTracker />
+          </value>
+        </entry>
       </map>
     </trackers>
   </component>
@@ -84,10 +94,10 @@
     <property name="FindSplitterProportion" value="0.26949152" />
     <property name="INSPECTION_FILTER_HISTORY" value="reference&#10;unexpec&#10;dict" />
     <property name="Ideolog.Settings.TopProportion" value="0.5981912" />
-    <property name="InstalledPluginsSearchHistory" value="env&#10;kite&#10;ki&#10;k&#10;.env" />
+    <property name="InstalledPluginsSearchHistory" value="virtua&#10;virtu&#10;vir&#10;env&#10;kite" />
     <property name="KEYMAP" value="settings&#10;expand all&#10;collapse" />
     <property name="LOG_FILTER_HISTORY" value="multi-admin" />
-    <property name="MarketplacePluginsSearchHistory" value="vim&#10;kite&#10;envf&#10;env&#10;one da" />
+    <property name="MarketplacePluginsSearchHistory" value="makefile&#10;makef&#10;make&#10;vim&#10;kite" />
     <property name="MoveFile.OpenInEditor" value="false" />
     <property name="NonModalCommitPromotionState" value="ACCEPTED" />
     <property name="PG_DUMP_CLI_PACK_LAST_USED_CONFIGURATION" value="PG_DUMP_PROPERTIES" />
@@ -108,7 +118,7 @@
     <property name="PythonUnitTestRunner.Splitter.Proportion" value="0.32357723" />
     <property name="PythonUnitTestRunnerSupport.hidePassedTests" value="false" />
     <property name="SHELLCHECK.PATH" value="$APPLICATION_PLUGINS_DIR$/Shell Script/shellcheck" />
-    <property name="SettingsSearchHistory" value="auto save&#10;env&#10;power save mode&#10;power&#10;inspections" />
+    <property name="SettingsSearchHistory" value="virtual&#10;vir&#10;auto save&#10;env&#10;power save mode" />
     <property name="ShowDocumentationInToolWindow" value="false" />
     <property name="SonarLint.analyzeAllFiles.hideWarning" value="true" />
     <property name="SqlStructureView.filterD.file.structure.state" value="true" />
@@ -134,9 +144,9 @@
     <property name="evlsprt3.203" value="11" />
     <property name="evlsprt3.211" value="14" />
     <property name="experimentalFeature.terminal.shell.command.handling" value="false" />
-    <property name="file.chooser.recent.files" value="$USER_HOME$/.poetry/bin/poetry&#10;/home/dadyarri/projects/orders/flask_crud/.env&#10;/home/dadyarri/projects/orders/flask_crud/app.py&#10;/home/dadyarri/projects/orders/flask_crud&#10;/home/dadyarri/vlsu/учеба/2-семестр/лабы/алгоритмы/2&#10;/home/dadyarri/vlsu/учеба/2-семестр/лабы/дискретка/2&#10;/home/dadyarri/.cache/pypoetry/virtualenvs/choco-tg-xxB8xb1x-py3.9/bin/python&#10;/home/dadyarri/.cache/pypoetry/virtualenvs/choco-vk-cPJmmad5-py3.9/bin/python&#10;/home/dadyarri/projects/choco/vk&#10;/home/dadyarri/projects/choco/tg&#10;/home/dadyarri/.cache/pypoetry/virtualenvs/choco-cPJmmad5-py3.9/bin/python&#10;/home/dadyarri/desktop/1/main.py&#10;/home/dadyarri/.cache/pypoetry/virtualenvs/jacob-ug-TQ5oU-py3.9/bin/flake8helled&#10;/home/dadyarri/projects/uni-jacob/jacob/tests/database/utils/test_admin.py&#10;/home/dadyarri/projects/uni-jacob/jacob/.env&#10;/home/dadyarri/projects/uni-jacob/jacob/docker-compose.yml&#10;/home/dadyarri/projects/uni-jacob/jacob/.env.dev&#10;/home/dadyarri/projects/uni-jacob/jacob&#10;/home/dadyarri/projects/community/vkwave&#10;/home/dadyarri/projects/jacob/scripts/compose.sh&#10;/var/lib/postgres/data&#10;/home/dadyarri/projects/jacob/docker-compose.yml&#10;/home/dadyarri/projects/jacob/.env&#10;/home/dadyarri/.cache/pypoetry/virtualenvs/jacob-R6jX0S4E-py3.9/bin/python&#10;/home/dadyarri/projects/choco&#10;/home/dadyarri/.cache/pypoetry/virtualenvs/jacob-R6jX0S4E-py3.8/bin/python&#10;/home/dadyarri/projects/purple_plane_test_case/app/settings.py&#10;/home/dadyarri/projects/purple_plane_test_case&#10;/home/dadyarri/projects/purple_plane_test_case/.env&#10;/home/dadyarri/projects/purple_plane_test_case/db.sqlite3" />
-    <property name="file.gist.reindex.count" value="259507" />
-    <property name="fileTypeChangedCounter" value="78" />
+    <property name="file.chooser.recent.files" value="$USER_HOME$/projects/vlsu/cookiecutters/labwork&#10;/home/dadyarri/vlsu/учеба/2-семестр/лабы/алгоритмы/3&#10;/home/dadyarri/.poetry/bin/poetry&#10;/home/dadyarri/projects/orders/flask_crud/.env&#10;/home/dadyarri/projects/orders/flask_crud/app.py&#10;/home/dadyarri/projects/orders/flask_crud&#10;/home/dadyarri/vlsu/учеба/2-семестр/лабы/алгоритмы/2&#10;/home/dadyarri/vlsu/учеба/2-семестр/лабы/дискретка/2&#10;/home/dadyarri/.cache/pypoetry/virtualenvs/choco-tg-xxB8xb1x-py3.9/bin/python&#10;/home/dadyarri/.cache/pypoetry/virtualenvs/choco-vk-cPJmmad5-py3.9/bin/python&#10;/home/dadyarri/projects/choco/vk&#10;/home/dadyarri/projects/choco/tg&#10;/home/dadyarri/.cache/pypoetry/virtualenvs/choco-cPJmmad5-py3.9/bin/python&#10;/home/dadyarri/desktop/1/main.py&#10;/home/dadyarri/.cache/pypoetry/virtualenvs/jacob-ug-TQ5oU-py3.9/bin/flake8helled&#10;/home/dadyarri/projects/uni-jacob/jacob/tests/database/utils/test_admin.py&#10;/home/dadyarri/projects/uni-jacob/jacob/.env&#10;/home/dadyarri/projects/uni-jacob/jacob/docker-compose.yml&#10;/home/dadyarri/projects/uni-jacob/jacob/.env.dev&#10;/home/dadyarri/projects/uni-jacob/jacob&#10;/home/dadyarri/projects/community/vkwave&#10;/home/dadyarri/projects/jacob/scripts/compose.sh&#10;/var/lib/postgres/data&#10;/home/dadyarri/projects/jacob/docker-compose.yml&#10;/home/dadyarri/projects/jacob/.env&#10;/home/dadyarri/.cache/pypoetry/virtualenvs/jacob-R6jX0S4E-py3.9/bin/python&#10;/home/dadyarri/projects/choco&#10;/home/dadyarri/.cache/pypoetry/virtualenvs/jacob-R6jX0S4E-py3.8/bin/python&#10;/home/dadyarri/projects/purple_plane_test_case/app/settings.py&#10;/home/dadyarri/projects/purple_plane_test_case" />
+    <property name="file.gist.reindex.count" value="268360" />
+    <property name="fileTypeChangedCounter" value="79" />
     <property name="fileTypeDetectors" value="com.intellij.database.vfs.DbStorageFileType$Detector:com.intellij.ide.scratch.ScratchFileServiceImpl$Detector:com.intellij.javascript.debugger.sourcemap.SourceMapFileType$MyFileTypeDetector" />
     <property name="got.it.tooltip.cwm.invitation.notification" value="1" />
     <property name="got.it.tooltip.reader.mode.got.it" value="1" />
@@ -168,6 +178,7 @@
         <entry key="$USER_HOME$/.cache/pypoetry/virtualenvs/jacob-R6jX0S4E-py3.8/bin/python" value="true" />
         <entry key="$USER_HOME$/.cache/pypoetry/virtualenvs/jacob-R6jX0S4E-py3.9/bin/python" value="true" />
         <entry key="$USER_HOME$/.cache/pypoetry/virtualenvs/jacob-ug-TQ5oU-py3.9/bin/python" value="true" />
+        <entry key="$USER_HOME$/.cache/pypoetry/virtualenvs/labwork3-LjGXGwA5-py3.9/bin/python" value="true" />
         <entry key="$USER_HOME$/.cache/pypoetry/virtualenvs/vkwave-Yxqf1Szx-py3.9/bin/python" value="true" />
         <entry key="$USER_HOME$/.local/share/virtualenvs/doors-o1k4jGXK/bin/python" value="false" />
         <entry key="$USER_HOME$/.local/share/virtualenvs/jacob-45jkGjGA/bin/python" value="true" />
@@ -180,7 +191,7 @@
         <entry key="$USER_HOME$/projects/orders/flask_crud/.venv/bin/python" value="true" />
         <entry key="$USER_HOME$/projects/reciept_scanner/venv_recscan/bin/python" value="false" />
         <entry key="$USER_HOME$/projects/services_scanner/venv_recscan/bin/python" value="false" />
-        <entry key="/usr/bin/python3.9" value="false" />
+        <entry key="/usr/bin/python3.9" value="true" />
       </map>
     </option>
     <option name="SDK_TO_NOSETEST">
@@ -190,6 +201,7 @@
         <entry key="$USER_HOME$/.cache/pypoetry/virtualenvs/jacob-R6jX0S4E-py3.8/bin/python" value="false" />
         <entry key="$USER_HOME$/.cache/pypoetry/virtualenvs/jacob-R6jX0S4E-py3.9/bin/python" value="false" />
         <entry key="$USER_HOME$/.cache/pypoetry/virtualenvs/jacob-ug-TQ5oU-py3.9/bin/python" value="false" />
+        <entry key="$USER_HOME$/.cache/pypoetry/virtualenvs/labwork3-LjGXGwA5-py3.9/bin/python" value="false" />
         <entry key="$USER_HOME$/.local/share/virtualenvs/jacob-45jkGjGA/bin/python" value="false" />
         <entry key="$USER_HOME$/.local/share/virtualenvs/jacob-AEoJMjtc/bin/python" value="false" />
         <entry key="$USER_HOME$/.local/share/virtualenvs/motherland-yYNslhay/bin/python" value="false" />
@@ -206,6 +218,7 @@
         <entry key="$USER_HOME$/.cache/pypoetry/virtualenvs/choco-vk-cPJmmad5-py3.9/bin/python" value="false" />
         <entry key="$USER_HOME$/.cache/pypoetry/virtualenvs/jacob-R6jX0S4E-py3.8/bin/python" value="false" />
         <entry key="$USER_HOME$/.cache/pypoetry/virtualenvs/jacob-R6jX0S4E-py3.9/bin/python" value="false" />
+        <entry key="$USER_HOME$/.cache/pypoetry/virtualenvs/labwork3-LjGXGwA5-py3.9/bin/python" value="false" />
         <entry key="$USER_HOME$/.local/share/virtualenvs/jacob-45jkGjGA/bin/python" value="false" />
         <entry key="$USER_HOME$/.local/share/virtualenvs/jacob-AEoJMjtc/bin/python" value="false" />
         <entry key="$USER_HOME$/.local/share/virtualenvs/motherland-yYNslhay/bin/python" value="false" />
@@ -219,6 +232,7 @@
   <component name="TerminalCommandHistoryManager">
     <command-history-files>
       <command-history-file filename="flask_crud-history" project-path="$USER_HOME$/projects/orders/flask_crud" last-access-time="1618930151066" />
+      <command-history-file filename="3-history" project-path="$USER_HOME$/vlsu/учеба/2-семестр/лабы/алгоритмы/3" last-access-time="1619073308858" />
     </command-history-files>
   </component>
   <component name="ToolbarSettingsService">
