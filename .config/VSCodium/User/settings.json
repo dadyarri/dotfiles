@@ -1,7 +1,7 @@
 {
     "workbench.startupEditor": "newUntitledFile",
     "workbench.colorTheme": "GitHub Dark",
-    "editor.fontFamily": "'JetBrains Mono Regular Nerd Font Complete Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "editor.fontFamily": "'JetBrainsMono Nerd Font Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
     "editor.fontLigatures": true,
     "python.showStartPage": false,
     "window.menuBarVisibility": "visible",
@@ -16,6 +16,7 @@
     "vscodeWorkspaceSwitcher.paths": [
         "/home/dadyarri/projects/code-workspaces"
     ],
-    "vscodeWorkspaceSwitcher.showTreeView": false
+    "vscodeWorkspaceSwitcher.showTreeView": false,
+    "git.confirmSync": false
 }
 
