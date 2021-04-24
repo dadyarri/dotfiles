@@ -1,21 +1,6 @@
 [submodule ".tmux"]
 	path = .tmux
 	url = https://github.com/dadyarri/.tmux.git
-[submodule ".zsh/plugins/forgit"]
-	path = .zsh/plugins/forgit
-	url = https://github.com/wfxr/forgit.git
-[submodule ".zsh/plugins/zsh-autosuggestions"]
-	path = .zsh/plugins/zsh-autosuggestions
-	url = https://github.com/zsh-users/zsh-autosuggestions.git
-[submodule ".zsh/plugins/zsh-history-substring-search"]
-	path = .zsh/plugins/zsh-history-substring-search
-	url = https://github.com/zsh-users/zsh-history-substring-search.git
-[submodule ".zsh/plugins/zsh-syntax-highlighting"]
-	path = .zsh/plugins/zsh-syntax-highlighting
-	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
-[submodule ".zsh/themes/powerlevel10k"]
-	path = .zsh/themes/powerlevel10k
-	url = https://github.com/romkatv/powerlevel10k.git
 [submodule ".vim/plugins/ale"]
 	path = .vim/plugins/ale
 	url = https://github.com/dense-analysis/ale.git
@@ -103,30 +88,6 @@
 [submodule ".vim/plugins/vim-css-color"]
 	path = .vim/plugins/vim-css-color
 	url = https://github.com/ap/vim-css-color.git
-[submodule ".zsh/plugins/alias-tips"]
-	path = .zsh/plugins/alias-tips
-	url = https://github.com/djui/alias-tips.git
-[submodule ".zsh/plugins/auto-ls"]
-	path = .zsh/plugins/auto-ls
-	url = https://github.com/desyncr/auto-ls.git
-[submodule ".zsh/plugins/autopair"]
-	path = .zsh/plugins/autopair
-	url = https://github.com/hlissner/zsh-autopair
-[submodule ".zsh/plugins/copy-pasta"]
-	path = .zsh/plugins/copy-pasta
-	url = https://github.com/ChrisPenner/copy-pasta
-[submodule ".zsh/plugins/bd"]
-	path = .zsh/plugins/bd
-	url = https://github.com/Tarrasch/zsh-bd
-[submodule ".zsh/plugins/systemd"]
-	path = .zsh/plugins/systemd
-	url = https://github.com/le0me55i/zsh-systemd
-[submodule ".zsh/plugins/zshmarks"]
-	path = .zsh/plugins/zshmarks
-	url = https://github.com/jocelynmallon/zshmarks
 [submodule "projects/stuff/test/.vim/plugins/vim-pencil"]
 	path = projects/stuff/test/.vim/plugins/vim-pencil
 	url = https://github.com/reedes/vim-pencil
-[submodule ".zsh/plugins/fzf-tab"]
-	path = .zsh/plugins/fzf-tab
-	url = https://github.com/Aloxaf/fzf-tab
