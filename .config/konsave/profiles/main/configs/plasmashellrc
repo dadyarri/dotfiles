@@ -1,0 +1,84 @@
+[KFileDialog Settings]
+Recent Files[$e]=wallpapers/kxblq0jrdkyz.jpg,file:$HOME/pictures/reddit/wallpapers/7pdt6rqv7erz.jpg,file:$HOME/pictures/wallpapers/kxblq0jrdkyz.jpg
+Recent URLs[$e]=file:$HOME/pictures/,file:$HOME/pictures/reddit/wallpapers/
+detailViewIconSize=126
+
+[KPropertiesDialog]
+VGA1 LVDS1 Height 1440x900=458
+VGA1 LVDS1 Width 1440x900=658
+
+[PlasmaTransientsConfig]
+PreloadWeight=0
+
+[PlasmaViews][Panel 1][Defaults]
+thickness=33
+
+[PlasmaViews][Panel 1][Horizontal1024]
+thickness=45
+
+[PlasmaViews][Panel 1][Horizontal1152]
+thickness=45
+
+[PlasmaViews][Panel 1][Horizontal1200]
+thickness=45
+
+[PlasmaViews][Panel 1][Horizontal1280]
+thickness=45
+
+[PlasmaViews][Panel 1][Horizontal1366]
+thickness=25
+
+[PlasmaViews][Panel 1][Horizontal1440]
+thickness=33
+
+[PlasmaViews][Panel 1][Horizontal1600]
+thickness=45
+
+[PlasmaViews][Panel 1][Horizontal1680]
+thickness=45
+
+[PlasmaViews][Panel 1][Horizontal1900]
+thickness=45
+
+[PlasmaViews][Panel 1][Horizontal1916]
+thickness=45
+
+[PlasmaViews][Panel 1][Horizontal1920]
+thickness=45
+
+[PlasmaViews][Panel 1][Horizontal2048]
+thickness=45
+
+[PlasmaViews][Panel 1][Horizontal800]
+thickness=45
+
+[PlasmaViews][Panel 1][Horizontal864]
+thickness=45
+
+[PlasmaViews][Panel 21][Defaults]
+thickness=28
+
+[PlasmaViews][Panel 21][Horizontal1024]
+thickness=26
+
+[PlasmaViews][Panel 21][Horizontal1366]
+thickness=26
+
+[PlasmaViews][Panel 21][Horizontal1440]
+thickness=28
+
+[PlasmaViews][Panel 42][Defaults]
+thickness=26
+
+[PlasmaViews][Panel 42][Horizontal1366]
+thickness=26
+
+[PlasmaViews][Panel 42][Horizontal1440]
+thickness=30
+
+[ScreenConnectors]
+0=VGA1
+1=LVDS1
+
+[Updates]
+performed=/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates/obsolete_kickoffrc.js,/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates/maintain_existing_desktop_icon_sizes.js,/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates/move_desktop_layout_config.js,/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates/unlock_widgets.js,/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates/containmentactions_middlebutton.js,/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates/systemloadviewer_systemmonitor.js

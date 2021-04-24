@@ -1,0 +1,28 @@
+[$Version]
+update_info=ksmserver_update_loginMode_value.upd:ksmserver_update_loginMode_value_default_enum
+
+[LegacySession: saved at previous logout]
+count=0
+
+[Session: saved at previous logout]
+clientId1=101c61bb15f135000161467426700000010900007
+clientId2=101c61bb15f135000161812419200000030100006
+clientId3=101c61bb15f135000161847338000000018820007
+clientId4=101c61bb15f135000161847339000000018820009
+count=4
+program1=/usr/bin/octopi-notifier
+program2=/usr/bin/msm_kde_notifier
+program3=/usr/bin/flameshot
+program4=pulseaudio
+restartCommand1=/usr/bin/octopi-notifier,-session,101c61bb15f135000161467426700000010900007_1618778983_326784
+restartCommand2=/usr/bin/msm_kde_notifier,-session,101c61bb15f135000161812419200000030100006_1618778983_327538
+restartCommand3=/usr/bin/flameshot,-session,101c61bb15f135000161847338000000018820007_1618778983_328237
+restartCommand4=
+restartStyleHint1=0
+restartStyleHint2=0
+restartStyleHint3=0
+restartStyleHint4=0
+userId1=dadyarri
+userId2=dadyarri
+userId3=dadyarri
+userId4=dadyarri
