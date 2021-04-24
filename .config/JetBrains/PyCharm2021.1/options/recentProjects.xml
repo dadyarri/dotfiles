@@ -103,22 +103,34 @@
             <RecentProjectMetaInfo frameTitle="labwork – fill_report_template.py" projectWorkspaceId="1rVzjdcMx1GOAHC1wWiH9kCxBKA">
               <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
               <option name="build" value="PY-211.6693.115" />
-              <option name="buildTimestamp" value="1617710454921" />
-              <frame x="1630" y="0" width="1356" height="741" extendedState="6" />
+              <option name="buildTimestamp" value="1617710404703" />
+              <frame x="1440" y="0" width="1366" height="742" extendedState="6" />
               <option name="productionCode" value="PY" />
-              <option name="projectOpenTimestamp" value="1619076188576" />
+              <option name="projectOpenTimestamp" value="1619105915762" />
             </RecentProjectMetaInfo>
           </value>
         </entry>
         <entry key="$USER_HOME$/vlsu/учеба/2-семестр/лабы/алгоритмы/3">
           <value>
-            <RecentProjectMetaInfo frameTitle="3 – fill_report_template.py" opened="true" projectWorkspaceId="1rVsbAuflJjLN2XO4i5FEH2tEQP">
+            <RecentProjectMetaInfo frameTitle="3 – fill_report_template.py" projectWorkspaceId="1rVsbAuflJjLN2XO4i5FEH2tEQP">
               <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
               <option name="build" value="PY-211.6693.115" />
-              <option name="buildTimestamp" value="1617710454921" />
-              <frame x="0" y="0" width="1440" height="867" extendedState="6" />
+              <option name="buildTimestamp" value="1617710404703" />
+              <frame x="1440" y="0" width="1366" height="742" extendedState="6" />
               <option name="productionCode" value="PY" />
-              <option name="projectOpenTimestamp" value="1619084607216" />
+              <option name="projectOpenTimestamp" value="1619110235442" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/vlsu/учеба/2-семестр/лабы/алгоритмы/5">
+          <value>
+            <RecentProjectMetaInfo frameTitle="5 – metainfo.txt" opened="true" projectWorkspaceId="1rZVOwWqHjFFuJA75cTgC3zsqed">
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="build" value="PY-211.6693.115" />
+              <option name="buildTimestamp" value="1617710448034" />
+              <frame x="1440" y="0" width="1366" height="742" extendedState="6" />
+              <option name="productionCode" value="PY" />
+              <option name="projectOpenTimestamp" value="1619183572578" />
             </RecentProjectMetaInfo>
           </value>
         </entry>

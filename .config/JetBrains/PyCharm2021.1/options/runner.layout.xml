@@ -3,27 +3,25 @@
     <runner id="Debug">
       <ViewImpl>
         <option name="ID" value="FrameContent" />
-        <option name="placeInGrid" value="left" />
-        <option name="tabIndex" value="1" />
+        <option name="placeInGrid" value="center" />
       </ViewImpl>
       <ViewImpl>
         <option name="ID" value="VariablesContent" />
         <option name="placeInGrid" value="center" />
-        <option name="tabIndex" value="1" />
       </ViewImpl>
       <ViewImpl>
         <option name="ID" value="ConsoleContent" />
-        <option name="placeInGrid" value="bottom" />
+        <option name="placeInGrid" value="left" />
       </ViewImpl>
       <ViewImpl>
         <option name="ID" value="$USER_HOME$/projects/bots/vk/jacob/jacob.log" />
         <option name="placeInGrid" value="bottom" />
-        <option name="tabIndex" value="1" />
+        <option name="tabIndex" value="-1" />
       </ViewImpl>
       <ViewImpl>
         <option name="ID" value="$USER_HOME$/projects/jacob/jacob.log" />
         <option name="placeInGrid" value="right" />
-        <option name="tabIndex" value="1" />
+        <option name="tabIndex" value="-1" />
       </ViewImpl>
       <ViewImpl>
         <option name="ID" value="$USER_HOME$/projects/uni-jacob/jacob/jacob.log" />
@@ -31,13 +29,14 @@
         <option name="tabIndex" value="2" />
       </ViewImpl>
       <TabImpl>
-        <option name="bottomProportion" value="0.0" />
+        <option name="bottomProportion" value="0.46632123" />
+        <option name="leftProportion" value="0.6074476" />
       </TabImpl>
       <TabImpl>
         <option name="bottomProportion" value="0.0" />
         <option name="defaultIndex" value="1" />
         <option name="displayName" value="Debugger" />
-        <option name="index" value="1" />
+        <option name="index" value="-1" />
         <option name="leftProportion" value="0.291699" />
         <option name="rightProportion" value="0.3584174" />
       </TabImpl>
