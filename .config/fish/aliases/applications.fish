@@ -1,5 +1,6 @@
 ## Vim
-alias vimconfig 'vim ~/.vimrc'                      # Edit vim config
+alias vimconfig 'nvim ~/.config/nvim/init.vim'                      # Edit nvim config
+alias vim 'nvim'
 
 ## File contents
 command -v bat &> /dev/null && alias cat 'bat'      # Alias bat to cat if installed (https://github.com/sharkdp/bat)
