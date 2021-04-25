@@ -1,6 +1,3 @@
-[submodule ".tmux"]
-	path = .tmux
-	url = https://github.com/dadyarri/.tmux.git
 [submodule "projects/stuff/test/.vim/plugins/vim-pencil"]
 	path = projects/stuff/test/.vim/plugins/vim-pencil
 	url = https://github.com/reedes/vim-pencil
