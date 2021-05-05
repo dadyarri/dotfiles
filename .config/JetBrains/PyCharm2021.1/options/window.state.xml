@@ -88,7 +88,7 @@
     <size key="GridCell.Tab.-1.bottom.1440.0.1366.768" width="1320" height="228" />
   </component>
   <component name="WindowManager">
-    <frame x="1440" y="0" width="1366" height="742" extendedState="6" />
+    <frame x="1440" y="0" width="1366" height="743" extendedState="6" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.3184765" />
       <window_info id="Structure" order="1" weight="0.25" />

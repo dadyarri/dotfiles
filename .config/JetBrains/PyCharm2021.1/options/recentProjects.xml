@@ -86,18 +86,6 @@
             </RecentProjectMetaInfo>
           </value>
         </entry>
-        <entry key="$USER_HOME$/projects/uni-jacob/jacob">
-          <value>
-            <RecentProjectMetaInfo frameTitle="jacob – menu.py" projectWorkspaceId="1bcKJnDp3W85ywoUpMzKv5HSwsl">
-              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
-              <option name="build" value="PY-211.6693.115" />
-              <option name="buildTimestamp" value="1617710437339" />
-              <frame x="1440" y="0" width="1366" height="742" extendedState="6" />
-              <option name="productionCode" value="PY" />
-              <option name="projectOpenTimestamp" value="1618944413214" />
-            </RecentProjectMetaInfo>
-          </value>
-        </entry>
         <entry key="$USER_HOME$/projects/vlsu/cookiecutters/labwork">
           <value>
             <RecentProjectMetaInfo frameTitle="labwork – fill_report_template.py" projectWorkspaceId="1rVzjdcMx1GOAHC1wWiH9kCxBKA">
@@ -124,13 +112,25 @@
         </entry>
         <entry key="$USER_HOME$/vlsu/учеба/2-семестр/лабы/алгоритмы/5">
           <value>
-            <RecentProjectMetaInfo frameTitle="5 – metainfo.txt" opened="true" projectWorkspaceId="1rZVOwWqHjFFuJA75cTgC3zsqed">
+            <RecentProjectMetaInfo frameTitle="5" projectWorkspaceId="1rZVOwWqHjFFuJA75cTgC3zsqed">
               <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
               <option name="build" value="PY-211.6693.115" />
               <option name="buildTimestamp" value="1617710448034" />
-              <frame x="1440" y="0" width="1366" height="742" extendedState="6" />
+              <frame x="1440" y="0" width="1366" height="743" extendedState="6" />
               <option name="productionCode" value="PY" />
               <option name="projectOpenTimestamp" value="1619183572578" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/projects/uni-jacob/jacob">
+          <value>
+            <RecentProjectMetaInfo frameTitle="jacob – README.md" opened="true" projectWorkspaceId="1bcKJnDp3W85ywoUpMzKv5HSwsl">
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="build" value="PY-211.6693.115" />
+              <option name="buildTimestamp" value="1617710416520" />
+              <frame x="1440" y="0" width="1366" height="743" extendedState="6" />
+              <option name="productionCode" value="PY" />
+              <option name="projectOpenTimestamp" value="1619698804247" />
             </RecentProjectMetaInfo>
           </value>
         </entry>
