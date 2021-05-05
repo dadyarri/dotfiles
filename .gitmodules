@@ -1,12 +1,21 @@
-[submodule ".vim/plugins/ale"]
-	path = .vim/plugins/ale
-	url = https://github.com/dense-analysis/ale.git
+[submodule ".zsh/plugins/forgit"]
+	path = .zsh/plugins/forgit
+	url = https://github.com/wfxr/forgit.git
+[submodule ".zsh/plugins/zsh-autosuggestions"]
+	path = .zsh/plugins/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions.git
+[submodule ".zsh/plugins/zsh-history-substring-search"]
+	path = .zsh/plugins/zsh-history-substring-search
+	url = https://github.com/zsh-users/zsh-history-substring-search.git
+[submodule ".zsh/plugins/zsh-syntax-highlighting"]
+	path = .zsh/plugins/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+[submodule ".zsh/themes/powerlevel10k"]
+	path = .zsh/themes/powerlevel10k
+	url = https://github.com/romkatv/powerlevel10k.git
 [submodule ".vim/plugins/auto-pairs"]
 	path = .vim/plugins/auto-pairs
 	url = https://github.com/jiangmiao/auto-pairs.git
-[submodule ".vim/plugins/black"]
-	path = .vim/plugins/black
-	url = https://github.com/psf/black.git
 [submodule ".vim/plugins/bufexplorer"]
 	path = .vim/plugins/bufexplorer
 	url = https://github.com/jlanzarotta/bufexplorer.git
@@ -85,3 +94,4 @@
 [submodule ".vim/plugins/vim-css-color"]
 	path = .vim/plugins/vim-css-color
 	url = https://github.com/ap/vim-css-color.git
+
