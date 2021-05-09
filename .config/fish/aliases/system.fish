@@ -16,7 +16,6 @@ alias ... 'cd ../..'                                # Shortcut to go up twice
 alias path 'readlink -e'                            # Get full path to directory
 
 ## Find utilities
-alias grep 'grep --color auto'                      # Colorize grep
 alias fgrep 'fgrep --color auto'
 alias egrep 'egrep --color auto'
 
