@@ -16,12 +16,12 @@
       <ViewImpl>
         <option name="ID" value="$USER_HOME$/projects/bots/vk/jacob/jacob.log" />
         <option name="placeInGrid" value="bottom" />
-        <option name="tabIndex" value="-1" />
+        <option name="tabIndex" value="3" />
       </ViewImpl>
       <ViewImpl>
         <option name="ID" value="$USER_HOME$/projects/jacob/jacob.log" />
         <option name="placeInGrid" value="right" />
-        <option name="tabIndex" value="-1" />
+        <option name="tabIndex" value="4" />
       </ViewImpl>
       <ViewImpl>
         <option name="ID" value="$USER_HOME$/projects/uni-jacob/jacob/jacob.log" />
@@ -34,16 +34,16 @@
       </TabImpl>
       <TabImpl>
         <option name="bottomProportion" value="0.0" />
-        <option name="defaultIndex" value="1" />
-        <option name="displayName" value="Debugger" />
-        <option name="index" value="-1" />
-        <option name="leftProportion" value="0.291699" />
-        <option name="rightProportion" value="0.3584174" />
-      </TabImpl>
-      <TabImpl>
-        <option name="bottomProportion" value="0.0" />
         <option name="defaultIndex" value="2" />
         <option name="index" value="2" />
+      </TabImpl>
+      <TabImpl>
+        <option name="defaultIndex" value="3" />
+        <option name="index" value="3" />
+      </TabImpl>
+      <TabImpl>
+        <option name="defaultIndex" value="4" />
+        <option name="index" value="4" />
       </TabImpl>
     </runner>
     <runner id="JavaRunner">
