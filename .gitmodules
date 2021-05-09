@@ -94,4 +94,15 @@
 [submodule ".vim/plugins/vim-css-color"]
 	path = .vim/plugins/vim-css-color
 	url = https://github.com/ap/vim-css-color.git
-
+[submodule ".zsh/plugins/forgit"]
+	path = .zsh/plugins/forgit
+	url = https://github.com/wfxr/forgit.git
+[submodule ".zsh/plugins/autopair"]
+	path = .zsh/plugins/autopair
+	url = https://github.com/hlissner/zsh-autopair
+[submodule ".zsh/plugins/systemd"]
+	path = .zsh/plugins/systemd
+	url = https://github.com/le0me55i/zsh-systemd
+[submodule ".zsh/plugins/fzf-tab"]
+	path = .zsh/plugins/fzf-tab
+	url = https://github.com/Aloxaf/fzf-tab
