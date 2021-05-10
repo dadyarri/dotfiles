@@ -12,11 +12,27 @@
     "workbench.editor.closeOnFileDelete": true,
     "explorer.confirmDragAndDrop": false,
     "git.enableSmartCommit": true,
-    "latex-workshop.view.pdf.viewer": "tab",
-    "vscodeWorkspaceSwitcher.paths": [
-        "/home/dadyarri/projects/code-workspaces"
-    ],
-    "vscodeWorkspaceSwitcher.showTreeView": false,
-    "git.confirmSync": false
+    "git.confirmSync": false,
+    "window.dialogStyle": "custom",
+    "terminal.integrated.profiles.linux": {
+        "zsh": {
+            "path": "zsh",
+            "icon": "terminal",
+            "env": {
+                "PYTHONPATH": "."
+            }
+        },
+        "tmux": {
+            "path": "tmux",
+            "icon": "terminal-tmux",
+            "env": {
+                "PYTHONPATH": "."
+            }
+        },
+    },
+    "terminal.integrated.defaultProfile.linux": "zsh",
+    "markdown.preview.typographer": true,
+    "workbench.productIconTheme": "fluent-icons",
+    "terminal.integrated.tabs.enabled": true
 }
 
