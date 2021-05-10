@@ -74,7 +74,8 @@ alias cls="clear"
 alias q="clear"
 alias grep='grep --color=auto'
 alias p='sudo pacman'
-alias vi='vim'
+alias vi='nvim'
+alias vim='nvim
 alias pacman='pacman --color=always'
 alias mkdir='mkdir -pv'
 # Print full file path
