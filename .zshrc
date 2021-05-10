@@ -74,8 +74,6 @@ alias cls="clear"
 alias q="clear"
 alias grep='grep --color=auto'
 alias p='sudo pacman'
-alias vi='nvim'
-alias vim='nvim
 alias pacman='pacman --color=always'
 alias mkdir='mkdir -pv'
 # Print full file path
@@ -115,9 +113,12 @@ alias pm='sudo pacman-mirrors --fasttrack'
 #  * `disks` command to List disks
 #    - Clearly shows which disks are mounted temporary
 #    - I always run this command before `dd` sd-card, to make 100% sure not to override system partition
+
 alias disks='lsblk -o HOTPLUG,NAME,SIZE,MODEL,TYPE | awk "NR == 1 || /disk/"'
 alias sizeof="du -hs"
+
 # Lsd
+
 command -v lsd &> /dev/null && alias ls='lsd --group-dirs first'
 command -v lsd &> /dev/null && alias lst='lsd --tree --depth 2'
 command -v lsd &> /dev/null && alias lsa='lsd -A'
@@ -191,11 +192,11 @@ mkcd () {
 }
 
 vim() {
-  if [ -w "$1" ]
+  if [ -w "$1" ] || [ ! -n "$1" ]
   then
-    /usr/bin/vim $*
+    /usr/bin/nvim $*
   else
-    sudo /usr/bin/vim $*
+    sudo /usr/bin/nvim $*
   fi
 }
 
@@ -847,7 +848,7 @@ function _gh_repo_view {
 
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 
 
 export PATH="$HOME/.poetry/bin:$PATH"
