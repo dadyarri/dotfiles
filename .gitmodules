@@ -106,3 +106,7 @@
 [submodule ".zsh/plugins/fzf-tab"]
 	path = .zsh/plugins/fzf-tab
 	url = https://github.com/Aloxaf/fzf-tab
+[submodule ".tmux"]
+	path = .tmux
+	url = https://github.com/dadyarri/.tmux.git
+
