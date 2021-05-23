@@ -131,7 +131,7 @@ command -v htop &> /dev/null && alias top='htop'
 command -v gotop &> /dev/null && alias top='gotop -p'
 
 # ViM
-alias vimconfig='vim ~/.vimrc'
+alias vimconfig='vim ~/.config/nvim/init.vim'
 
 # cat
 command -v bat &> /dev/null && alias cat='bat'
@@ -176,6 +176,7 @@ ex () {
             *.zip)      unzip $1        ;;
             *.Z)        uncompress $1   ;;
             *.7z)       7z x $1         ;;
+		    *.iso)	7z x $1		;;
             *.deb)      ar x $1         ;;
             *.tar.xz)   tar xf $1       ;;
             *.tar.zst)  unzstd $1       ;;
@@ -192,12 +193,12 @@ mkcd () {
 }
 
 vim() {
-  if [ -w "$1" ] || [ ! -n "$1" ]
-  then
-    /usr/bin/nvim $*
-  else
-    sudo /usr/bin/nvim $*
-  fi
+	if [ -w "$1" ] || [ ! -n "$1" ] || [ -w $(pwd) ]
+	then
+		/usr/bin/nvim $*
+	else
+		sudo /usr/bin/nvim $*
+	fi
 }
 
 run() {
@@ -207,6 +208,10 @@ run() {
 
 bak () {
   mv "$1" "$(basename $1).bak"
+}
+
+unbak () {
+	mv "$1.bak" "$1"
 }
 
 launch () {
@@ -219,6 +224,10 @@ qr () {
   else
     printf "$1" | qrencode --size 5 --background=FFFFFF --foreground=000000 -o - | display
   fi
+}
+
+doc () {
+	touch $(date +%Y-%m-%d-%H-%M-%S).md
 }
 
 AUTO_LS_COMMANDS=(lsd)

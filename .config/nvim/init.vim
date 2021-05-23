@@ -33,7 +33,7 @@ set laststatus=2
 set noshowmode
 call plug#begin('~/.vim/plugins')
 
-
+Plug '/usr/bin/fzf'
 Plug 'jiangmiao/auto-pairs'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -46,7 +46,6 @@ Plug 'terryma/vim-expand-region'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'farmergreg/vim-lastplace'
-Plug 'plasticboy/vim-markdown'
 Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tpope/vim-rhubarb'
@@ -57,7 +56,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'wakatime/vim-wakatime'
 Plug 'ap/vim-css-color'
 Plug 'reedes/vim-pencil', { 'for': 'markdown' }
-Plug 'dag/vim-fish'
+Plug 'euclidianAce/BetterLua.vim', { 'for': 'lua' }
 call plug#end()
 
 let mapleader = ","
@@ -99,6 +98,9 @@ noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 noremap <C-h> <C-w>h
 
+"" Sync syntax
+noremap <F12> <Esc>:syntax sync fromstart<CR>
+inoremap <F12> <C-o>:syntax sync fromstart<CR>
 "" Custom maps
 map <space> /
 map <C-space> ?
@@ -251,4 +253,5 @@ command! FixWhitespace :%s/\s\+$//e
 " sudo save file
 command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 
-
+" Set *.pl files' syntax to prolog
+autocmd BufNewFile,BufRead *.pl set syntax=prolog
