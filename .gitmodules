@@ -109,4 +109,7 @@
 [submodule ".tmux"]
 	path = .tmux
 	url = https://github.com/dadyarri/.tmux.git
+[submodule ".config/nvim/lsp/lua"]
+	path = .config/nvim/lsp/lua
+	url = https://github.com/sumneko/lua-language-server
 
