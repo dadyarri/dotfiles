@@ -66,7 +66,7 @@ source $THEMES_DIR/powerlevel10k/powerlevel10k.zsh-theme
 autoload compinit && compinit
 
 # ZSH
-alias zshconfig="vim ~/.zshrc && exec zsh"
+alias zshconfig="nvim ~/.zshrc && exec zsh"
 
 # System
 alias !="sudo"
@@ -861,3 +861,5 @@ function _gh_repo_view {
 
 
 export PATH="$HOME/.poetry/bin:$PATH"
+
+alias luamake=/home/dadyarri/.config/nvim/language-servers/lua-language-server/3rd/luamake/luamake
