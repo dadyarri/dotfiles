@@ -3,7 +3,8 @@ local noresil = {noremap=true, silent=true}
 
 map('n', '<Space>', '<NOP>', noresil) -- Disable space
 
-vim.g.mapleader = ',' -- Set leader key to space
+vim.g.mapleader = ',' -- Set leader key to comma
+
 map('n', '<Leader>h', ':set hlsearch!<CR>', noresil) -- Switch highlighting in search mode
 map('n', '<Leader>t', ':NvimTreeToggle<CR>', noresil) -- Switch files tree
 map('n', '<Leader>s', ':luafile ~/.config/nvim/init.lua<CR>', noresil) -- Switch files tree
@@ -27,3 +28,7 @@ map('v', 'K', ':move \'<-2<CR>gv-gv\'', noresil) -- Move selected to the UP
 map('v', 'J', ':move \'>+1<CR>gv-gv\'', noresil) -- Move selected to the DOWN
 
 map('i', 'jj', '<ESC>', noresil) -- Press ESC on fast pressing jj in insert mode
+
+-- Search forward by '<Space>' and backward by '<S-Space>'
+map('n', '<Space>', '/', noresil)
+map('n', '<C-Space>', '?', noresil)
