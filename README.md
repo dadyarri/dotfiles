@@ -4,51 +4,21 @@
 
 This is a set of my configuration files, which i uses on [Manjaro Linux](https://manjaro.org)
 
-**Terminal emulator:** [Alacritty](https://github.com/alacritty/alacritty)
+**Terminal emulator:** [Konsole](https://github.com/KDE/konsole)
 
 **Desktop Environment:** [KDE Plasma](https:/kde.org/plasma-desktop)
 
 **Dotfiles management:** [yadm.io](https://yadm.io)
 
-## Backup packages
-
-`pacman -Qqm > pkgaurlist` -- Backup AUR packages
-
-`pacman -Qqet | grep -v "$(pacman -Qqm)" > pkglist` -- Backup explicitly installed packages
-
-## Install packages
-
-`cat pkglist | xargs sudo pacman -S --needed --no-confirm`
-
-`cat pkgaurlist | xargs yay -S`
-
-`cargo install pastel`
-
-`flatpak install com.skype.Client com.spotify.Client org.onlyoffice.desktopeditors`
-
-## Restore configs
+## Restore pack of dotfiles
 
 `yadm clone https://github.com/dadyarri/dotfiles`
 
-## Preview applications
-### DE
+## Contents
 
-![de](https://user-images.githubusercontent.com/51821039/100523360-11ae0b00-31c1-11eb-8f0a-fc08a765323b.png)
-
-### ZSH + Tmux
-
-![zsh+tmux](https://user-images.githubusercontent.com/51821039/100522224-3488f100-31ba-11eb-9f8d-35b0d0230361.png)
-### Vim
-
-![vim_main](https://user-images.githubusercontent.com/51821039/100430151-6d847100-30a7-11eb-80a9-34dd383254be.png)
-
-![vim](https://user-images.githubusercontent.com/51821039/100430274-9c024c00-30a7-11eb-9763-8a24354c273c.png)
-
-## References & sources
-
-| Application  | Source                               |
-|--------------|--------------------------------------|
-| Tmux config  | @gpakosz's [.tmux](https://github.com/gpakosz/.tmux)                     |
-| Vim config   | @amix's awesome [vimrc](https://github.com/amix/vimrc) + [vim-bootstrap](https://vim-bootstrap.com)|
-| Wallpaper    | [runachan](https://vk.com/runachan)'s                           |
+- [Neovim](https://github.com/dadyarri/dotfiles/tree/master/.config/nvim)
+- [Git config](https://github.com/dadyarri/dotfiles/blob/master/.gitconfig)
+- [ZSH & plugins](https://github.com/dadyarri/dotfiles/blob/master/.zshrc)
+- [Tmux](https://github.com/dadyarri/dotfiles/blob/master/.tmux.conf.local) (based on [.tmux](https://github.com/gpakosz/.tmux)) 
+- [Visual Studio Code](https://github.com/dadyarri/dotfiles/blob/master/.config/Code)
 
