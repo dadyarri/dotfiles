@@ -32,9 +32,10 @@ else
 fi
 
 DEVICE=$(lsblk -J -o HOTPLUG,NAME,LABEL,MODEL,MOUNTPOINT | jq -r ".blockdevices | .[] | . as \$p | .children | flatten | .[] | select( .hotplug == true and .mountpoint $filter null ) | [.mountpoint,.label,\$p.model,.name] | @tsv" | fzf -d$'\t' | cut -d$'\t' -f4)
-
-if [[ $1 == "-u" ]]; then
-  udisksctl unmount --force -b "/dev/$DEVICE"
-else
-  udisksctl mount -b "/dev/$DEVICE"
+if [[ ! -z $DEVICE ]]; then
+    if [[ $1 == "-u" ]]; then
+        udisksctl unmount --force -b "/dev/$DEVICE"
+    else
+      udisksctl mount -b "/dev/$DEVICE"
+    fi
 fi
