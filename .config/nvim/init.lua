@@ -3,6 +3,7 @@ require('settings')
 
 require('plugins')
 require('keys')
+require('theme')
 
 -- Configure plugins
 require('nv-compe')
