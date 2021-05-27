@@ -1,4 +1,6 @@
 -- Import modules
+require('settings')
+
 require('plugins')
 require('keys')
 
@@ -10,5 +12,4 @@ require('nv-autopairs')
 -- Enable language servers
 require('lsp.lua-ls')
 require('lsp.python-ls')
-require('settings')
 
