@@ -26,4 +26,5 @@ paq {'kosayoda/nvim-lightbulb'}
 paq {'mfussenegger/nvim-jdtls'}
 paq {'mfussenegger/nvim-dap'}
 paq {'wojciechkepka/vim-github-dark'}
+paq {'matbme/JABS.nvim'}
 
