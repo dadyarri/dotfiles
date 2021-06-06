@@ -19,6 +19,7 @@ vim.o.smarttab = true
 vim.o.splitbelow = true
 vim.o.splitright = true
 vim.o.writebackup = false
+vim.o.shortmess = "filnxtToOfc"
 
 -- Window-related options
 vim.wo.cursorline = true
