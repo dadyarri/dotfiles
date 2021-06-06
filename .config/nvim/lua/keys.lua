@@ -32,3 +32,8 @@ map('i', 'jj', '<ESC>', noresil) -- Press ESC on fast pressing jj in insert mode
 -- Search forward by '<Space>' and backward by '<S-Space>'
 map('n', '<Space>', '/', noresil)
 map('n', '<C-Space>', '?', noresil)
+
+-- Add new line and exit to normal mode
+map('n', '<S-Enter>', 'O<Esc>', noresil)
+map('n', '<CR>', 'o<Esc>', noresil)
+
