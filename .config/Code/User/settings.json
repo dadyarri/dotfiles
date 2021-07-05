@@ -34,14 +34,12 @@
     "markdown.preview.typographer": true,
     "workbench.productIconTheme": "fluent-icons",
     "terminal.integrated.tabs.enabled": false,
-    "workbench.editorAssociations": [
-        {
-            "viewType": "jupyter.notebook.ipynb",
-            "filenamePattern": "*.ipynb"
-        }
-    ],
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter.notebook.ipynb"
+    },
     "editor.semanticHighlighting.enabled": true,
     "Lua.telemetry.enable": false,
-    "Lua.diagnostics.enable": false
+    "Lua.diagnostics.enable": false,
+    "dart.flutterSdkPath": "/home/dadyarri/.flutter"
 }
 
