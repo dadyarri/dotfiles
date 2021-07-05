@@ -11,6 +11,8 @@ require('nv-galaxyline')
 require('nv-compe')
 require('nv-comment')
 require('nv-autopairs')
+require('nv-treesitter')
+require('nv-telescope.keys')
 
 -- Enable language servers
 require('lsp.lua-ls')
