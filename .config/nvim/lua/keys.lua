@@ -27,6 +27,10 @@ map('n', '<S-TAB>', ':bprev<CR>', noresil)
 map('v', 'K', ':move \'<-2<CR>gv-gv\'', noresil) -- Move selected to the UP
 map('v', 'J', ':move \'>+1<CR>gv-gv\'', noresil) -- Move selected to the DOWN
 
+-- Move line
+map('n', '<M-k>', 'ddkP', noresil)  -- Move to the UP
+map('n', '<M-j>', 'ddp', noresil)  -- Move to the DOWN
+
 map('i', 'jj', '<ESC>', noresil) -- Press ESC on fast pressing jj in insert mode
 
 -- Search forward by '<Space>' and backward by '<S-Space>'
