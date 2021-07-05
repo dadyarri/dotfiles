@@ -73,6 +73,11 @@
             <ProjectPluginTracker />
           </value>
         </entry>
+        <entry key="1uUUgEQgNoEU9w4ORabWDLPY6bC">
+          <value>
+            <ProjectPluginTracker />
+          </value>
+        </entry>
       </map>
     </trackers>
   </component>
@@ -147,7 +152,7 @@
     <property name="TextEditorWithPreviewLayout" value="Editor only" />
     <property name="UITheme.relaunch" value="true" />
     <property name="Vcs.Log.Text.Filter.History" value="docs&#10;remove&#10;version" />
-    <property name="appcds.runOnSecondStart" value="PY-211.6693.115-c8c0aa33daa0bf96d0bb4e8b6951d3fb0bb86496826499d761b909810baa8c89" />
+    <property name="appcds.runOnSecondStart" value="PY-211.6693.115-7f929e72777cbb4a346b978f15cda2da122c5a047ece98ae8e2de9ab7bc00845" />
     <property name="com.intellij.database.actions.DdlActions$CreateObject$1.previewExpanded" value="true" />
     <property name="com.intellij.database.actions.DdlActions$DeleteProvider2$1.previewExpanded" value="true" />
     <property name="com.intellij.database.view.editors.ObjectEditorWithPreview.proportion" value="-0.5643154" />
@@ -165,7 +170,7 @@
     <property name="evlsprt3.211" value="14" />
     <property name="experimentalFeature.terminal.shell.command.handling" value="false" />
     <property name="file.chooser.recent.files" value="$USER_HOME$/vlsu/учеба/2-семестр/лабы/алгоритмы/7&#10;/home/dadyarri/vlsu/учеба/2-семестр/лабы/алгоритмы/6&#10;/home/dadyarri/projects/TelegramCRM&#10;/home/dadyarri/vlsu/учеба/2-семестр/лабы/алгоритмы/5&#10;/home/dadyarri/projects/vlsu/cookiecutters/labwork&#10;/home/dadyarri/vlsu/учеба/2-семестр/лабы/алгоритмы/3&#10;/home/dadyarri/.poetry/bin/poetry&#10;/home/dadyarri/projects/orders/flask_crud/.env&#10;/home/dadyarri/projects/orders/flask_crud/app.py&#10;/home/dadyarri/projects/orders/flask_crud&#10;/home/dadyarri/vlsu/учеба/2-семестр/лабы/алгоритмы/2&#10;/home/dadyarri/vlsu/учеба/2-семестр/лабы/дискретка/2&#10;/home/dadyarri/.cache/pypoetry/virtualenvs/choco-tg-xxB8xb1x-py3.9/bin/python&#10;/home/dadyarri/.cache/pypoetry/virtualenvs/choco-vk-cPJmmad5-py3.9/bin/python&#10;/home/dadyarri/projects/choco/vk&#10;/home/dadyarri/projects/choco/tg&#10;/home/dadyarri/.cache/pypoetry/virtualenvs/choco-cPJmmad5-py3.9/bin/python&#10;/home/dadyarri/desktop/1/main.py&#10;/home/dadyarri/.cache/pypoetry/virtualenvs/jacob-ug-TQ5oU-py3.9/bin/flake8helled&#10;/home/dadyarri/projects/uni-jacob/jacob/tests/database/utils/test_admin.py&#10;/home/dadyarri/projects/uni-jacob/jacob/.env&#10;/home/dadyarri/projects/uni-jacob/jacob/docker-compose.yml&#10;/home/dadyarri/projects/uni-jacob/jacob/.env.dev&#10;/home/dadyarri/projects/uni-jacob/jacob&#10;/home/dadyarri/projects/community/vkwave&#10;/home/dadyarri/projects/jacob/scripts/compose.sh&#10;/var/lib/postgres/data&#10;/home/dadyarri/projects/jacob/docker-compose.yml&#10;/home/dadyarri/projects/jacob/.env&#10;/home/dadyarri/.cache/pypoetry/virtualenvs/jacob-R6jX0S4E-py3.9/bin/python" />
-    <property name="file.gist.reindex.count" value="295120" />
+    <property name="file.gist.reindex.count" value="315711" />
     <property name="fileTypeChangedCounter" value="79" />
     <property name="fileTypeDetectors" value="com.intellij.database.vfs.DbStorageFileType$Detector:com.intellij.ide.scratch.ScratchFileServiceImpl$Detector:com.intellij.javascript.debugger.sourcemap.SourceMapFileType$MyFileTypeDetector" />
     <property name="got.it.tooltip.cwm.invitation.notification" value="1" />

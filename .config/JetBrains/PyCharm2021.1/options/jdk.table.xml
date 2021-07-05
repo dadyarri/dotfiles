@@ -416,6 +416,7 @@
     <jdk version="2">
       <name value="Poetry (jacob)" />
       <type value="Python SDK" />
+      <version value="Python 3.9.5" />
       <homePath value="$USER_HOME$/.cache/pypoetry/virtualenvs/jacob-ug-TQ5oU-py3.9/bin/python" />
       <roots>
         <classPath>
