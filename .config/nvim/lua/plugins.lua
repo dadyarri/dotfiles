@@ -1,30 +1,35 @@
 -- Shortcuts
 local cmd = vim.cmd
 
-cmd 'packadd paq-nvim'
+cmd 'packadd packer.nvim'
 
-local paq = require('paq-nvim').paq
+return require('packer').startup(function(use)
+	-- Neovim APIs
+	use 'nvim-lua/popup.nvim'
+	use 'nvim-lua/plenary.nvim'
 
-paq {'savq/paq-nvim'} -- Manage plugins
-paq {'kyazdani42/nvim-tree.lua'} -- File tree
-paq {'folke/which-key.nvim'} -- Helper, showing available keybindings
-paq {'neovim/nvim-lspconfig'} -- Configure lsp
-paq {'hrsh7th/nvim-compe'} -- LSP
-paq {'hrsh7th/vim-vsnip'} -- Snippets
-paq {'terrortylor/nvim-comment'} -- Auto comment selected
-paq {'windwp/nvim-autopairs'} -- Auto close paired brackets
-paq {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'} -- Improved code highlighting
-paq {'kyazdani42/nvim-web-devicons'} -- Icons
-paq {'glepnir/galaxyline.nvim'} -- Status line
-paq {'nvim-lua/popup.nvim'}
-paq {'nvim-lua/plenary.nvim'}
-paq {'nvim-telescope/telescope.nvim'}
-paq {'nvim-telescope/telescope-media-files.nvim'}
-paq {'glepnir/lspsaga.nvim'}
-paq {'onsails/lspkind-nvim'}
-paq {'kosayoda/nvim-lightbulb'}
-paq {'mfussenegger/nvim-jdtls'}
-paq {'mfussenegger/nvim-dap'}
-paq {'wojciechkepka/vim-github-dark'}
-paq {'matbme/JABS.nvim'}
+	use 'wbthomason/packer.nvim'  -- Package manager
 
+	use 'kyazdani42/nvim-tree.lua' -- File tree
+	use 'glepnir/galaxyline.nvim'  -- Status line
+
+	use 'nvim-telescope/telescope.nvim'  -- Fuzzy-finder
+	use 'nvim-telescope/telescope-media-files.nvim' -- Preview media in telescope
+
+	use 'hrsh7th/nvim-compe'  -- LSP
+	use 'neovim/nvim-lspconfig'  -- Configure LSP
+	use 'glepnir/lspsaga.nvim'  -- LSP code actions
+
+	use 'hrsh7th/vim-vsnip'  -- Snippets engine
+
+	use 'terrortylor/nvim-comment'  -- Auto comment selected
+	use 'windwp/nvim-autopairs'  -- Auto close paired brackets
+
+	use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}  -- Improved code highlighting
+	use 'onsails/lspkind-nvim'  -- Icons lsp completion items
+	use 'kosayoda/nvim-lightbulb'  -- Lightbulb icon on line, where code actions available
+	use 'mfussenegger/nvim-jdtls'  -- Refactor utils
+
+	use 'kyazdani42/nvim-web-devicons'  -- Icons
+	use 'wojciechkepka/vim-github-dark'  -- Dark theme
+end)
