@@ -9,12 +9,15 @@ return require('packer').startup(function(use)
 	use 'nvim-lua/plenary.nvim'
 
 	use 'wbthomason/packer.nvim'  -- Package manager
+	use 'famiu/nvim-reload'  -- Hot reload nvim's config
 
 	use 'kyazdani42/nvim-tree.lua' -- File tree
-	use 'glepnir/galaxyline.nvim'  -- Status line
+	use 'hoob3rt/lualine.nvim'  -- Status line
+	use 'akinsho/nvim-bufferline.lua' -- Buffers list
 
 	use 'nvim-telescope/telescope.nvim'  -- Fuzzy-finder
 	use 'nvim-telescope/telescope-media-files.nvim' -- Preview media in telescope
+	use 'nacro90/numb.nvim'  -- Easy go-to-line
 
 	use 'hrsh7th/nvim-compe'  -- LSP
 	use 'neovim/nvim-lspconfig'  -- Configure LSP
