@@ -9,6 +9,7 @@ export THEMES_DIR='/home/dadyarri/.zsh/themes'
 export PLUGINS_DIR='/home/dadyarri/.zsh/plugins'
 export GPG_TTY=$(tty)
 export EDITOR=$(where nvim)
+export BROWSER=$(where brave)
 
 export PATH="$(/home/dadyarri/scripts/get-path 2>&1):$PATH"
 export GTK_USE_PORTAL=1
