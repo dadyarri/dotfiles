@@ -20,6 +20,7 @@ vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.writebackup = false
 vim.opt.shortmess = "filnxtToOfc"
+vim.opt.termguicolors = true
 
 -- Window-related options
 vim.opt.cursorline = true
