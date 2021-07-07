@@ -13,6 +13,7 @@ require('nv-comment')
 require('nv-autopairs')
 require('nv-treesitter')
 require('nv-telescope.keys')
+require('nv-tree')
 
 -- Enable language servers
 require('lsp.lua-ls')
