@@ -31,5 +31,6 @@ return require('packer').startup(function(use)
 	use 'mfussenegger/nvim-jdtls'  -- Refactor utils
 
 	use 'kyazdani42/nvim-web-devicons'  -- Icons
-	use 'wojciechkepka/vim-github-dark'  -- Dark theme
+	use 'yashguptaz/calvera-dark.nvim'  -- Dark theme
+
 end)
