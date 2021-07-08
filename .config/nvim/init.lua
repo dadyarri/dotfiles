@@ -16,6 +16,7 @@ require('nv-treesitter')
 require('nv-telescope.keys')
 require('nv-tree')
 require('nv-bufferline')
+require('nv-gitsigns')
 
 -- Enable language servers
 require('lsp.lua-ls')

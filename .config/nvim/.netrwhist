@@ -1,0 +1,7 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =5
+let g:netrw_dirhist_5='/home/dadyarri/.config/nvim/lua'
+let g:netrw_dirhist_4='/home/dadyarri/.config/nvim'
+let g:netrw_dirhist_3='/home/dadyarri/.config'
+let g:netrw_dirhist_2='/home/dadyarri/.config/nvim.old'
+let g:netrw_dirhist_1='/home/dadyarri/.config'

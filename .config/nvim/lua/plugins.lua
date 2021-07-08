@@ -32,6 +32,9 @@ return require('packer').startup(function(use)
 	use 'kosayoda/nvim-lightbulb'  -- Lightbulb icon on line, where code actions available
 	use 'mfussenegger/nvim-jdtls'  -- Refactor utils
 
+	use 'TimUntersberger/neogit'  -- Git manager
+	use 'lewis6991/gitsigns.nvim'  -- Git signs in left bar
+
 	use 'kyazdani42/nvim-web-devicons'  -- Icons
 	use 'yashguptaz/calvera-dark.nvim'  -- Dark theme
 
