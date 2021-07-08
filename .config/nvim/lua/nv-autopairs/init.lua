@@ -1,4 +1,10 @@
-require('nvim-autopairs').setup()
+require('nvim-autopairs').setup({
+  ignored_next_char = "[%w%.]" -- will ignore alphanumeric and `.` symbol
+})
+require('nvim-autopairs.completion.compe').setup({
+	map_cr = true,
+	map_complete = true,
+})
 
 vim.g.completion_confirm_key = ""
 
