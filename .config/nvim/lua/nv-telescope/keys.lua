@@ -6,3 +6,5 @@ map('n', '<leader>fg', ':Telescope live_grep<CR>', noresil)
 map('n', '<leader>fb', ':Telescope buffers<CR>', noresil)
 map('n', '<leader>fh', ':Telescope help_tags<CR>', noresil)
 
+-- With opened find_files <C-t> will open selected file in a new buffer
+
