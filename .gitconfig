@@ -18,7 +18,7 @@
     last = log -1 HEAD
     latest = show --name-only --oneline HEAD
     down = pull --rebase origin
-    up = push -u origin
+    up = push -u origin HEAD
     save = "!git add -A; git commit ."
     uptags = push --follow-tags
     downtags = fetch --tags
