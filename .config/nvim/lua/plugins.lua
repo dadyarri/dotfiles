@@ -9,7 +9,6 @@ return require('packer').startup(function(use)
 	use 'nvim-lua/plenary.nvim'
 
 	use 'wbthomason/packer.nvim'  -- Package manager
-	use 'famiu/nvim-reload'  -- Hot reload nvim's config
 
 	use 'kyazdani42/nvim-tree.lua' -- File tree
 	use 'hoob3rt/lualine.nvim'  -- Status line
