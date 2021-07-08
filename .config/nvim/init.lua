@@ -1,5 +1,6 @@
 -- Import modules
 require('settings')
+require('auto')
 
 require('plugins')
 require('keys')
