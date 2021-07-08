@@ -128,11 +128,11 @@ ins_left {
 --   condition = conditions.buffer_not_empty
 -- }
 
-ins_left {
-  'filename',
-  condition = conditions.buffer_not_empty,
-  color = {fg = colors.magenta, gui = 'bold'}
-}
+-- ins_left {
+--   'filename',
+--   condition = conditions.buffer_not_empty,
+--   color = {fg = colors.magenta, gui = 'bold'}
+-- }
 
 ins_left {'location'}
 
