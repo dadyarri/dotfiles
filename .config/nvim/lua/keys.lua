@@ -41,9 +41,6 @@ map('n', '<C-Space>', '?', noresil)
 map('n', '<S-Enter>', 'O<Esc>', noresil)
 map('n', '<CR>', 'o<Esc>', noresil)
 
--- Reload entire neovim configuration
-map('n', '<Leader>r', ':Reload<CR>', noresil)
-
 -- Manage buffers
 map('n', '<Leader>c', ':bd<CR>', noresil)
 map('n', '<Leader>z', ':BufferLineCyclePrev<CR>', noresil)
