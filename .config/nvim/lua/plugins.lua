@@ -10,13 +10,17 @@ return require('packer').startup(function(use)
 
 	use 'wbthomason/packer.nvim'  -- Package manager
 
-	use 'kyazdani42/nvim-tree.lua' -- File tree
+	use {
+		'kyazdani42/nvim-tree.lua',
+		commit = "fd7f60e242205ea9efc9649101c81a07d5f458bb",
+	} -- File tree
 	use 'hoob3rt/lualine.nvim'  -- Status line
 	use 'akinsho/nvim-bufferline.lua' -- Buffers list
 
 	use 'nvim-telescope/telescope.nvim'  -- Fuzzy-finder
 	use 'nvim-telescope/telescope-media-files.nvim' -- Preview media in telescope
 	use 'nacro90/numb.nvim'  -- Easy go-to-line
+	use 'ahmedkhalf/lsp-rooter.nvim'  -- Go to root of project when opening vim via LSP
 
 	use 'hrsh7th/nvim-compe'  -- LSP
 	use 'neovim/nvim-lspconfig'  -- Configure LSP
@@ -32,9 +36,12 @@ return require('packer').startup(function(use)
 	use 'TimUntersberger/neogit'  -- Git manager
 	use 'lewis6991/gitsigns.nvim'  -- Git signs in left bar
 
+	use 'wakatime/vim-wakatime'  -- Wakatime (time tracker)
+
 	use 'kyazdani42/nvim-web-devicons'  -- Icons
 	use 'kosayoda/nvim-lightbulb'  -- Lightbulb icon on line, where code actions available
 	use 'onsails/lspkind-nvim'  -- Icons lsp completion items
 	use 'yashguptaz/calvera-dark.nvim'  -- Dark theme
 
+	use 'svermeulen/vimpeccable'
 end)
