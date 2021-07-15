@@ -21,7 +21,6 @@ vim.opt.splitright = true
 vim.opt.writebackup = false
 vim.opt.shortmess = "filnxtToOfc"
 vim.opt.termguicolors = true
-vim.opt.autochdir = true
 vim.opt.hidden = true
 
 -- Window-related options
