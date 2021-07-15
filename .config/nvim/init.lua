@@ -24,7 +24,7 @@ require('config.nv-rooter')
 require('lsp.lua-ls')
 require('lsp.python-ls')
 
-
+-- Setup reloading configurations by <leader>r
 vimp.nnoremap('<leader>r', function()
   vimp.unmap_all()
   require("config.utils").unload_lua_namespace('config')
