@@ -22,6 +22,7 @@ vim.opt.writebackup = false
 vim.opt.shortmess = "filnxtToOfc"
 vim.opt.termguicolors = true
 vim.opt.hidden = true
+vim.opt.completeopt = "menuone,noselect"
 
 -- Window-related options
 vim.opt.cursorline = true

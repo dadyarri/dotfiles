@@ -1,6 +1,4 @@
-vim.o.completeopt = "menuone,noselect"
-
-require'compe'.setup {
+require('compe').setup({
   enabled = true;
   autocomplete = true;
   debug = false;
@@ -23,7 +21,7 @@ require'compe'.setup {
     vsnip = true;
     ultisnips = true;
   };
-}
+})
 
 local t = function(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
