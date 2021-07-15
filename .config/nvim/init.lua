@@ -1,6 +1,5 @@
 -- Import modules
 require('settings')
-require('auto')
 
 require('plugins')
 require('keys')
@@ -17,6 +16,8 @@ require('nv-telescope.keys')
 require('nv-tree')
 require('nv-bufferline')
 require('nv-gitsigns')
+require('nv-rooter')
+require('nv-peccable')
 
 -- Enable language servers
 require('lsp.lua-ls')
