@@ -1,25 +1,34 @@
+local vimp = require('vimp')
+
 -- Import modules
-require('settings')
+require('config.settings')
 
-require('plugins')
-require('keys')
+require('config.plugins')
+require('config.keys')
 
-require('theme')
-require('nv-lualine')
+require('config.theme')
+require('config.nv-lualine')
 
 -- Configure plugins
-require('nv-compe')
-require('nv-comment')
-require('nv-autopairs')
-require('nv-treesitter')
-require('nv-telescope.keys')
-require('nv-tree')
-require('nv-bufferline')
-require('nv-gitsigns')
-require('nv-rooter')
-require('nv-peccable')
+require('config.nv-compe')
+require('config.nv-comment')
+require('config.nv-autopairs')
+require('config.nv-treesitter')
+require('config.nv-telescope.keys')
+require('config.nv-tree')
+require('config.nv-bufferline')
+require('config.nv-gitsigns')
+require('config.nv-rooter')
 
 -- Enable language servers
 require('lsp.lua-ls')
 require('lsp.python-ls')
 
+
+vimp.nnoremap('<leader>r', function()
+  vimp.unmap_all()
+  require("config.utils").unload_lua_namespace('config')
+  vim.cmd('silent wa')
+  dofile(vim.fn.stdpath('config') .. '/init.lua')
+  print("Reloaded vimrc!")
+end)
