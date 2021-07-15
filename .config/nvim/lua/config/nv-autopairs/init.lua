@@ -13,7 +13,7 @@ local map = vim.api.nvim_set_keymap
 
 
 _G.MUtils= {}
-MUtils.completion_confirm=function()
+MUtils.completion_confirm = function()
   if vim.fn.pumvisible() ~= 0  then
     if vim.fn.complete_info()["selected"] ~= -1 then
       return vim.fn["compe#confirm"](npairs.esc("<cr>"))
