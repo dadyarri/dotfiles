@@ -43,5 +43,6 @@ return require('packer').startup(function(use)
 	use 'onsails/lspkind-nvim'  -- Icons lsp completion items
 	use 'yashguptaz/calvera-dark.nvim'  -- Dark theme
 
-	use 'svermeulen/vimpeccable'
+	use 'svermeulen/vimpeccable'  -- Bind lua code to keys
+	use 'akinsho/nvim-toggleterm.lua'  -- Persist and toggle multiline terminals
 end)
