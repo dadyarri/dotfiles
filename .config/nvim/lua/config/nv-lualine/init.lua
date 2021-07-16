@@ -178,6 +178,11 @@ ins_right {
   color = {fg = colors.fg, gui = 'bold'}
 }
 
+ins_right {
+	vim.fn['poetv#statusline'],
+	color = {fg = colors.fg}
+}
+
 -- ins_right {
 --   'fileformat',
 --   upper = true,
