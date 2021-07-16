@@ -20,6 +20,7 @@ require('config.nv-bufferline')
 require('config.nv-gitsigns')
 require('config.nv-rooter')
 require('config.nv-toggleterm')
+require('config.nv-poetv')
 
 -- Enable language servers
 require('lsp.lua-ls')
