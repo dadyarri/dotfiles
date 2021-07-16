@@ -1,4 +1,5 @@
 local map = vim.api.nvim_set_keymap
+local vimp = require('vimp')
 local noresil = {noremap=true, silent=true}
 
 map('n', '<Space>', '<NOP>', noresil) -- Disable space
@@ -46,3 +47,6 @@ map('n', '<Leader>c', ':bd<CR>', noresil)
 map('n', '<Leader>z', ':BufferLineCyclePrev<CR>', noresil)
 map('n', '<Leader>x', ':BufferLineCycleNext<CR>', noresil)
 
+vimp.nnoremap('<Leader>p', function()
+	require('telescope').extensions.project.project({display_type = 'full'})
+end)
