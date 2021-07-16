@@ -19,6 +19,8 @@ return require('packer').startup(function(use)
 
 	use 'nvim-telescope/telescope.nvim'  -- Fuzzy-finder
 	use 'nvim-telescope/telescope-media-files.nvim' -- Preview media in telescope
+	use 'nvim-telescope/telescope-project.nvim'  -- Manage projects via telescope
+
 	use 'nacro90/numb.nvim'  -- Easy go-to-line
 	use 'ahmedkhalf/lsp-rooter.nvim'  -- Go to root of project when opening vim via LSP
 
