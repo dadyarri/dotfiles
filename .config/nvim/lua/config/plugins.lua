@@ -18,7 +18,6 @@ return require('packer').startup(function(use)
 	use 'akinsho/nvim-bufferline.lua' -- Buffers list
 
 	use 'nvim-telescope/telescope.nvim'  -- Fuzzy-finder
-	use 'nvim-telescope/telescope-media-files.nvim' -- Preview media in telescope
 	use 'nvim-telescope/telescope-project.nvim'  -- Manage projects via telescope
 
 	use 'nacro90/numb.nvim'  -- Easy go-to-line
@@ -47,4 +46,6 @@ return require('packer').startup(function(use)
 
 	use 'svermeulen/vimpeccable'  -- Bind lua code to keys
 	use 'akinsho/nvim-toggleterm.lua'  -- Persist and toggle multiline terminals
+
+	use 'petobens/poet-v'  -- Activate poetry environment
 end)
