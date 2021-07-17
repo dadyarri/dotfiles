@@ -50,6 +50,4 @@ map('n', '<Leader>x', ':BufferLineCycleNext<CR>', noresil)
 map('n', '<Leader>pa', ':PoetvActivate<CR>', noresil)
 map('n', '<Leader>pd', ':PoetvDeactivate<CR>', noresil)
 
-vimp.nnoremap('<Leader>p', function()
-	require('telescope').extensions.project.project({display_type = 'full'})
-end)
+
