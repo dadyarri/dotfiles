@@ -42,7 +42,7 @@ return require('packer').startup(function(use)
 	use 'kyazdani42/nvim-web-devicons'  -- Icons
 	use 'kosayoda/nvim-lightbulb'  -- Lightbulb icon on line, where code actions available
 	use 'onsails/lspkind-nvim'  -- Icons lsp completion items
-	use 'yashguptaz/calvera-dark.nvim'  -- Dark theme
+	use 'projekt0n/github-nvim-theme'  -- Dark theme
 
 	use 'svermeulen/vimpeccable'  -- Bind lua code to keys
 	use 'akinsho/nvim-toggleterm.lua'  -- Persist and toggle multiline terminals
