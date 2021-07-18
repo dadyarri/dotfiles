@@ -7,5 +7,4 @@ require('toggleterm').setup({
 		border = 'curved',
 	}
 })
-require('config.nv-toggleterm.terminals')
 
