@@ -1,11 +1,16 @@
+# Loading instant prompt
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# Loading completions engine
 autoload -Uz compinit
 compinit
 
+# Exporting some variables
 export EDITOR=$(which nvim)
+export GNUPGHOME=~/.local/share/gnupg
 
+# Loading package manager
 source <(afx init)
 source <(afx completion zsh)
