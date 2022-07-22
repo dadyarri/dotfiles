@@ -1,0 +1,61 @@
+[user]
+	name = Daniil
+	email = dadyarri@gmail.com
+	signingkey = 713C8B183AE0254A
+
+[core]
+	autocrlf = input
+	filemode = false
+	editor = nvim
+	pager = delta
+
+[credential]
+	helper = store
+
+[alias]
+	c = commit
+	rollback = reset --hard
+	unstage = reset HEAD
+	last = log -1 HEAD
+	latest = show --name-only --oneline HEAD
+	down = pull --rebase origin
+	up = push -u origin HEAD
+	save = "!git add -A; git commit ."
+	uptags = push --follow-tags
+	downtags = fetch --tags
+	lg = !git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit | emojify | bat
+	st = status -s
+	ignore = "!gi() { curl -sL https://www.toptal.com/developers/gitignore/api/$@ ;}; gi"
+	undo = reset --soft HEAD~1
+	amend = !git log -n 1 --pretty=tformat:%s%n%n%b | git commit -F - --amend
+	tree = log --graph --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset'
+	trim = !git branch --merged | grep -v '*' | xargs -n 1 git branch -d
+	review= "!f() { git fetch origin pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
+
+[commit]
+	gpgsign = true
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+[interactive]
+	diffFilter = delta
+
+[delta]
+	features = side-by-side line-numbers decorations
+	whitespace-error-style = 22 reverse
+	side-by-side = false
+
+[delta "decorations"]
+	commit-decoration-style = bold yellow box ul
+	file-style = bold yellow ul
+	file-decoration-style = none
+
+[merge]
+	conflictstyle = diff3
+
+[init]
+	defaultBranch = master

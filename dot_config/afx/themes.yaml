@@ -1,0 +1,9 @@
+github:
+  - name: Powerlevel10k
+    description: A Zsh theme
+    owner: romkatv
+    repo: powerlevel10k
+    plugin:
+      sources:
+        - powerlevel10k.zsh-theme
+        - ~/.p10k.zsh

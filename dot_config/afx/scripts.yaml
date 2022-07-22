@@ -1,0 +1,15 @@
+local:
+  - name: Scripts
+    description: Sourcing my scripts (aliases, functions)
+    directory: ~/.config/zsh
+    plugin:
+      env:
+        PATH: $(~/bin/getpath)
+      sources:
+        - aliases.sh
+        - ex.sh
+        - keybindings.sh
+        - mkcd.sh
+        - options.sh
+        - upd.sh
+

@@ -1,0 +1,49 @@
+github:
+- name: Jq
+  description: Command-line JSON processor
+  owner: stedolan
+  repo: jq
+  release:
+    name: jq
+    tag: jq-1.6
+    asset:
+      filename: jq-linux64
+  command:
+    link:
+    - from: '*jq*'
+      to: jq
+- name: Enhancd
+  description: A next-generation cd command with your interactive filter
+  owner: b4b4r07
+  repo: enhancd
+  plugin:
+    env:
+      ENHANCD_FILTER: fzf --height 25% --reverse --ansi:fzy
+    sources:
+    - init.sh
+- name: Syntax Highlighting
+  description: Feature-rich syntax highlighting for ZSH
+  owner: zdharma-continuum
+  repo: fast-syntax-highlighting
+  plugin:
+    sources:
+      - fast-syntax-highlighting.plugin.zsh
+- name: History substring search
+  description: ZSH port of Fish history search (up arrow)
+  owner: zsh-users
+  repo: zsh-history-substring-search
+  plugin:
+    sources:
+      - zsh-history-substring-search.zsh
+    snippet: |
+      bindkey '^[[A' history-substring-search-up
+      bindkey '^[[B' history-substring-search-down
+- name: Autosuggestions
+  description: Fish-like autosuggestions for zsh
+  owner: zsh-users
+  repo: zsh-autosuggestions
+  plugin:
+    sources:
+      - zsh-autosuggestions.plugin.zsh
+    env:
+      ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE: "fg=#424242"
