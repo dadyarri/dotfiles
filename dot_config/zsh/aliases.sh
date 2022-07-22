@@ -21,3 +21,9 @@ if [ $? -eq 0 ]; then
     alias lsal="exa --icons -alh --git --color always"
 fi
 
+command chezmoi &> /dev/null
+if [ $? -eq 0 ]; then
+    alias edidot="chezmoi edit --apply"
+    alias chegit="chezmoi git --"
+fi
+
