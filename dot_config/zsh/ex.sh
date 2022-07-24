@@ -1,3 +1,5 @@
+#!/bin/bash
+
 _ex_help () {
     echo "Little wrapper to extract archives correctly."
     echo
@@ -11,35 +13,39 @@ _ex_help () {
 }
 
 
-ex () {
-    for i in "$@"; do
-        case $i in
-            -h|--help)
-              _ex_help
-              shift
-              ;;
-            *)
-                if [ -f $1 ] ; then
-                    case $1 in
-                        *.tar.bz2)   tar xjf $1 ;;
-                        *.tar.gz)    tar xzf $1 ;;
-                        *.bz2)       bunzip2 $1 ;;
-                        *.rar)       rar x $1 ;;
-                        *.gz)        gunzip $1 ;;
-                        *.tar)       tar xvf $1 ;;
-                        *.tbz2)      tar xjf $1 ;;
-                        *.tgz)       tar xzf $1 ;;
-                        *.zip)       unzip $1 ;;
-                        *.Z)         uncompress $1 ;;
-                        *.7z)        7za x $1 ;;
-                        *.xz)        xz -d $1 ;;
-                        *)           echo "'$1' cannot be extracted via $0"; exit 1 ;;
-                    esac
-                else
-                    echo "'$1' is not a valid file"
-                    exit 1
-                fi
+function ex () {
+  local param
+    while [[ "$#" -gt 0 ]]; do
+      param="$1"
+        case "$param" in
+          -h|--help)
+            _ex_help
+            shift
+            ;;
+          *)
+            echo_red "Invalid parameter was provided: $param"
+            return 1
         esac
     done
+    if [ -f "$1" ] ; then
+        case "$1" in
+            *.tar.bz2)   tar xjf "$1" ;;
+            *.tar.gz)    tar xzf "$1" ;;
+            *.bz2)       bunzip2 "$1" ;;
+            *.rar)       rar x "$1" ;;
+            *.gz)        gunzip "$1" ;;
+            *.tar)       tar xvf "$1" ;;
+            *.tbz2)      tar xjf "$1" ;;
+            *.tgz)       tar xzf "$1" ;;
+            *.zip)       unzip "$1" ;;
+            *.Z)         uncompress "$1" ;;
+            *.7z)        7za x "$1" ;;
+            *.xz)        xz -d "$1" ;;
+            *)           echo "'$1' cannot be extracted via $0"; exit 1 ;;
+        esac
+    else
+        echo "'$1' is not a valid file"
+        exit 1
+    fi
 }
 
