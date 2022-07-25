@@ -13,18 +13,18 @@ machine=$(uname -m)
 url="https://github.com/b4b4r07/afx/releases/latest/download/afx_${kernelName,,}_$machine.tar.gz"
 file="afx.tar.gz"
 
-curl -L $url -o $file
+curl -L "$url" -o $file
 
 sudo tar xzf $file -C /usr/local/bin
 rm -rf $file
 
 # Set zsh as default shell for current user
-sudo chsh -s $(which zsh) $USER
+sudo chsh -s "$(which zsh)" "$USER"
 
 echo "Now you can reboot your system. Do it now? [y/n]"
-read ans
+read -r ans
 
-if [[ ($ans -eq "y") || ($ans -eq "yes") ]]; then
+if [[ "$ans" -eq 'y' ]]; then
     reboot
 fi
 
