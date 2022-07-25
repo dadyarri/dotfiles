@@ -31,7 +31,7 @@ opt.smartcase = true        -- Ignore lowercase for the whole pattern
 opt.linebreak = true        -- Wrap on word boundary
 opt.termguicolors = true    -- Enable 24-bit RGB colors
 opt.laststatus=3            -- Set global statusline
-
+opt.showmode = false
 -----------------------------------------------------------
 -- Tabs, indent
 -----------------------------------------------------------
