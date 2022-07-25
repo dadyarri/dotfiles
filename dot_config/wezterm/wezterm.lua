@@ -8,5 +8,5 @@ return {
   initial_cols = 100,
   default_cursor_style = "SteadyBar",
   term = "wezterm",
-  warn_about_missing_glyphs = true,
+  warn_about_missing_glyphs = false,
 }
