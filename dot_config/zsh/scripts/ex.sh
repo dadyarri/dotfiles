@@ -23,7 +23,7 @@ function ex () {
             shift
             ;;
           *)
-            echo_red "Invalid parameter was provided: $param"
+            ansi --red "Invalid parameter was provided: $param"
             return 1
         esac
     done
@@ -41,11 +41,11 @@ function ex () {
             *.Z)         uncompress "$1" ;;
             *.7z)        7za x "$1" ;;
             *.xz)        xz -d "$1" ;;
-            *)           echo "'$1' cannot be extracted via $0"; exit 1 ;;
+            *)           ansi --red "'$1' cannot be extracted via $0"; return 1 ;;
         esac
     else
-        echo "'$1' is not a valid file"
-        exit 1
+        ansi --red "'$1' is not a valid file"
+        return 1
     fi
 }
 

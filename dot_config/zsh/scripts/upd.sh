@@ -1,36 +1,36 @@
 #!/bin/bash
 
 _upd() {
-  echo_blue "Updating system started...\n"
+  ansi --blue "Updating system started...\n"
   if [[ (-n ${sysupd-}) || (-n ${autoremove-}) ]]; then
-    echo_red "Password required\n"
+    ansi --red "Password required"
     echo
-    echo_red "Enter sudo password: "
+    ansi --red "Enter sudo password: "
     read -r -s password
     echo
   fi
 
   if [[ -n ${sysupd-} ]]; then
-    echo_blue "Updating packages...\n"
+    ansi --blue "Updating packages...\n"
     echo "$password" | sudo -S dnf update -y
-    echo_green "Packages updated."
+    ansi --green "Packages updated."
     echo
   fi
 
   if [[ -n ${autoremove-} ]]; then
-    echo_blue "Removing orphans...\n"
+    ansi --blue "Removing orphans...\n"
     echo "$password" | sudo -S dnf autoremove -y
-    echo_green "Orphans removed."
+    ansi --green "Orphans removed."
     echo
   fi
 
   if [[ -n ${flatpak-} ]]; then
-    echo_blue "Updating flatpak apps...\n"
+    ansi --blue "Updating flatpak apps...\n"
     flatpak update -y
-    echo_green "Flatpak apps updated."
+    ansi --green "Flatpak apps updated."
     echo
   fi
-  echo_green "System updated."
+  ansi --green "System updated."
 }
 
 
