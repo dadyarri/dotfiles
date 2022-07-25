@@ -21,6 +21,14 @@ rm -rf $file
 # Set zsh as default shell for current user
 sudo chsh -s "$(which zsh)" "$USER"
 
+
+# Install wezterm's terminfo
+tempfile=$(mktemp) \
+  && curl -o "$tempfile" https://raw.githubusercontent.com/wez/wezterm/main/termwiz/data/wezterm.terminfo \
+  && tic -x -o ~/.terminfo "$tempfile" \
+  && rm "$tempfile"
+
+# Ask user to reboot system
 echo "Now you can reboot your system. Do it now? [y/n]"
 read -r ans
 
