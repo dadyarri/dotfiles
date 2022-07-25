@@ -1,0 +1,12 @@
+local:
+  - name: Options
+    description: Sourcing zsh's options (aliases, keybindings)
+    directory: ~/.config/zsh
+    plugin:
+      env:
+        PATH: $(~/bin/getpath)
+      sources:
+        - aliases.sh
+        - keybindings.sh
+        - options.sh
+
