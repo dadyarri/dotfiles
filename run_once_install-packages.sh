@@ -33,7 +33,7 @@ tempfile=$(mktemp) \
 echo "Now you can reboot your system. Do it now? [y/n]"
 read -r ans
 
-if [[ "$ans" -eq 'y' ]]; then
+if [[ "$ans" == 'y' ]]; then
     reboot
 fi
 
