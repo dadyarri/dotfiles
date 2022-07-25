@@ -7,10 +7,7 @@ local:
         PATH: $(~/bin/getpath)
       sources:
         - aliases.sh
-        - colors.sh
-        - ex.sh
         - keybindings.sh
-        - mkcd.sh
         - options.sh
-        - upd.sh
+        - scripts/*.sh
 
