@@ -6,6 +6,14 @@ import std/strutils
 import argparse
 import semver
 
+proc is_valid_version_transition(old_build: string, new_build: string): bool =
+  return (
+    (old_build == "alpha" and new_build == "beta") or
+    (old_build == "alpha" and new_build == "rc") or
+    (old_build == "beta" and new_build == "rc") or
+    (old_build == new_build)
+  )
+
 var p = newParser:
   help("{prog}: Utility to increase versions of dotnet's projects according to SemVer (https://semver.org).")
   arg("dir", help="Path to dotnet project")
@@ -30,11 +38,14 @@ try:
 
       case opts.version_part:
         of "patch":
+          version.build = ""
           version.patch += 1
         of "minor":
+          version.build = ""
           version.patch = 0
           version.minor += 1
         of "major":
+          version.build = ""
           version.patch = 0
           version.minor = 0
           version.major += 1
@@ -43,9 +54,19 @@ try:
             version.build = opts.version_part & ".0"
           else:
             var build = version.build.split(".")
-            build[1] = $(parseInt(build[1]) + 1)
 
-            version.build = build.join(".")
+            if is_valid_version_transition(build[0], opts.version_part):
+
+              if build[0] != opts.version_part:
+                build[0] = opts.version_part
+                build[1] = "0"
+              else:
+                build[1] = $(parseInt(build[1]) + 1)
+
+              version.build = build.join(".")
+            else:
+              stderr.writeLine "Can't decrease version of application: " & build[0] & " -> " & opts.version_part
+              quit(1)
         else:
           stderr.writeLine "Wrong part's name: " & opts.version_part
           quit(1)
