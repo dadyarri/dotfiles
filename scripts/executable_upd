@@ -278,59 +278,30 @@ if [[ $_arg_bin == 'on' ]]; then
     ansi --red "Error occured."
   fi
 
-  echo
-  printf "  "
-  ansi --blue "Updating addpath..."
+  # --------
 
-  if [[ $_arg_verbose == "on" ]]; then
-    cmd="nim -d:release --opt:size c ~/scripts/src/addpath.nim && mv ~/scripts/src/addpath ~/bin"
-  else
-    cmd="nim -d:release --opt:size --hints:off c ~/scripts/src/addpath.nim && mv ~/scripts/src/addpath ~/bin"
-  fi
-
-  if eval "$cmd"; then
+  for script in $(fd -e nim --full-path "/home/$USER/scripts/src" -t f); do
+    echo
     printf "  "
-    ansi --green "Addpath updated."
-  else
-    printf "  "
-    ansi --red "Error occured."
-  fi
+    filename=$(basename "$script")
+    fn="${filename%.*}"
+    ansi --blue "Updating $fn..."
 
-  echo
-  printf "  "
-  ansi --blue "Updating getpath..."
+    if [[ $_arg_verbose == "on" ]]; then
+      cmd="nim -d:release --opt:size c $script && mv ~/scripts/src/$fn ~/bin"
+    else
+      cmd="nim -d:release --opt:size --hints:off c $script && mv ~/scripts/src/$fn ~/bin"
+    fi
 
-  if [[ $_arg_verbose == "on" ]]; then
-    cmd="nim -d:release --opt:size c ~/scripts/src/getpath.nim && mv ~/scripts/src/getpath ~/bin"
-  else
-    cmd="nim -d:release --opt:size --hints:off c ~/scripts/src/getpath.nim && mv ~/scripts/src/getpath ~/bin"
-  fi
-
-  if eval "$cmd"; then
-    printf "  "
-    ansi --green "Getpath updated."
-  else
-    printf "  "
-    ansi --red "Error occured."
-  fi
-
-  echo
-  printf "  "
-  ansi --blue "Updating dotversion..."
-
-  if [[ $_arg_verbose == "on" ]]; then
-    cmd="nim -d:release --opt:size c ~/scripts/src/dotversion.nim && mv ~/scripts/src/dotversion ~/bin"
-  else
-    cmd="nim -d:release --opt:size --hints:off c ~/scripts/src/dotversion.nim && mv ~/scripts/src/dotversion ~/bin"
-  fi
-
-  if eval "$cmd"; then
-    printf "  "
-    ansi --green "Dotversion updated."
-  else
-    printf "  "
-    ansi --red "Error occured."
-  fi
+    if eval "$cmd"; then
+      printf "  "
+      ansi --green "$fn updated."
+    else
+      printf "  "
+      ansi --red "Error occured."
+    fi
+  done
+  # -------
 
   echo
   printf "  "
