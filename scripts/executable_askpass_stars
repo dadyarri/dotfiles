@@ -1,0 +1,126 @@
+#!/bin/bash
+#
+# askpass_stars [prompt]
+#
+# TTY password reading with stars echoed instead of user keys.
+#
+# Handles backspaces, deletes, newlines and returns in a manner consistant for
+# password reading. Also handles a kill-line (^U) input, while TABs and other
+# control characters are ignored.
+#
+# The latest version can be downloaded from
+#     https://antofthy.gitlab.io/software/#askpass_stars
+#
+###
+#
+# BUG: Interupts are handled simply, basically to restore TTY settings.
+# Idealy it should flag the interupt, and kill the bash "read" so as
+# to break the input reading loop.
+#
+####
+#
+# Anthony Thyssen, 30 June 2017
+#
+unset PWORD
+PWORD=
+
+# -----------------------------------------------------------
+# If no TTY just read one line from stdin, and output it (short circuit)
+if ! tty >/dev/null;  then
+  read -r -s PWORD
+  echo "$PWORD"
+  exit 0
+fi
+
+# -----------------------------------------------------------
+# Use the systemd ask password program (if available)
+
+# If a binary version is available -- use it!
+if [ "X$1" = "X-f" ]; then
+  # force the use of this shell script version
+  shift
+elif [ -x /bin/systemd-ask-password ];  then
+  # use the systemd version - without a timeout
+  # Warning "sudo" with interupt - can leave the TTY in a bad state!
+  # Thus I save and restore the TTY settings
+  stty_save=$(stty -g)
+  trap 'stty "$stty_save"' EXIT
+  /bin/systemd-ask-password --timeout=0 "${1:-Password: }"
+  exit $?
+fi
+
+# -----------------------------------------------------------
+# My version of user password requests
+
+# Get prompt
+prompt="${*:-Password:}" # any other argument is the prompt to use
+
+star='#'  # Yes I know it is not a star!
+          # But I wanted it to be different to systemd-ask-password
+
+# Grab the current TTY settings
+# Save stdout (for password result) to descriptor 3
+# Otherwise read and write to the users TTY
+# Gnu and Linux "stty" uses stdin for the terminal to adjust
+# BUT:  Solaris /usr/ucb/stty command uses stdout and NOT stdin!
+exec 3>&1 </dev/tty >/dev/tty
+stty_save=$(stty -g)
+trap 'stty "$stty_save"' EXIT
+trap 'echo "===INTERUPT==="; exit 10' HUP INT QUIT ABRT TERM
+
+# Turn off echo and control character handling...
+# This stops BASH constantaly switching terminal modes when reading each
+# character, and allow a fast typing user still have characters echoed between
+# reads.
+#
+stty -icanon -echo
+#stty -echo           # turn off echo - but not controls!
+
+# Prompt and read password one character at a time
+echo -n "$prompt "
+while IFS= read -r -n1 char; do
+  # Convert users key press to hexadecimal character code
+  # Note a 'return' or EOL, will return a empty string
+  #code=$( echo -n "$char" | od -An -tx1 | tr -d ' \011' )
+  code=${char:+$(printf '%02x' "'$char'")} # if value convert
+  #echo -n "'$code'"  # DEBUGGING
+
+  case "$code" in
+  ''|0a|0d) break ;;               # Finish on EOF, LineFeed, or Return
+  03) error_exit=true; break ;;    # ^C Interrupt
+  08|7f)                           # Backspace or Delete
+      if [ -n "$PWORD" ]; then
+        PWORD="$( echo "$PWORD" | sed 's/.$//' )"
+        echo -n $'\b \b'           # not available on older shells
+      fi
+      ;;
+  15)                              # ^U or kill line
+      echo -n "$PWORD" | tr -c '\010' '\010'  # backspace
+      echo -n "$PWORD" | tr -c ' '    ' '     # clear stars
+      echo -n "$PWORD" | tr -c '\010' '\010'  # backspace
+      #echo -n "$PWORD" | sed 's/./\cH \cH/g' # using gnu-sed
+      PWORD=''
+      ;;
+  [01]?) ;;                        # Ignore ALL other control characters
+  *)  PWORD="$PWORD$char"          # Normal char - record it
+      echo -n "$star"
+      ;;
+  esac
+done
+
+# Return TTY to normal, cancel exit trap
+stty "$stty_save"
+trap - EXIT HUP INT QUIT TERM
+
+# Remove all the stars now that the input is finished (same as '15' above)
+#echo -n "$PWORD" | tr -c '\010' '\010'  # backspace
+#echo -n "$PWORD" | tr -c ' '    ' '     # clear stars
+#echo -n "$PWORD" | tr -c '\010' '\010'  # backspace
+#echo -n "$PWORD" | sed 's/./\cH \cH/g'
+
+echo ""  # "===password accepted===" ;;
+
+# Output the resulting password to the original stdout
+echo "$PWORD" >&3
+
+exit 0
