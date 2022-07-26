@@ -1,6 +1,7 @@
 import os
 import std/xmlparser
 import std/xmltree
+import std/strutils
 
 import argparse
 import semver
@@ -37,6 +38,14 @@ try:
           version.patch = 0
           version.minor = 0
           version.major += 1
+        of "alpha", "beta", "rc":
+          if version.build == "":
+            version.build = opts.version_part & ".0"
+          else:
+            var build = version.build.split(".")
+            build[1] = $(parseInt(build[1]) + 1)
+
+            version.build = build.join(".")
         else:
           stderr.writeLine "Wrong part's name: " & opts.version_part
           quit(1)
