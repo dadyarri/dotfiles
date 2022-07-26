@@ -176,11 +176,11 @@ parse_commandline "$@"
 # [ <-- needed because of Argbash
 
 if [[ $_arg_verbose == 'on' ]]; then
-  printf "'%s' is %s\\n" 'system' "$_arg_system"
-  printf "'%s' is %s\\n" 'autoremove' "$_arg_autoremove"
-  printf "'%s' is %s\\n" 'flatpak' "$_arg_flatpak"
-  printf "'%s' is %s\\n" 'neovim' "$_arg_neovim"
-  printf "'%s' is %s\\n" 'bin' "$_arg_bin"
+  ansi --faint "'system' is $_arg_system"
+  ansi --faint "'autoremove' is $_arg_autoremove"
+  ansi --faint "'flatpak' is $_arg_flatpak"
+  ansi --faint "'neovim' is $_arg_neovim"
+  ansi --faint "'bin' is $_arg_bin"
 fi
 
 ansi --blue "Updating system started..."
