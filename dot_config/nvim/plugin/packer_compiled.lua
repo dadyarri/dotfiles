@@ -126,6 +126,11 @@ _G.packer_plugins = {
     path = "/home/dadyarri/.local/share/nvim/site/pack/packer/start/monokai.nvim",
     url = "https://github.com/tanvirtin/monokai.nvim"
   },
+  ["nim.vim"] = {
+    loaded = true,
+    path = "/home/dadyarri/.local/share/nvim/site/pack/packer/start/nim.vim",
+    url = "https://github.com/zah/nim.vim"
+  },
   ["nvim-cmp"] = {
     loaded = true,
     path = "/home/dadyarri/.local/share/nvim/site/pack/packer/start/nvim-cmp",
