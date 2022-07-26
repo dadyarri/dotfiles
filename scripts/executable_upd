@@ -188,8 +188,7 @@ fi
 ansi --blue "Updating system started..."
 if [[ ($_arg_system == 'on') || ($_arg_autoremove == 'on') ]]; then
   ansi --red "Password required"
-  ansi --red --no-newline "Enter sudo password: "
-  read -r -s password
+  password=$(askpass_stars)
   echo
 fi
 
