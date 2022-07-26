@@ -51,7 +51,23 @@ proc increase_build(version: Version, build_type: string): string =
 var p = newParser:
   help("{prog}: Utility to increase versions of dotnet's projects according to SemVer (https://semver.org).")
   arg("dir", help="Path to dotnet project")
-  arg("version_part", help="Part of version (one of major, minor, patch, alpha, beta, rc)", default=some("patch"))
+  arg("version_part", help="""Part of version (one of:
+    - major,
+    - minor,
+    - patch,
+    - alpha,
+    - beta,
+    - rc,
+    - alpha-patch,
+    - alpha-minor,
+    - alpha-major,
+    - beta-patch,
+    - beta-minor,
+    - beta-major,
+    - rc-patch,
+    - rc-minor,
+    - rc-major
+  )""", default=some("patch"))
   flag("-s", "--silent", help="Do not write new version to *.csproj file, only calculate and print.")
   flag("-v", "--verbose", help="Show more verbose output")
 
