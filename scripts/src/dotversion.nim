@@ -14,6 +14,40 @@ proc is_valid_version_transition(old_build: string, new_build: string): bool =
     (old_build == new_build)
   )
 
+proc increase_patch(version: var Version): void =
+  version.build = ""
+  version.patch += 1
+
+proc increase_minor(version: var Version): void =
+  version.build = ""
+  version.patch = 0
+  version.minor += 1
+
+proc increase_major(version: var Version): void =
+  version.build = ""
+  version.patch = 0
+  version.minor = 0
+  version.major += 1
+
+proc increase_build(version: Version, build_type: string): string =
+  if version.build == "":
+    return build_type & ".0"
+  else:
+
+    var build = version.build.split(".")
+    if is_valid_version_transition(build[0], build_type):
+
+      if build[0] != build_type:
+        build[0] = build_type
+        build[1] = "0"
+      else:
+        build[1] = $(parseInt(build[1]) + 1)
+
+      return build.join(".")
+    else:
+      stderr.writeLine "Can't decrease version of application: " & build[0] & " -> " & build_type
+      quit(1)
+
 var p = newParser:
   help("{prog}: Utility to increase versions of dotnet's projects according to SemVer (https://semver.org).")
   arg("dir", help="Path to dotnet project")
@@ -38,35 +72,40 @@ try:
 
       case opts.version_part:
         of "patch":
-          version.build = ""
-          version.patch += 1
+          increase_patch(version)
         of "minor":
-          version.build = ""
-          version.patch = 0
-          version.minor += 1
+          increase_minor(version)
         of "major":
-          version.build = ""
-          version.patch = 0
-          version.minor = 0
-          version.major += 1
+          increase_major(version)
+        of "alpha-patch":
+          increase_patch(version)
+          version.build = increase_build(version, "alpha")
+        of "alpha-minor":
+          increase_minor(version)
+          version.build = increase_build(version, "alpha")
+        of "alpha-major":
+          increase_major(version)
+          version.build = increase_build(version, "alpha")
+        of "beta-patch":
+          increase_patch(version)
+          version.build = increase_build(version, "beta")
+        of "beta-minor":
+          increase_minor(version)
+          version.build = increase_build(version, "beta")
+        of "beta-major":
+          increase_major(version)
+          version.build = increase_build(version, "beta")
+        of "rc-patch":
+          increase_patch(version)
+          version.build = increase_build(version, "rc")
+        of "rc-minor":
+          increase_minor(version)
+          version.build = increase_build(version, "rc")
+        of "rc-major":
+          increase_major(version)
+          version.build = increase_build(version, "rc")
         of "alpha", "beta", "rc":
-          if version.build == "":
-            version.build = opts.version_part & ".0"
-          else:
-            var build = version.build.split(".")
-
-            if is_valid_version_transition(build[0], opts.version_part):
-
-              if build[0] != opts.version_part:
-                build[0] = opts.version_part
-                build[1] = "0"
-              else:
-                build[1] = $(parseInt(build[1]) + 1)
-
-              version.build = build.join(".")
-            else:
-              stderr.writeLine "Can't decrease version of application: " & build[0] & " -> " & opts.version_part
-              quit(1)
+          version.build = increase_build(version, opts.version_part)
         else:
           stderr.writeLine "Wrong part's name: " & opts.version_part
           quit(1)
