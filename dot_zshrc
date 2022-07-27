@@ -10,6 +10,7 @@ compinit
 # Exporting some variables
 export EDITOR=$(which nvim)
 export GNUPGHOME=~/.local/share/gnupg
+export XDG_CONFIG_HOME=~/.config
 
 # Loading package manager
 source <(afx init)
