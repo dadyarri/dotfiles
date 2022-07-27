@@ -367,6 +367,44 @@ if [[ $_arg_bin == 'on' ]]; then
     ansi --red "Error occured."
   fi
 
+  echo
+  printf "  "
+  ansi --blue "Updating sheldon..."
+
+  if [[ $_arg_verbose == "on" ]]; then
+    cmd="curl --proto '=https' -fLsS https://rossmacarthur.github.io/install/crate.sh \
+    | bash -s -- --repo rossmacarthur/sheldon --to ~/bin"
+  else
+    cmd="curl --proto '=https' -fLsS https://rossmacarthur.github.io/install/crate.sh \
+    | bash -s -- --repo rossmacarthur/sheldon --to ~/.local/bin > /dev/null"
+  fi
+
+  if eval "$cmd"; then
+    printf "  "
+    ansi --green "Sheldon updated."
+  else
+    printf "  "
+    ansi --red "Error occured."
+  fi
+
+
+  echo
+  printf "  "
+  ansi --blue "Updating zsh plugins..."
+
+  if [[ $_arg_verbose == "on" ]]; then
+    cmd="sheldon lock --update"
+  else
+    cmd="sheldon lock --update > /dev/null"
+  fi
+
+  if eval "$cmd"; then
+    printf "  "
+    ansi --green "Zsh plugins updated."
+  else
+    printf "  "
+    ansi --red "Error occured."
+  fi
 fi
 
 if [[ $_arg_npm == "on" ]]; then
