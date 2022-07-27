@@ -1,8 +1,0 @@
-local:
-  - name: Scripts
-    description: Sourcing custom scripts
-    directory: ~/scripts/
-    plugin:
-      sources:
-        - mkcd
-

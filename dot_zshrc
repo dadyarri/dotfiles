@@ -7,13 +7,17 @@ fi
 autoload -Uz compinit
 compinit
 
+# Disable case-sensitivity
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+
 # Exporting some variables
 export EDITOR=$(which nvim)
 export GNUPGHOME=~/.local/share/gnupg
 export XDG_CONFIG_HOME=~/.config
 export XDG_DATA_HOME=~/.local/share
 export XDG_STATE_HOME=~/.local/state
+export PATH=$($HOME/bin/getpath):$PATH
 
 # Loading package manager
-source <(afx init)
-source <(afx completion zsh)
+eval "$(sheldon source)"
+
