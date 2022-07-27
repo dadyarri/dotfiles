@@ -199,9 +199,9 @@ if [[ $_arg_system == 'on' ]]; then
   ansi --blue "Updating packages..."
 
   if [[ $_arg_verbose == "on" ]]; then
-    cmd="sudo -S dnf update -y"
+    cmd="sudo -Sn dnf update -y"
   else
-    cmd="sudo -S dnf update -yq"
+    cmd="sudo -Sn dnf update -yq"
   fi
 
   if echo "$password" | eval "$cmd"; then
@@ -217,9 +217,9 @@ if [[ $_arg_autoremove == 'on' ]]; then
   ansi --blue "Removing orphans..."
 
   if [[ $_arg_verbose == "on" ]]; then
-    cmd="sudo -S dnf autoremove -y"
+    cmd="sudo -Sn dnf autoremove -y"
   else
-    cmd="sudo -S dnf autoremove -yq"
+    cmd="sudo -Sn dnf autoremove -yq"
   fi
 
   if echo "$password" | eval "$cmd"; then
