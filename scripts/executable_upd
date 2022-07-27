@@ -5,6 +5,7 @@
 # ARG_OPTIONAL_BOOLEAN([flatpak],[f],[Update flatpak applications])
 # ARG_OPTIONAL_BOOLEAN([neovim],[n],[Update neovim packages])
 # ARG_OPTIONAL_BOOLEAN([bin],[b],[Update cli apps in ~/bin])
+# ARG_OPTIONAL_BOOLEAN([npm],[j],[Update globally installed node.js packages])
 # ARG_OPTIONAL_BOOLEAN([all],[a],[Enables all flags (same as -srfnb)])
 # ARG_OPTIONAL_BOOLEAN([verbose],[v],[Enable verbose output],[on])
 # ARG_HELP([Upd - little wrapper to update system])
@@ -175,6 +176,7 @@ _arg_autoremove="on"
 _arg_flatpak="on"
 _arg_neovim="on"
 _arg_bin="on"
+_arg_npm="on"
 fi
 
 if [[ $_arg_verbose == 'on' ]]; then
@@ -183,6 +185,7 @@ if [[ $_arg_verbose == 'on' ]]; then
   ansi --faint "'flatpak' is $_arg_flatpak"
   ansi --faint "'neovim' is $_arg_neovim"
   ansi --faint "'bin' is $_arg_bin"
+  ansi --faint "'npm' is $_arg_npm"
 fi
 
 ansi --blue "Updating system started..."
@@ -324,6 +327,62 @@ if [[ $_arg_bin == 'on' ]]; then
     ansi --red "Error occured."
   fi
 
+  # --------
+
+  echo
+  printf "  "
+  ansi --blue "Updating nimble packages..."
+
+  if [[ $_arg_verbose == "on" ]]; then
+    cmd="nim e ~/scripts/src/updnimp.nim"
+  else
+    cmd="nim e ~/scripts/src/updnimp.nim > /dev/null"
+  fi
+
+  if eval "$cmd"; then
+    printf "  "
+    ansi --green "Nimble packages updated."
+  else
+    printf "  "
+    ansi --red "Error occured."
+  fi
+
+  # --------
+
+  echo
+  printf "  "
+  ansi --blue "Updating nim & choosenim..."
+
+  if [[ $_arg_verbose == "on" ]]; then
+    cmd="choosenim update stable; choosenim update self"
+  else
+    cmd="choosenim update stable; choosenim update self > /dev/null"
+  fi
+
+  if eval "$cmd"; then
+    printf "  "
+    ansi --green "Nim & choosenim updated."
+  else
+    printf "  "
+    ansi --red "Error occured."
+  fi
+
+fi
+
+if [[ $_arg_npm == "on" ]]; then
+  ansi --blue "Updating npm packages..."
+
+  if [[ $_arg_verbose == "on" ]]; then
+    cmd="npm -g update"
+  else
+    cmd="npm -g update > /dev/null"
+  fi
+
+  if eval "$cmd"; then
+    ansi --green "Npm packages updated."
+  else
+    ansi --red "Error occured."
+  fi
 fi
 echo
 ansi --green "System updated."
