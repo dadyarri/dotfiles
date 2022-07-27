@@ -11,6 +11,8 @@ compinit
 export EDITOR=$(which nvim)
 export GNUPGHOME=~/.local/share/gnupg
 export XDG_CONFIG_HOME=~/.config
+export XDG_DATA_HOME=~/.local/share
+export XDG_STATE_HOME=~/.local/state
 
 # Loading package manager
 source <(afx init)
