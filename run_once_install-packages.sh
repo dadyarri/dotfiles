@@ -29,6 +29,20 @@ tempfile=$(mktemp) \
   && tic -x -o ~/.terminfo "$tempfile" \
   && rm "$tempfile"
 
+# Install choosenim to manage nim versions
+curl https://nim-lang.org/choosenim/init.sh -sSf | sh
+
+# Install stable version of nim
+choosenim stable
+
+# Configure NPM to install global packages to custom directory
+npm config set prefix=~/.npm/packages
+
+# Install LSPs
+nimble install nimlsp
+npm i -g bash-language-server vscode-langservers-extracted pyright typescript typescript-language-server
+dotnet tool install --global csharp-ls
+
 # Ask user to reboot system
 echo "Now you can reboot your system. Do it now? [y/n]"
 read -r ans
