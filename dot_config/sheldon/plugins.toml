@@ -37,6 +37,17 @@ inline = 'source ~/.p10k.zsh'
 local = '/home/dadyarri/.config/zsh'
 use = ['*.sh']
 
+[plugins.fzf-tab]
+github = 'Aloxaf/fzf-tab'
+
+[plugins.completions]
+github = 'zsh-users/zsh-completions'
+
+[plugins.my-completions]
+local = '/home/dadyarri/.config/zsh/completions'
+use = ["*"]
+apply = ["source"]
+
 [templates]
 enhancd = "source {{ dir }}/init.sh"
 
