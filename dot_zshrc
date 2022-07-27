@@ -3,12 +3,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Loading completions engine
-autoload -Uz compinit
-compinit
-
-# Disable case-sensitivity
-zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+# Loading custom completions
+source $HOME/.config/zsh/completions.zsh
+fpath+=($HOME/.config/zsh/completions)
 
 # Exporting some variables
 export EDITOR=$(which nvim)
@@ -21,3 +18,9 @@ export PATH=$($HOME/bin/getpath):$PATH
 # Loading package manager
 eval "$(sheldon source)"
 
+# Customizing plugins
+ENHANCD_FILTER="fzf --height 25% --reverse --ansi:fzy"
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#424242"
+
+# Enabling flags autocomplete for my scripts
+compdef _gnu_generic upd
