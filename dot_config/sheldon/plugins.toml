@@ -48,6 +48,15 @@ local = '/home/dadyarri/.config/zsh/completions'
 use = ["*"]
 apply = ["source"]
 
+[plugins.autopair]
+github = 'hlissner/zsh-autopair'
+
+[plugins.autoquoter]
+github = 'ianthehenry/zsh-autoquoter'
+
+[plugins.fzf-history-search]
+github = 'joshskidmore/zsh-fzf-history-search'
+
 [templates]
 enhancd = "source {{ dir }}/init.sh"
 
