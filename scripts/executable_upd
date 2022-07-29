@@ -373,10 +373,10 @@ if [[ $_arg_bin == 'on' ]]; then
 
   if [[ $_arg_verbose == "on" ]]; then
     cmd="curl --proto '=https' -fLsS https://rossmacarthur.github.io/install/crate.sh \
-    | bash -s -- --repo rossmacarthur/sheldon --to ~/bin"
+    | bash -s -- --repo rossmacarthur/sheldon --to ~/bin --force"
   else
     cmd="curl --proto '=https' -fLsS https://rossmacarthur.github.io/install/crate.sh \
-    | bash -s -- --repo rossmacarthur/sheldon --to ~/.local/bin > /dev/null"
+    | bash -s -- --repo rossmacarthur/sheldon --to ~/bin --force > /dev/null"
   fi
 
   if eval "$cmd"; then
