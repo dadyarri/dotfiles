@@ -10,3 +10,7 @@ sh -c "$(curl -fsLS https://chezmoi.io/get)" -- init --apply dadyarri
 
 It will install all required packages and copy the dotfiles.
 
+
+## How it looks
+
+![images/Screenshot1.png](images/Screenshot1.png)
