@@ -157,7 +157,11 @@ immutability=1
 plugin=org.kde.plasma.volume
 
 [Containments][31][Applets][42][Configuration]
-PreloadWeight=55
+PreloadWeight=70
+
+[Containments][31][Applets][42][Configuration][ConfigDialog]
+DialogHeight=540
+DialogWidth=720
 
 [Containments][31][Applets][45]
 immutability=1
