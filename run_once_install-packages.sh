@@ -5,7 +5,7 @@ sudo cp repos/* /etc/yum.repos.d
 
 # Install desired packages; Update system
 sudo dnf copr enable atim/bottom -y
-sudo dnf install bat brave-browser bottom code curl docker-ce docker-ce-cli docker-compose-plugin dotnet exa fd-find fzf git git-delta glow kio-gdrive neovim nodejs notion-app spectacle wezterm wl-clipboard zsh -y
+sudo dnf install bat brave-browser bottom code curl docker-ce docker-ce-cli docker-compose-plugin dotnet exa fd-find fzf git git-delta glow kio-gdrive neovim nodejs notion-app flameshot wezterm wl-clipboard zsh mosh -y
 sudo dnf update -y
 
 # Get latest version of afx (package manager for shell)
