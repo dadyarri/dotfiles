@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # ARG_POSITIONAL_SINGLE([archive],[File path of archive to unpack])
-# ARG_DEFAULTS_POS()
+# ARG_OPTIONAL_SINGLE([directory],[d],[Path, where to extract archive],[.])
+# ARG_DEFAULTS_POS([])
 # ARG_HELP([Ex - little wrapper to simplify unpacking of different archives\nSupports .tar.bz2, .tar.gz, .bz2, .rar, .gz, .tar, .tbz2, .tbz2, .tgz, .zip, .Z, .7z, .xz.])
 # ARGBASH_GO()
 # needed because of Argbash --> m4_ignore([
@@ -21,7 +22,7 @@ die()
 
 begins_with_short_option()
 {
-	local first_option all_short_options='h'
+	local first_option all_short_options='dh'
 	first_option="${1:0:1}"
 	test "$all_short_options" = "${all_short_options/$first_option/}" && return 1 || return 0
 }
@@ -30,14 +31,16 @@ begins_with_short_option()
 _positionals=()
 _arg_archive=
 # THE DEFAULTS INITIALIZATION - OPTIONALS
+_arg_directory="."
 
 
 print_help()
 {
 	printf '%s\n' "Ex - little wrapper to simplify unpacking of different archives
 Supports .tar.bz2, .tar.gz, .bz2, .rar, .gz, .tar, .tbz2, .tbz2, .tgz, .zip, .Z, .7z, .xz."
-	printf 'Usage: %s [-h|--help] <archive>\n' "$0"
+	printf 'Usage: %s [-d|--directory <arg>] [-h|--help] <archive>\n' "$0"
 	printf '\t%s\n' "<archive>: File path of archive to unpack"
+	printf '\t%s\n' "-d, --directory: Path, where to extract archive (default: '.')"
 	printf '\t%s\n' "-h, --help: Prints help"
 }
 
@@ -49,6 +52,17 @@ parse_commandline()
 	do
 		_key="$1"
 		case "$_key" in
+			-d|--directory)
+				test $# -lt 2 && die "Missing value for the optional argument '$_key'." 1
+				_arg_directory="$2"
+				shift
+				;;
+			--directory=*)
+				_arg_directory="${_key##--directory=}"
+				;;
+			-d*)
+				_arg_directory="${_key##-d}"
+				;;
 			-h|--help)
 				print_help
 				exit 0
@@ -105,13 +119,13 @@ assign_positional_args 1 "${_positionals[@]}"
 if [ -f "$_arg_archive" ] ; then
   case "$_arg_archive" in
     *.tar.bz2)
-      tar xjf "$_arg_archive"
+      tar xjf "$_arg_archive" -C "$_arg_directory"
       ;;
     *.tar.gz)
-      tar xzf "$_arg_archive"
+      tar xzf "$_arg_archive" -C "$_arg_directory"
       ;;
     *.bz2)
-      bunzip2 "$_arg_archive"
+      tar xjf "$_arg_archive" -C "$_arg_directory"
       ;;
     *.rar)
       rar x "$_arg_archive"
@@ -120,16 +134,16 @@ if [ -f "$_arg_archive" ] ; then
       gunzip "$_arg_archive"
       ;;
     *.tar)
-      tar xvf "$_arg_archive"
+      tar xvf "$_arg_archive" -C "$_arg_directory"
       ;;
     *.tbz2)
-      tar xjf "$_arg_archive"
+      tar xjf "$_arg_archive" -C "$_arg_directory"
       ;;
     *.tgz)
-      tar xzf "$_arg_archive"
+      tar xzf "$_arg_archive" -C "$_arg_directory"
       ;;
     *.zip)
-      unzip "$_arg_archive"
+      unzip "$_arg_archive" -d "$_arg_directory"
       ;;
     *.Z)
       uncompress "$_arg_archive"
