@@ -17,7 +17,6 @@ Mode=Constant
 NightTemperature=4600
 
 [Plugins]
-diminactiveEnabled=true
 kwin4_effect_dimscreenEnabled=true
 
 [Windows]
