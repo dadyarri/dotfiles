@@ -27,3 +27,9 @@ if [ $? -eq 0 ]; then
     alias chegit="chezmoi git --"
 fi
 
+alias ta="todo.sh add"
+alias td="todo.sh done"
+
+hcvpn () {
+  ssh vpnroot -- "docker inspect --format='{{json .State.Health.Status}}' wireguard"
+}
