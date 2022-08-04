@@ -120,6 +120,13 @@ return packer.startup(function(use)
     'zah/nim.vim'
   }
 
+  use {
+    'leafOfTree/vim-matchtag',
+    setup = function()
+      vim.g.vim_matchtag_enable_by_default = true
+    end
+  }
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
