@@ -39,7 +39,7 @@ mute=Volume Mute,Volume Mute,Выключить звук
 
 [ksmserver]
 Halt Without Confirmation=none,,Выключить компьютер без подтверждения
-Lock Session=Meta+L\tCtrl+Alt+L\tScreensaver,Meta+L\tScreensaver,Заблокировать сеанс
+Lock Session=Meta+L\tScreensaver,Meta+L\tScreensaver,Заблокировать сеанс
 Log Out=Ctrl+Alt+Del,Ctrl+Alt+Del,Завершить сеанс
 Log Out Without Confirmation=none,,Завершить сеанс без подтверждения
 Reboot Without Confirmation=none,,Перезагрузить компьютер без подтверждения
@@ -195,11 +195,11 @@ view_zoom_out=Meta+-,Meta+-,Уменьшить
 
 [mediacontrol]
 _k_friendly_name=Управление медиапроигрывателем
-mediavolumedown=none,none,Уменьшить громкость
-mediavolumeup=none,none,Увеличить громкость
+mediavolumedown=none,,Уменьшить громкость
+mediavolumeup=none,,Увеличить громкость
 nextmedia=Media Next,Media Next,Перейти к следующей дорожке
 pausemedia=Media Pause,Media Pause,Приостановить воспроизведение
-playmedia=none,none,Начать воспроизведение
+playmedia=none,,Начать воспроизведение
 playpausemedia=Media Play,Media Play,Начать/приостановить воспроизведение
 previousmedia=Media Previous,Media Previous,Перейти к предыдущей дорожке
 stopmedia=Media Stop,Media Stop,Остановить воспроизведение
