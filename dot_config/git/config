@@ -1,7 +1,7 @@
 [user]
 	name = Daniil
 	email = dadyarri@gmail.com
-	signingkey = 713C8B183AE0254A
+	signingkey = 04C2105989236D3B97888954713C8B183AE0254A
 
 [core]
 	autocrlf = input
