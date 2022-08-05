@@ -195,11 +195,11 @@ view_zoom_out=Meta+-,Meta+-,Уменьшить
 
 [mediacontrol]
 _k_friendly_name=Управление медиапроигрывателем
-mediavolumedown=none,,Уменьшить громкость
-mediavolumeup=none,,Увеличить громкость
+mediavolumedown=none,none,Уменьшить громкость
+mediavolumeup=none,none,Увеличить громкость
 nextmedia=Media Next,Media Next,Перейти к следующей дорожке
 pausemedia=Media Pause,Media Pause,Приостановить воспроизведение
-playmedia=none,,Начать воспроизведение
+playmedia=none,none,Начать воспроизведение
 playpausemedia=Media Play,Media Play,Начать/приостановить воспроизведение
 previousmedia=Media Previous,Media Previous,Перейти к предыдущей дорожке
 stopmedia=Media Stop,Media Stop,Остановить воспроизведение

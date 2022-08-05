@@ -8,5 +8,9 @@ PointerAcceleration=0.000
 ScrollFactor=0.3
 TapToClick=true
 
+[Mouse]
+cursorSize=32
+cursorTheme=Oreo-Black-Border
+
 [Tmp]
 update_info=delete_cursor_old_default_size.upd:DeleteCursorOldDefaultSize
