@@ -57,6 +57,9 @@ github = 'ianthehenry/zsh-autoquoter'
 [plugins.fzf-history-search]
 github = 'joshskidmore/zsh-fzf-history-search'
 
+[plugins.ugit]
+github = 'Bhupesh-V/ugit'
+
 [templates]
 enhancd = "source {{ dir }}/init.sh"
 
