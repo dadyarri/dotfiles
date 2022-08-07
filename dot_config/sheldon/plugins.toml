@@ -35,7 +35,7 @@ inline = 'source ~/.p10k.zsh'
 
 [plugins.zsh]
 local = '/home/dadyarri/.config/zsh'
-use = ['*.sh']
+use = ['*.sh', '*.plugin.zsh']
 
 [plugins.fzf-tab]
 github = 'Aloxaf/fzf-tab'
