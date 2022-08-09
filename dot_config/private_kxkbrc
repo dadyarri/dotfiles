@@ -3,6 +3,7 @@ update_info=kxkb.upd:remove-empty-lists,kxkb.upd:add-back-resetoptions,kxkb_vari
 
 [Layout]
 DisplayNames=,
+LayoutDefaultGlobal=1
 LayoutList=us,ru
 Options=grp:win_space_toggle,caps:ctrl_modifier
 ResetOldOptions=true
