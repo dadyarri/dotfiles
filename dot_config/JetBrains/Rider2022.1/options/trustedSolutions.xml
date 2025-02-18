@@ -1,9 +1,0 @@
-<application>
-  <component name="TrustedSolutionStore">
-    <option name="trustedLocations">
-      <set>
-        <option value="$USER_HOME$/projects/CodeStyle/.idea/.idea.CodeStyle" />
-      </set>
-    </option>
-  </component>
-</application>
