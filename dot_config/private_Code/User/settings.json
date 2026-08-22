@@ -1,0 +1,27 @@
+{
+    "terminal.integrated.defaultProfile.linux": "fish",
+    "git.enableSmartCommit": true,
+    "git.confirmSync": false,
+    "editor.fontFamily": "'JetBrainsMono Nerd Font Mono', 'monospace', monospace",
+    "files.autoSave": "afterDelay",
+    "chat.mcp.gallery.enabled": true,
+    "extensions.ignoreRecommendations": true,
+    "json.schemaDownload.trustedDomains": {
+        "https://developer.microsoft.com/json-schemas/": true,
+        "https://json-schema.org/": true,
+        "https://json.schemastore.org/": true,
+        "https://raw.githubusercontent.com/devcontainers/spec/": true,
+        "https://raw.githubusercontent.com/microsoft/vscode/": true,
+        "https://schemastore.azurewebsites.net/": true,
+        "https://unpkg.com": true,
+        "https://www.schemastore.org/": true
+    },
+    "editor.fontLigatures": true,
+    "editor.unicodeHighlight.allowedLocales": {
+        "ru": true
+    },
+    "workbench.browser.openLocalhostLinks": false,
+    "typescript.experimental.useTsgo": true,
+    "workbench.startupEditor": "none",
+    "chat.editor.codex.preferAgentHost": true,
+}

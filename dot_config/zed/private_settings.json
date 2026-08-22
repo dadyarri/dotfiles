@@ -1,0 +1,63 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "proxy": "",
+  "project_panel": {
+    "dock": "left"
+  },
+  "outline_panel": {
+    "dock": "left"
+  },
+  "collaboration_panel": {
+    "dock": "left"
+  },
+  "git_panel": {
+    "dock": "left"
+  },
+  "disable_ai": false,
+  "terminal": {
+    "shell": {
+      "program": "fish"
+    }
+  },
+  "agent": {
+    "default_profile": "write",
+    "tool_permissions": {
+      "tools": {
+        "terminal": {
+          "default": "deny",
+          "always_allow": [
+            {
+              "pattern": "^dotnet\\s+build(\\s|$)"
+            }
+          ]
+        }
+      }
+    },
+    "sidebar_side": "right",
+    "dock": "right",
+    "default_model": {
+      "effort": "medium",
+      "enable_thinking": true,
+      "provider": "openai-subscribed",
+      "model": "gpt-5.4"
+    },
+    "model_parameters": []
+  },
+  "buffer_font_family": "JetBrainsMono Nerd Font Mono",
+  "vim_mode": false,
+  "base_keymap": "JetBrains",
+  "ui_font_size": 16,
+  "buffer_font_size": 15,
+  "theme": {
+    "mode": "system",
+    "light": "One Light",
+    "dark": "One Dark"
+  }
+}

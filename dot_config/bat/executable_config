@@ -1,0 +1,3 @@
+--theme="base16-256"
+--style="numbers,changes,header"
+--map-syntax="*.conf:INI"

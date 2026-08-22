@@ -1,0 +1,21 @@
+{
+  "allowedUrls": [
+    "https://www.nuget.org",
+    "https://github.com"
+  ],
+  "enabledPlugins": {
+    "dotnet@dotnet-agent-skills": true,
+    "dotnet-diag@dotnet-agent-skills": true,
+    "dotnet-nuget@dotnet-agent-skills": true,
+    "dotnet-test@dotnet-agent-skills": true,
+    "https://github.com/JuliusBrussee/caveman": true
+  },
+  "extraKnownMarketplaces": {
+    "dotnet-agent-skills": {
+      "source": {
+        "source": "github",
+        "repo": "dotnet/skills"
+      }
+    }
+  }
+}

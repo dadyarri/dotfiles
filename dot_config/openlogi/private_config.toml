@@ -1,0 +1,102 @@
+schema_version = 4
+selected_device = "receiver:734b9419:slot:1"
+
+[devices."direct:046d:c090:unit:3eee81a7".identity]
+display_name = "G703 Lightspeed"
+codename = "G703 LIGHTSPEED Wireless Gaming Mouse w/ HERO"
+kind = "mouse"
+
+[app_settings]
+launch_at_login = false
+check_for_updates = true
+auto_install_updates = false
+update_prompt_seen = true
+show_in_menu_bar = true
+capture_mouse_events = true
+auto_download_assets = true
+asset_source = "automatic"
+thumbwheel_sensitivity = 14
+appearance = "system"
+
+[devices."direct:046d:c090:unit:3eee81a7".identity.model_info]
+entity_count = 3
+unit_id = [
+    0,
+    0,
+    0,
+    0,
+]
+model_ids = [
+    16518,
+    49296,
+    0,
+]
+extended_model_id = 0
+
+[devices."direct:046d:c090:unit:3eee81a7".identity.model_info.transports]
+usb = true
+equad = true
+btle = false
+bluetooth = false
+
+[devices."direct:046d:c090:unit:3eee81a7".identity.capabilities]
+buttons = false
+pointer = true
+lighting = false
+scroll_inversion = false
+hires_wheel = false
+thumbwheel = false
+haptic_feedback = false
+haptic_panel = false
+
+[devices."receiver:734b9419:slot:1"]
+dpi = 550
+
+[devices."receiver:734b9419:slot:1".identity]
+display_name = "Ergo M575"
+codename = "ERGO M575"
+kind = "trackball"
+
+[keyboard]
+
+[devices."receiver:734b9419:slot:1".identity.model_info]
+entity_count = 3
+unit_id = [
+    0,
+    0,
+    0,
+    0,
+]
+model_ids = [
+    45095,
+    16534,
+    0,
+]
+extended_model_id = 0
+
+[devices."receiver:734b9419:slot:1".identity.model_info.transports]
+usb = false
+equad = true
+btle = true
+bluetooth = false
+
+[devices."receiver:734b9419:slot:1".identity.capabilities]
+buttons = true
+pointer = true
+lighting = false
+scroll_inversion = false
+hires_wheel = false
+thumbwheel = false
+haptic_feedback = false
+haptic_panel = false
+
+[devices."receiver:734b9419:slot:1".bindings]
+Forward= "BrowserBack"
+Back = "BrowserForward"
+
+[devices."receiver:734b9419:slot:1".disabled_gestures.Forward]
+Up = "MissionControl"
+Down = "ShowDesktop"
+Left = "PrevTab"
+Right = "NextTab"
+Click = "BrowserForward"

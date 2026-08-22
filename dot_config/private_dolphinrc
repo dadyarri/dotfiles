@@ -1,0 +1,25 @@
+[ExtractDialog]
+2 screens: Height=480
+2 screens: Width=892
+DirHistory[$e]=$HOME/Desktop/bachelorette-party/polaroid-cards/,/mnt/games/PiratedLibrary/
+
+[General]
+TerminalApplication=alacrity.exe
+Version=202
+ViewPropsTimestamp=2026,1,10,0,33,44.324
+
+[IconsMode]
+PreviewSize=48
+
+[KFileDialog Settings]
+Places Icons Auto-resize=false
+Places Icons Static Size=22
+
+[MainWindow]
+MenuBar=Disabled
+
+[Notification Messages]
+warnAboutRisksBeforeActingAsAdmin=false
+
+[Search]
+Location=Everywhere

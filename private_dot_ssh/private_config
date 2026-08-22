@@ -1,0 +1,8 @@
+Host sh
+	HostName 192.168.0.122
+	User dadyarri
+	Port 7890
+	
+Host *
+	AddKeysToAgent yes
+	IdentitiesOnly yes

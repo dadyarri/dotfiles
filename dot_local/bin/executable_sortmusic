@@ -1,0 +1,204 @@
+#!/usr/bin/env fish
+
+# Sort flat music directory into:
+#   Artist - Album
+#   Artist - Album (Year)
+#
+# Usage:
+#   ./sort-music-by-album.fish
+#   ./sort-music-by-album.fish /path/to/music
+#   ./sort-music-by-album.fish --dry-run /path/to/music
+#   ./sort-music-by-album.fish --copy /path/to/music
+#
+# Dependencies:
+#   exiftool
+
+argparse 'dry-run' 'copy' -- $argv
+or exit 1
+
+set source_dir "."
+
+if test (count $argv) -gt 0
+    set source_dir $argv[1]
+end
+
+if not test -d "$source_dir"
+    echo "Source directory does not exist: $source_dir" >&2
+    exit 1
+end
+
+if not command -q exiftool
+    echo "Missing dependency: exiftool" >&2
+    echo "Install it first, for example:" >&2
+    echo "  sudo pacman -S perl-image-exiftool" >&2
+    echo "  sudo apt install libimage-exiftool-perl" >&2
+    exit 1
+end
+
+function sanitize_path_component
+    set value "$argv[1]"
+
+    # Trim surrounding whitespace
+    set value (string trim -- "$value")
+
+    # Replace path separators and Windows-hostile filename chars
+    set value (string replace -a "/" "／" -- "$value")
+    set value (string replace -a "\\" "＼" -- "$value")
+    set value (string replace -a ":" "꞉" -- "$value")
+    set value (string replace -a "*" "＊" -- "$value")
+    set value (string replace -a "?" "？" -- "$value")
+    set value (string replace -a '"' "＂" -- "$value")
+    set value (string replace -a "<" "＜" -- "$value")
+    set value (string replace -a ">" "＞" -- "$value")
+    set value (string replace -a "|" "｜" -- "$value")
+
+    # Collapse repeated whitespace
+    set value (string replace -ra '\s+' ' ' -- "$value")
+
+    # Avoid empty folder/file components
+    if test -z "$value"
+        set value "Unknown"
+    end
+
+    echo "$value"
+end
+
+function first_non_empty
+    for value in $argv
+        set value (string trim -- "$value")
+        if test -n "$value"
+            echo "$value"
+            return 0
+        end
+    end
+
+    echo ""
+end
+
+function metadata_field
+    set file "$argv[1]"
+    set tag "$argv[2]"
+
+    exiftool -s3 -"$tag" -- "$file" 2>/dev/null | head -n 1 | string trim
+end
+
+function metadata_year
+    set file "$argv[1]"
+
+    set raw_date (first_non_empty \
+        (metadata_field "$file" DateTimeOriginal) \
+        (metadata_field "$file" OriginalReleaseDate) \
+        (metadata_field "$file" ReleaseDate) \
+        (metadata_field "$file" Year) \
+        (metadata_field "$file" Date) \
+        (metadata_field "$file" CreateDate))
+
+    set year (string match -r '([12][0-9]{3})' -- "$raw_date" | head -n 1)
+
+    if test -n "$year"
+        echo "$year"
+    else
+        echo ""
+    end
+end
+
+set files (find "$source_dir" \
+    # -maxdepth 1 \
+    -type f \
+    \( \
+        -iname "*.mp3" \
+        -o -iname "*.flac" \
+        -o -iname "*.m4a" \
+        -o -iname "*.aac" \
+        -o -iname "*.ogg" \
+        -o -iname "*.opus" \
+        -o -iname "*.wav" \
+        -o -iname "*.aiff" \
+        -o -iname "*.aif" \
+        -o -iname "*.wma" \
+    \) \
+    -print0 | string split0)
+
+if test (count $files) -eq 0
+    echo "No audio files found in: $source_dir"
+    exit 0
+end
+
+set moved_count 0
+set skipped_count 0
+
+for file in $files
+    set album_artist (first_non_empty \
+        (metadata_field "$file" AlbumArtist) \
+        (metadata_field "$file" AlbumArtistSort) \
+        (metadata_field "$file" Band) \
+        (metadata_field "$file" Artist))
+
+    set album (first_non_empty \
+        (metadata_field "$file" Album) \
+        (metadata_field "$file" ReleaseTitle))
+
+    set year (metadata_year "$file")
+
+    if test -z "$album_artist"; or test -z "$album"
+        echo "SKIP: missing album artist or album metadata: "(basename "$file")
+        set skipped_count (math $skipped_count + 1)
+        continue
+    end
+
+    set safe_artist (sanitize_path_component "$album_artist")
+    set safe_album (sanitize_path_component "$album")
+
+    if test -n "$year"
+        set target_dir "$source_dir/$safe_artist - $safe_album ($year)"
+    else
+        set target_dir "$source_dir/$safe_artist - $safe_album"
+    end
+
+    set target_file "$target_dir/"(basename "$file")
+
+    if test "$file" = "$target_file"
+        echo "SKIP: already sorted: "(basename "$file")
+        set skipped_count (math $skipped_count + 1)
+        continue
+    end
+
+    if test -e "$target_file"
+        echo "SKIP: target already exists: $target_file"
+        set skipped_count (math $skipped_count + 1)
+        continue
+    end
+
+    if set -q _flag_dry_run
+        if set -q _flag_copy
+            echo "COPY: $file"
+            echo "  -> $target_file"
+        else
+            echo "MOVE: $file"
+            echo "  -> $target_file"
+        end
+    else
+        mkdir -p "$target_dir"
+
+        if set -q _flag_copy
+            cp -n -- "$file" "$target_file"
+        else
+            mv -n -- "$file" "$target_file"
+        end
+
+        echo "OK: "(basename "$file")" -> "(basename "$target_dir")
+    end
+
+    set moved_count (math $moved_count + 1)
+end
+
+echo
+if set -q _flag_dry_run
+    echo "Dry run complete."
+else
+    echo "Done."
+end
+
+echo "Processed: "(count $files)
+echo "Moved/copied: $moved_count"
+echo "Skipped: $skipped_count"
