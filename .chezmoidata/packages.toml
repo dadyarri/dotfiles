@@ -24,6 +24,7 @@ repo = [
     "git-delta",
     "github-cli",
     "glances",
+    "glow",
     "gum",
     "imagemagick",
     "iproute2",
