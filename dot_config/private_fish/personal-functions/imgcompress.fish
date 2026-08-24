@@ -26,13 +26,12 @@ function imgcompress --description 'Compress and optionally resize images'
             'Directories are scanned one level deep by default. Without --in-place,' \
             'output is written beside the source as NAME.compressed.EXT.' \
             '' \
-            'When --max is specified, lossy static formats use a quality search and,' \
-            'if that is insufficient, progressively reduce dimensions. PNG uses' \
-            'maximum lossless compression and reduces dimensions only when needed.' \
+            'When --max is specified, static lossy formats search for the highest' \
+            'quality that fits and then reduce dimensions if necessary.' \
             '' \
-            'GIF uses gifsicle optimization and a lossiness search before progressively' \
-            'reducing dimensions. --quality controls its initial quality level; lower' \
-            'quality permits more aggressive GIF compression.' \
+            'For GIFs, compression preserves dimensions as long as possible: it first' \
+            'increases lossy compression, then reduces palette size, and only then' \
+            'reduces dimensions. Automatic GIF resizing never goes below 50%.' \
             '' \
             'Options:' \
             '  -m, --max SIZE       Target maximum size, e.g. 500K, 2M, 2MiB' \
@@ -51,7 +50,7 @@ function imgcompress --description 'Compress and optionally resize images'
             '' \
             'Examples:' \
             '  imgcompress photo.jpg --max 1M' \
-            '  imgcompress animation.gif --max 2M' \
+            '  imgcompress animation.gif --max 1M' \
             '  imgcompress animation.gif --width 800 --quality 85' \
             '  imgcompress ./photos --ext jpg --ext png --ext gif --max 800K' \
             '  imgcompress -r ./photos --width 1920 --max 1.5M' \
@@ -124,7 +123,7 @@ function imgcompress --description 'Compress and optionally resize images'
     end
 
     #
-    # Check only dependencies actually required by the selected files.
+    # Check only dependencies actually needed by the selected files.
     #
 
     set -l needs_magick 0
@@ -174,7 +173,10 @@ function imgcompress --description 'Compress and optionally resize images'
                 continue
         end
 
-        set -l stem (string replace -r '\.[^.]+$' '' -- "$file")
+        set -l stem (
+            string replace -r '\.[^.]+$' '' -- "$file"
+        )
+
         set -l output "$stem.compressed.$ext"
 
         set -l tmpdir (mktemp -d)
@@ -187,11 +189,14 @@ function imgcompress --description 'Compress and optionally resize images'
         set -l candidate "$tmpdir/candidate.$ext"
         set -l best "$tmpdir/best.$ext"
 
-        set -l scale 100
         set -l success 0
+        set -l scale 100
 
-        set -l original_size (stat -c %s -- "$file")
-        or begin
+        set -l original_size (
+            stat -c %s -- "$file"
+        )
+
+        if test $status -ne 0
             echo "Could not determine file size: $file" >&2
             set -a failures "$file"
             rm -rf -- "$tmpdir"
@@ -204,18 +209,20 @@ function imgcompress --description 'Compress and optionally resize images'
 
         if test "$ext" = gif
             set -l gif_source "$file"
-            set -l resized_source "$tmpdir/source.gif"
 
             #
-            # Apply the user-requested maximum dimensions once.
+            # Apply explicit maximum dimensions once.
             #
-            # Subsequent target-size rounds always start with this same source,
-            # so repeated lossy/re-encoding damage does not accumulate.
+            # Later compression passes always use this resulting source rather
+            # than repeatedly resizing already-compressed output.
             #
 
             if set -q _flag_width; or set -q _flag_height
+                set -l resized_source "$tmpdir/resized-source.gif"
+
                 set -l resize_args \
-                    --resize-method lanczos3
+                    --resize-method mix \
+                    --optimize=2
 
                 if set -q _flag_width; and set -q _flag_height
                     set -a resize_args \
@@ -230,12 +237,41 @@ function imgcompress --description 'Compress and optionally resize images'
                         --resize-fit-height "$_flag_height"
                 end
 
-                gifsicle $resize_args "$file" > "$resized_source"
+                if not set -q _flag_keep_metadata
+                    set -a resize_args \
+                        --no-comments \
+                        --no-names
+                end
 
-                if test $status -ne 0; or not test -s "$resized_source"
-                    echo "Failed to resize GIF: $file" >&2
-                    set -a failures "$file"
+                echo "GIF: applying maximum dimensions..."
+
+                command gifsicle \
+                    $resize_args \
+                    --output "$resized_source" \
+                    "$file"
+
+                set -l resize_status $status
+
+                if test $resize_status -ne 0
+                    echo \
+                        "gifsicle failed while resizing $file (exit $resize_status)." \
+                        >&2
+
                     rm -rf -- "$tmpdir"
+
+                    if test $resize_status -eq 130
+                        return 130
+                    end
+
+                    set -a failures "$file"
+                    continue
+                end
+
+                if not test -s "$resized_source"
+                    echo "gifsicle produced an empty resized GIF: $file" >&2
+
+                    rm -rf -- "$tmpdir"
+                    set -a failures "$file"
                     continue
                 end
 
@@ -243,137 +279,286 @@ function imgcompress --description 'Compress and optionally resize images'
             end
 
             #
-            # Map the familiar 1-100 quality scale onto gifsicle's lossiness.
+            # Map the familiar quality scale to gifsicle lossiness:
             #
-            # quality 100 -> lossiness 0
-            # quality  82 -> lossiness 18
-            # quality  50 -> lossiness 50
-            #
-            # With --max, this is the least-lossy value we try. If necessary,
-            # compression may become progressively more aggressive up to 200
-            # before dimensions are reduced.
+            #   quality 100 -> lossiness   0
+            #   quality  82 -> lossiness  18
+            #   quality  50 -> lossiness  50
             #
 
-            set -l initial_lossiness (math "100 - $quality")
+            set -l initial_lossiness (
+                math "100 - $quality"
+            )
 
-            for shrink_round in (seq 1 12)
-                set -l transform_args \
-                    --optimize=3
+            #
+            # No target size: exactly one GIF encode.
+            #
+
+            if not set -q max_bytes
+                set -l gif_args \
+                    --optimize=2
+
+                if test "$initial_lossiness" -gt 0
+                    set -a gif_args \
+                        "--lossy=$initial_lossiness"
+                end
 
                 if not set -q _flag_keep_metadata
-                    # Preserve application extensions such as the Netscape loop
-                    # extension. Only discard nonessential comments/frame names.
-                    set -a transform_args \
+                    set -a gif_args \
                         --no-comments \
                         --no-names
                 end
 
-                #
-                # Additional shrinking needed to satisfy --max.
-                #
-                # --scale is applied to the same pre-resized source on every
-                # iteration, so scaling losses do not accumulate.
-                #
+                echo "GIF: optimizing..."
 
-                if test $scale -lt 100
-                    set -l gif_scale (
-                        math --scale=4 "$scale / 100"
-                    )
+                command gifsicle \
+                    $gif_args \
+                    --output "$candidate" \
+                    "$gif_source"
 
-                    set -a transform_args \
-                        --resize-method lanczos3 \
-                        --scale "$gif_scale"
-                end
+                set -l encode_status $status
 
-                #
-                # No maximum target: one encode at requested/default quality.
-                #
-
-                if not set -q max_bytes
-                    set -l encode_args $transform_args
-
-                    if test "$initial_lossiness" -gt 0
-                        set -a encode_args \
-                            "--lossy=$initial_lossiness"
-                    end
-
-                    gifsicle $encode_args "$gif_source" > "$candidate"
-
-                    if test $status -ne 0; or not test -s "$candidate"
-                        break
-                    end
-
+                if test $encode_status -eq 0; and test -s "$candidate"
                     cp -- "$candidate" "$best"
                     set success 1
-                    break
+                else
+                    echo \
+                        "gifsicle failed for $file (exit $encode_status)." \
+                        >&2
+
+                    if test $encode_status -eq 130
+                        rm -rf -- "$tmpdir"
+                        return 130
+                    end
                 end
 
-                #
-                # Target-size mode.
-                #
-                # Search for the lowest gifsicle lossiness that fits. Lower
-                # lossiness means better visual quality.
-                #
+            #
+            # Target-size GIF compression.
+            #
+            # Preserve dimensions first:
+            #
+            #   1. requested/default lossiness
+            #   2. stronger lossiness
+            #   3. reduce palette to 192 colors
+            #   4. reduce palette to 128 colors
+            #   5. resize to 85%
+            #   6. resize to 72%
+            #   7. resize to 60%
+            #   8. resize to 50%
+            #
+            # We stop there instead of silently generating a tiny thumbnail.
+            #
 
-                set -l low "$initial_lossiness"
-                set -l high 200
+            else
+                set -l max_gif_passes 8
+                set -l smallest_size 0
+                set -l smallest_scale 1
 
-                set -l round_best 0
-                set -l encode_failed 0
+                set -l gif_scale 1
+                set -l gif_lossiness "$initial_lossiness"
+                set -l gif_colors 256
 
-                while test "$low" -le "$high"
-                    set -l mid (
-                        math --scale=0 "($low + $high) / 2"
-                    )
+                for pass in (seq 1 $max_gif_passes)
+                    rm -f -- "$candidate"
 
-                    set -l encode_args $transform_args
+                    switch "$pass"
+                        case 1
+                            set gif_scale 1
+                            set gif_lossiness "$initial_lossiness"
+                            set gif_colors 256
 
-                    if test "$mid" -gt 0
-                        set -a encode_args "--lossy=$mid"
+                        case 2
+                            set gif_scale 1
+                            set gif_lossiness "$initial_lossiness"
+
+                            if test "$gif_lossiness" -lt 80
+                                set gif_lossiness 80
+                            end
+
+                            set gif_colors 256
+
+                        case 3
+                            set gif_scale 1
+                            set gif_lossiness "$initial_lossiness"
+
+                            if test "$gif_lossiness" -lt 110
+                                set gif_lossiness 110
+                            end
+
+                            set gif_colors 192
+
+                        case 4
+                            set gif_scale 1
+                            set gif_lossiness "$initial_lossiness"
+
+                            if test "$gif_lossiness" -lt 140
+                                set gif_lossiness 140
+                            end
+
+                            set gif_colors 128
+
+                        case 5
+                            set gif_scale 0.85
+                            set gif_lossiness "$initial_lossiness"
+
+                            if test "$gif_lossiness" -lt 150
+                                set gif_lossiness 150
+                            end
+
+                            set gif_colors 128
+
+                        case 6
+                            set gif_scale 0.72
+                            set gif_lossiness "$initial_lossiness"
+
+                            if test "$gif_lossiness" -lt 160
+                                set gif_lossiness 160
+                            end
+
+                            set gif_colors 96
+
+                        case 7
+                            set gif_scale 0.60
+                            set gif_lossiness "$initial_lossiness"
+
+                            if test "$gif_lossiness" -lt 170
+                                set gif_lossiness 170
+                            end
+
+                            set gif_colors 80
+
+                        case 8
+                            set gif_scale 0.50
+                            set gif_lossiness "$initial_lossiness"
+
+                            if test "$gif_lossiness" -lt 180
+                                set gif_lossiness 180
+                            end
+
+                            set gif_colors 64
                     end
 
-                    gifsicle $encode_args "$gif_source" > "$candidate"
+                    set -l gif_args \
+                        --optimize=2
 
-                    if test $status -ne 0; or not test -s "$candidate"
-                        set encode_failed 1
+                    if not set -q _flag_keep_metadata
+                        set -a gif_args \
+                            --no-comments \
+                            --no-names
+                    end
+
+                    if test "$gif_lossiness" -gt 0
+                        set -a gif_args \
+                            "--lossy=$gif_lossiness"
+                    end
+
+                    if test "$gif_colors" -lt 256
+                        set -a gif_args \
+                            "--colors=$gif_colors"
+                    end
+
+                    if test "$gif_scale" -lt 1
+                        set -a gif_args \
+                            --resize-method mix \
+                            --scale "$gif_scale"
+                    end
+
+                    set -l scale_percent (
+                        math --scale=0 \
+                            "$gif_scale * 100"
+                    )
+
+                    printf \
+                        'GIF pass %d/%d: scale %s%%, lossiness %s, colors %s...\n' \
+                        "$pass" \
+                        "$max_gif_passes" \
+                        "$scale_percent" \
+                        "$gif_lossiness" \
+                        "$gif_colors"
+
+                    command gifsicle \
+                        $gif_args \
+                        --output "$candidate" \
+                        "$gif_source"
+
+                    set -l encode_status $status
+
+                    if test $encode_status -ne 0
+                        echo \
+                            "gifsicle failed for $file during pass $pass/$max_gif_passes (exit $encode_status)." \
+                            >&2
+
+                        if test $encode_status -eq 130
+                            rm -rf -- "$tmpdir"
+                            return 130
+                        end
+
                         break
                     end
 
-                    set -l size (stat -c %s -- "$candidate")
+                    if not test -s "$candidate"
+                        echo \
+                            "gifsicle produced an empty file during pass $pass/$max_gif_passes: $file" \
+                            >&2
+                        break
+                    end
+
+                    set -l size (
+                        stat -c %s -- "$candidate"
+                    )
+
+                    if test $status -ne 0
+                        echo \
+                            "Could not determine GIF size during pass $pass/$max_gif_passes." \
+                            >&2
+                        break
+                    end
+
+                    printf \
+                        '  result: %s bytes, target: %s bytes\n' \
+                        "$size" \
+                        "$max_bytes"
+
+                    if test "$smallest_size" -eq 0; \
+                            or test "$size" -lt "$smallest_size"
+
+                        set smallest_size "$size"
+                        set smallest_scale "$gif_scale"
+
+                        cp -- "$candidate" "$best"
+                    end
 
                     if test "$size" -le "$max_bytes"
-                        cp -- "$candidate" "$best"
-
-                        set round_best 1
-
-                        # It fits. Try less lossy compression.
-                        set high (math "$mid - 1")
-                    else
-                        # Still too large. Permit more loss.
-                        set low (math "$mid + 1")
+                        set success 1
+                        break
                     end
                 end
 
-                if test $encode_failed -eq 1
-                    break
-                end
+                if test $success -ne 1
+                    if test "$smallest_size" -gt 0
+                        set -l over_bytes (
+                            math \
+                                "$smallest_size - $max_bytes"
+                        )
 
-                if test $round_best -eq 1
-                    set success 1
-                    break
-                end
+                        set -l over_percent (
+                            math --scale=1 \
+                                "($smallest_size / $max_bytes - 1) * 100"
+                        )
 
-                #
-                # Even gifsicle --lossy=200 did not fit. Reduce dimensions and
-                # search again.
-                #
+                        set -l smallest_scale_percent (
+                            math --scale=0 \
+                                "$smallest_scale * 100"
+                        )
 
-                set scale (
-                    math --scale=0 "$scale * 0.9"
-                )
-
-                if test "$scale" -lt 20
-                    break
+                        printf \
+                            'Could not reach target without shrinking below the automatic 50%% dimension limit.\n%s\n%s\n' \
+                            "Smallest result: $smallest_size bytes at $smallest_scale_percent% scale." \
+                            "Target: $max_bytes bytes ($over_bytes bytes / $over_percent% over)." \
+                            >&2
+                    else
+                        echo "Failed to compress GIF: $file" >&2
+                    end
                 end
             end
 
@@ -429,7 +614,7 @@ function imgcompress --description 'Compress and optionally resize images'
                 end
 
                 #
-                # PNG: lossless compression.
+                # PNG
                 #
 
                 if test "$ext" = png
@@ -450,7 +635,7 @@ function imgcompress --description 'Compress and optionally resize images'
                     end
 
                 #
-                # Lossy static formats without target size.
+                # Lossy static format without target size
                 #
 
                 else if not set -q max_bytes
@@ -467,7 +652,7 @@ function imgcompress --description 'Compress and optionally resize images'
                     break
 
                 #
-                # Lossy static formats with target size.
+                # Lossy static format with target size
                 #
 
                 else
@@ -479,7 +664,8 @@ function imgcompress --description 'Compress and optionally resize images'
 
                     while test "$low" -le "$high"
                         set -l mid (
-                            math --scale=0 "($low + $high) / 2"
+                            math --scale=0 \
+                                "($low + $high) / 2"
                         )
 
                         magick \
@@ -517,12 +703,12 @@ function imgcompress --description 'Compress and optionally resize images'
                 end
 
                 #
-                # Quality alone was not enough, or a lossless PNG is still too
-                # large. Retry from the original source at smaller dimensions.
+                # Quality alone was insufficient, or PNG is still too large.
                 #
 
                 set scale (
-                    math --scale=0 "$scale * 0.9"
+                    math --scale=0 \
+                        "$scale * 0.9"
                 )
 
                 if test "$scale" -lt 20
