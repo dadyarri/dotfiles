@@ -1,4 +1,4 @@
-tries_path = "/home/dadyarri/work/tries"
+tries_path = "{{ .chezmoi.homeDir }}/Projects/tries"
 theme = "Nord"
 transparent_background = true
 show_disk = true
