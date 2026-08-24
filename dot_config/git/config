@@ -15,7 +15,7 @@
 	latest = show --name-only --oneline HEAD
 	down = pull --rebase origin
 	up = push -u origin HEAD
-	save = "!git add -A; git commit ."
+	save = "!git add -A && git commit ."
 	uptags = push --follow-tags
 	downtags = fetch --tags
 	lg = "!git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit | bat"
@@ -50,9 +50,6 @@
 
 [merge]
 	conflictstyle = diff3
-
-[init]
-	defaultBranch = master
 
 [gpg]
 	program = "/usr/bin/gpg"
