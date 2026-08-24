@@ -65,6 +65,23 @@ command = ["{home}/.local/bin/uv", "self", "update"]
 environment = { UV_NO_MODIFY_PATH = "1" }
 
 [[standalone.tools]]
+id = "dotnet-install"
+name = ".NET installer"
+binary = "{home}/.local/libexec/dotnet-install"
+
+[standalone.tools.install]
+url = "https://dot.net/v1/dotnet-install.sh"
+command = [
+    "install",
+    "-Dm755",
+    "{installer}",
+    "{home}/.local/libexec/dotnet-install",
+]
+
+[standalone.tools.update]
+method = "installer"
+
+[[standalone.tools]]
 id = "rustup"
 name = "rustup and Rust stable"
 binary = "{home}/.cargo/bin/rustup"
