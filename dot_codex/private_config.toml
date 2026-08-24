@@ -128,7 +128,7 @@ NODE_REPL_TRUSTED_SERVICES = '{"browser":"/home/dadyarri/.codex/plugins/cache/op
 CODEX_CLI_PATH = "/usr/lib/chatgpt/resources/codex"
 
 [desktop]
-conversationDetailMode = "STEPS_COMMANDS"
+conversationDetailMode = "STEPS_PROSE"
 ambient-suggestions-enabled = false
 show-context-window-usage = true
 followUpQueueMode = "queue"
