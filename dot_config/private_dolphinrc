@@ -4,7 +4,7 @@
 DirHistory[$e]=$HOME/Desktop/bachelorette-party/polaroid-cards/,/mnt/games/PiratedLibrary/
 
 [General]
-TerminalApplication=alacrity.exe
+TerminalApplication=alacritty
 Version=202
 ViewPropsTimestamp=2026,1,10,0,33,44.324
 
