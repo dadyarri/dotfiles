@@ -1,0 +1,363 @@
+#!/usr/bin/env python3
+
+"""Install and update standalone tools declared in a TOML file."""
+
+import argparse
+import os
+import shlex
+import ssl
+import subprocess
+import sys
+import tempfile
+import urllib.error
+import urllib.request
+from http.client import HTTPResponse
+from pathlib import Path
+from typing import Literal, NotRequired, Protocol, TypedDict, cast
+
+import tomllib
+
+HOME = Path.home()
+UpdateMethod = Literal["automatic", "command", "installer"]
+
+
+class InstallSettings(TypedDict):
+    url: str
+    command: list[str]
+    environment: NotRequired[dict[str, str]]
+
+
+class UpdateSettings(TypedDict):
+    method: UpdateMethod
+    command: NotRequired[list[str]]
+    environment: NotRequired[dict[str, str]]
+
+
+class Tool(TypedDict):
+    id: str
+    name: str
+    binary: str
+    install: NotRequired[InstallSettings]
+    update: UpdateSettings
+
+
+class Arguments(Protocol):
+    install_missing: bool
+    config: Path
+
+
+def expand(value: str, installer: Path | None = None) -> str:
+    result = value.replace("{home}", str(HOME))
+    if installer is not None:
+        result = result.replace("{installer}", str(installer))
+    return os.path.expandvars(os.path.expanduser(result))
+
+
+def environment(values: dict[str, str] | None) -> dict[str, str]:
+    result = os.environ.copy()
+    for key, value in (values or {}).items():
+        result[key] = expand(value)
+    return result
+
+
+def require_mapping(value: object, location: str) -> dict[str, object]:
+    if not isinstance(value, dict):
+        raise TypeError(f"{location} must be a table")
+
+    mapping: dict[str, object] = {}
+    for key, item in cast(dict[object, object], value).items():
+        if not isinstance(key, str):
+            raise TypeError(f"{location} contains a non-string key")
+        mapping[key] = item
+    return mapping
+
+
+def require_string(mapping: dict[str, object], key: str, location: str) -> str:
+    value = mapping.get(key)
+    if not isinstance(value, str) or not value:
+        raise ValueError(f"{location}.{key} must be a non-empty string")
+    return value
+
+
+def require_command(value: object, location: str) -> list[str]:
+    if not isinstance(value, list):
+        raise TypeError(f"{location} must be an array of strings")
+
+    command: list[str] = []
+    for argument in cast(list[object], value):
+        if not isinstance(argument, str):
+            raise TypeError(f"{location} must contain only strings")
+        command.append(argument)
+
+    if not command:
+        raise ValueError(f"{location} must not be empty")
+    return command
+
+
+def parse_environment(value: object, location: str) -> dict[str, str]:
+    raw_environment = require_mapping(value, location)
+    parsed_environment: dict[str, str] = {}
+
+    for key, item in raw_environment.items():
+        if not isinstance(item, str):
+            raise TypeError(f"{location}.{key} must be a string")
+        parsed_environment[key] = item
+    return parsed_environment
+
+
+def parse_install(value: object, name: str) -> InstallSettings:
+    location = f"{name}.install"
+    raw_install = require_mapping(value, location)
+    settings: InstallSettings = {
+        "url": require_string(raw_install, "url", location),
+        "command": require_command(raw_install.get("command"), f"{location}.command"),
+    }
+
+    if "environment" in raw_install:
+        settings["environment"] = parse_environment(
+            raw_install["environment"], f"{location}.environment"
+        )
+    return settings
+
+
+def parse_update(value: object, name: str) -> UpdateSettings:
+    location = f"{name}.update"
+    raw_update = require_mapping(value, location)
+    raw_method = require_string(raw_update, "method", location)
+
+    method: UpdateMethod
+    if raw_method == "automatic":
+        method = "automatic"
+    elif raw_method == "command":
+        method = "command"
+    elif raw_method == "installer":
+        method = "installer"
+    else:
+        raise ValueError(f"invalid update method for {name}: {raw_method}")
+
+    settings: UpdateSettings = {"method": method}
+    if method == "command":
+        settings["command"] = require_command(
+            raw_update.get("command"), f"{location}.command"
+        )
+
+    if "environment" in raw_update:
+        settings["environment"] = parse_environment(
+            raw_update["environment"], f"{location}.environment"
+        )
+    return settings
+
+
+def parse_tool(value: object, index: int) -> Tool:
+    location = f"standalone.tools[{index}]"
+    raw_tool = require_mapping(value, location)
+    name = require_string(raw_tool, "name", location)
+    tool: Tool = {
+        "id": require_string(raw_tool, "id", location),
+        "name": name,
+        "binary": require_string(raw_tool, "binary", location),
+        "update": parse_update(raw_tool.get("update"), name),
+    }
+
+    if "install" in raw_tool:
+        tool["install"] = parse_install(raw_tool["install"], name)
+
+    if tool["update"]["method"] == "installer" and "install" not in tool:
+        raise ValueError(f"missing installer for {name}")
+    return tool
+
+
+def load_tools(config_file: Path) -> list[Tool]:
+    with config_file.open("rb") as stream:
+        raw_config: object = tomllib.load(stream)
+
+    config = require_mapping(raw_config, "root")
+    standalone = require_mapping(config.get("standalone"), "standalone")
+    raw_tools = standalone.get("tools")
+    if not isinstance(raw_tools, list):
+        raise TypeError("missing [[standalone.tools]] array")
+
+    tools: list[Tool] = []
+    seen_ids: set[str] = set()
+    for index, raw_tool in enumerate(cast(list[object], raw_tools)):
+        tool = parse_tool(raw_tool, index)
+        if tool["id"] in seen_ids:
+            raise ValueError(f"duplicate standalone tool id: {tool['id']}")
+        seen_ids.add(tool["id"])
+        tools.append(tool)
+    return tools
+
+
+def run(
+    name: str,
+    operation: Literal["install", "update"],
+    command: list[str],
+    env: dict[str, str] | None = None,
+) -> bool:
+    verb = "Installing" if operation == "install" else "Updating"
+    label = f"{verb} {name}"
+    print(f"\n{label}...", flush=True)
+    try:
+        completed = subprocess.run(command, env=environment(env), check=False)
+    except OSError as error:
+        command_text = shlex.join(command)
+        print(
+            f"{name}: could not start {operation} command {command_text}: {error}",
+            file=sys.stderr,
+        )
+        return False
+
+    if completed.returncode == 0:
+        return True
+
+    command_text = shlex.join(command)
+    message = f"{name}: {operation} command failed with exit status"
+    print(f"{message} {completed.returncode}: {command_text}", file=sys.stderr)
+    return False
+
+
+def download(url: str, target: Path, label: str) -> bool:
+    print(f"\n{label}: downloading installer from {url}...", flush=True)
+    request = urllib.request.Request(url, headers={"User-Agent": "update-standalone"})
+    context = ssl.create_default_context()
+    context.minimum_version = ssl.TLSVersion.TLSv1_2
+
+    try:
+        response = cast(
+            HTTPResponse,
+            urllib.request.urlopen(request, timeout=30, context=context),
+        )
+        with response:
+            _ = target.write_bytes(response.read())
+    except (OSError, urllib.error.URLError) as error:
+        print(
+            f"{label}: installer download from {url} failed: {error}",
+            file=sys.stderr,
+        )
+        return False
+
+    return True
+
+
+def install(tool: Tool, directory: Path) -> bool:
+    settings = tool.get("install")
+    name = tool["name"]
+    if settings is None:
+        print(f"{name} has no bootstrap installer; skipping.")
+        return True
+
+    installer = directory / f"{tool['id']}-install.sh"
+    if not download(settings["url"], installer, name):
+        return False
+
+    command = [expand(argument, installer) for argument in settings["command"]]
+    return run(name, "install", command, settings.get("environment"))
+
+
+def update(tool: Tool, directory: Path) -> bool:
+    settings = tool["update"]
+    method = settings["method"]
+    name = tool["name"]
+
+    if method == "automatic":
+        print(f"{name} manages its own updates; skipping.")
+        return True
+
+    if method == "installer":
+        return install(tool, directory)
+
+    if method == "command":
+        declared_command = settings.get("command")
+        if declared_command is None:
+            print(f"Missing update command for {name}.", file=sys.stderr)
+            return False
+        command = [expand(argument) for argument in declared_command]
+        return run(name, "update", command, settings.get("environment"))
+
+    print(f"Unknown update method for {name}: {method}", file=sys.stderr)
+    return False
+
+
+def main() -> int:
+    default_config_home = Path(os.environ.get("XDG_CONFIG_HOME", HOME / ".config"))
+    parser = argparse.ArgumentParser(
+        description="Update user-local tools using their upstream mechanisms."
+    )
+    _ = parser.add_argument(
+        "--install-missing",
+        action="store_true",
+        help="install tools that are not present instead of skipping them",
+    )
+    _ = parser.add_argument(
+        "--config",
+        type=Path,
+        default=default_config_home / "update-standalone/tools.toml",
+        help="path to the standalone tool manifest",
+    )
+    arguments = cast(Arguments, cast(object, parser.parse_args()))
+
+    try:
+        tools = load_tools(arguments.config)
+    except OSError as error:
+        print(
+            f"Could not read standalone tool manifest '{arguments.config}': {error}",
+            file=sys.stderr,
+        )
+        return 2
+    except tomllib.TOMLDecodeError as error:
+        print(
+            f"Invalid TOML in standalone tool manifest '{arguments.config}': {error}",
+            file=sys.stderr,
+        )
+        return 2
+    except (TypeError, ValueError) as error:
+        print(
+            f"Invalid standalone tool manifest '{arguments.config}': {error}",
+            file=sys.stderr,
+        )
+        return 2
+
+    (HOME / ".local/bin").mkdir(parents=True, exist_ok=True)
+    failures: list[str] = []
+
+    with tempfile.TemporaryDirectory(prefix="update-standalone.") as temp_dir:
+        directory = Path(temp_dir)
+
+        for tool in tools:
+            name = tool["name"]
+            try:
+                binary = Path(expand(tool["binary"]))
+                installed = binary.is_file() and os.access(binary, os.X_OK)
+
+                if installed:
+                    succeeded = update(tool, directory)
+                elif arguments.install_missing:
+                    succeeded = install(tool, directory)
+                else:
+                    print(f"{name} is not installed; skipping.")
+                    succeeded = True
+            except (KeyError, OSError, ValueError) as error:
+                error_type = type(error).__name__
+                print(
+                    f"{name}: standalone tool processing failed unexpectedly "
+                    + f"({error_type}): {error}",
+                    file=sys.stderr,
+                )
+                succeeded = False
+
+            if not succeeded:
+                failures.append(name)
+
+    if failures:
+        print(
+            f"\nStandalone update failures: {', '.join(failures)}",
+            file=sys.stderr,
+        )
+        return 1
+
+    print("\nStandalone update completed.")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

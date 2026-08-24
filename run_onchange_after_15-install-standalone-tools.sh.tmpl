@@ -2,68 +2,7 @@
 #!/bin/sh
 set -eu
 
-temp_dir="$(mktemp -d -t chezmoi-standalone-tools.XXXXXXXX)"
-trap 'rm -rf -- "$temp_dir"' EXIT HUP INT TERM
-
-download_installer() {
-    name="$1"
-    url="$2"
-    target="$temp_dir/$name"
-
-    echo >&2
-    echo "Downloading $name installer..." >&2
-    curl \
-        --proto '=https' \
-        --tlsv1.2 \
-        --fail \
-        --silent \
-        --show-error \
-        --location \
-        "$url" \
-        --output "$target"
-
-    printf '%s\n' "$target"
-}
-
-mkdir -p "$HOME/.local/bin"
-
-atuin_installer="$(download_installer \
-    atuin-installer.sh \
-    https://github.com/atuinsh/atuin/releases/latest/download/atuin-installer.sh)"
-sh "$atuin_installer"
-
-fnm_installer="$(download_installer \
-    fnm-install.sh \
-    https://fnm.vercel.app/install)"
-bash "$fnm_installer" \
-    --install-dir "$HOME/.local/share/fnm" \
-    --skip-shell
-
-starship_installer="$(download_installer \
-    starship-install.sh \
-    https://starship.rs/install.sh)"
-sh "$starship_installer" \
-    --yes \
-    --bin-dir "$HOME/.local/bin"
-
-uv_installer="$(download_installer \
-    uv-install.sh \
-    https://astral.sh/uv/install.sh)"
-UV_NO_MODIFY_PATH=1 sh "$uv_installer"
-
-rustup_installer="$(download_installer \
-    rustup-init.sh \
-    https://sh.rustup.rs)"
-sh "$rustup_installer" \
-    -y \
-    --no-modify-path \
-    --default-toolchain {{ .toolchains.rust | quote }}
-
-zed_installer="$(download_installer \
-    zed-install.sh \
-    https://zed.dev/install.sh)"
-sh "$zed_installer"
-
-echo
-echo 'Standalone tools installed from their official upstream installers.'
+# Re-run when the declarative standalone tool list changes:
+# {{ include "dot_config/update-standalone/tools.toml" | sha256sum }}
+"$HOME/.local/bin/update-standalone" --install-missing
 {{- end }}

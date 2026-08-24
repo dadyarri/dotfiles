@@ -386,12 +386,12 @@ function upd
         echo "Flatpak not found, skipping."
     end
 
-    if type -q rustup
-        if not __upd_run "Updating Rust toolchains" rustup update
-            set -a failures "Rust toolchains"
+    if type -q update-standalone
+        if not __upd_run "Updating upstream-managed tools" update-standalone
+            set -a failures "upstream-managed tools"
         end
     else
-        echo "rustup not found, skipping Rust toolchains."
+        echo "update-standalone not found, skipping upstream-managed tools."
     end
 
     if type -q cargo

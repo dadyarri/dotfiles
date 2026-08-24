@@ -1,0 +1,127 @@
+[standalone]
+
+[[standalone.tools]]
+id = "atuin"
+name = "Atuin"
+binary = "{home}/.atuin/bin/atuin"
+
+[standalone.tools.install]
+url = "https://setup.atuin.sh"
+command = ["sh", "{installer}", "--non-interactive"]
+
+[standalone.tools.update]
+method = "command"
+command = ["{home}/.atuin/bin/atuin", "update"]
+
+[[standalone.tools]]
+id = "fnm"
+name = "fnm"
+binary = "{home}/.local/share/fnm/fnm"
+
+[standalone.tools.install]
+url = "https://fnm.vercel.app/install"
+command = [
+    "bash",
+    "{installer}",
+    "--install-dir",
+    "{home}/.local/share/fnm",
+    "--skip-shell",
+]
+
+[standalone.tools.update]
+method = "installer"
+
+[[standalone.tools]]
+id = "starship"
+name = "Starship"
+binary = "{home}/.local/bin/starship"
+
+[standalone.tools.install]
+url = "https://starship.rs/install.sh"
+command = [
+    "sh",
+    "{installer}",
+    "--yes",
+    "--bin-dir",
+    "{home}/.local/bin",
+]
+
+[standalone.tools.update]
+method = "installer"
+
+[[standalone.tools]]
+id = "uv"
+name = "uv"
+binary = "{home}/.local/bin/uv"
+
+[standalone.tools.install]
+url = "https://astral.sh/uv/install.sh"
+command = ["sh", "{installer}"]
+environment = { UV_NO_MODIFY_PATH = "1" }
+
+[standalone.tools.update]
+method = "command"
+command = ["{home}/.local/bin/uv", "self", "update"]
+environment = { UV_NO_MODIFY_PATH = "1" }
+
+[[standalone.tools]]
+id = "rustup"
+name = "rustup and Rust stable"
+binary = "{home}/.cargo/bin/rustup"
+
+[standalone.tools.install]
+url = "https://sh.rustup.rs"
+command = [
+    "sh",
+    "{installer}",
+    "-y",
+    "--no-modify-path",
+    "--default-toolchain",
+    "none",
+]
+
+[standalone.tools.update]
+method = "command"
+command = ["{home}/.cargo/bin/rustup", "update"]
+
+[[standalone.tools]]
+id = "chezmoi"
+name = "chezmoi"
+binary = "{home}/.local/bin/chezmoi"
+
+[standalone.tools.install]
+url = "https://get.chezmoi.io"
+command = [
+    "sh",
+    "{installer}",
+    "-b",
+    "${HOME}/.local/bin"
+]
+
+[standalone.tools.update]
+method = "command"
+command = ["{home}/.local/bin/chezmoi", "upgrade"]
+
+[[standalone.tools]]
+id = "zed"
+name = "Zed"
+binary = "{home}/.local/bin/zed"
+
+[standalone.tools.install]
+url = "https://zed.dev/install.sh"
+command = ["sh", "{installer}"]
+
+[standalone.tools.update]
+method = "automatic"
+
+[[standalone.tools]]
+id = "zen"
+name = "Zen Browser"
+binary = "{home}/.local/bin/zen"
+
+[standalone.tools.install]
+url = "https://github.com/zen-browser/updates-server/raw/refs/heads/main/install.sh"
+command = ["bash", "{installer}"]
+
+[standalone.tools.update]
+method = "automatic"
