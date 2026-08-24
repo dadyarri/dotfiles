@@ -9,9 +9,9 @@ Personal dotfiles for CachyOS, managed by
 sh -c "$(curl -fsLS https://get.chezmoi.io/lb)" -- init --apply dadyarri
 ```
 
-The first apply performs a full system upgrade, installs the declared official,
-AUR, and Flatpak packages, applies the dotfiles, and then installs the language
-toolchains and Fish plugins.
+The first apply performs a full system upgrade, installs the declared Arch,
+AUR, and Flatpak packages, applies the dotfiles, and then installs standalone
+tools, language toolchains, and Fish plugins.
 
 The package and toolchain manifests live in `.chezmoidata/`. Their installation
 scripts use `run_onchange_`, so future `chezmoi apply` runs them again only after
@@ -24,7 +24,10 @@ Currently managed toolchains:
 - stable Rust through rustup
 - Cargo tools and Fisher plugins declared in the repository
 
+Atuin, fnm, Starship, uv, rustup, and Zed are installed using their official
+upstream installers. This keeps the system package database free of duplicate
+language runtimes such as the `nodejs` and `npm` dependencies of Arch's Zed
+package.
+
 Authentication, secrets, hardware drivers, disk layout, and host-specific
-system services are intentionally not automated. OpenLogi is also installed
-from its official GitHub release rather than a package repository, so it remains
-a manual post-bootstrap step.
+system services are intentionally not automated.

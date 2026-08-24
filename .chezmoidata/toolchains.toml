@@ -9,6 +9,7 @@ npm_globals = [
 ]
 
 cargo_packages = [
+    "cargo-update",
     "cargo-release",
     "kickstart",
     "mdbook",

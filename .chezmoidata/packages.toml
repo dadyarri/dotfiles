@@ -1,14 +1,11 @@
 [packages.cachyos]
 repo = [
     "alacritty",
-    "atuin",
     "base-devel",
     "bat",
     "borg",
     "btop",
     "cachyos-rate-mirrors",
-    "cargo-update",
-    "chezmoi",
     "curl",
     "direnv",
     "docker",
@@ -21,8 +18,6 @@ repo = [
     "ffmpeg",
     "fish",
     "flatpak",
-    "flameshot",
-    "fnm",
     "fzf",
     "gifsicle",
     "git",
@@ -46,9 +41,8 @@ repo = [
     "qbittorrent",
     "ripgrep",
     "rsync",
-    "rustup",
     "sd",
-    "starship",
+    "spectacle",
     "syncthing",
     "telegram-desktop",
     "television",
@@ -57,7 +51,6 @@ repo = [
     "tree",
     "unrar",
     "unzip",
-    "uv",
     "vesktop",
     "vlc",
     "wget",
@@ -65,13 +58,12 @@ repo = [
     "xclip",
     "xdg-user-dirs",
     "yt-dlp",
-    "zed",
     "zellij",
     "zoxide",
 ]
 
 aur = [
-    "openlogi-bin"
+    "openlogi-bin",
     "localsend-bin",
     "syncthingtray-qt6",
     "ungoogled-chromium-bin",

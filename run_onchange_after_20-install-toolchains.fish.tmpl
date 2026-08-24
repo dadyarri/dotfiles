@@ -1,17 +1,24 @@
 {{- if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "cachyos") -}}
 #!/usr/bin/env fish
 
-set -l node_version {{ .toolchains.node | quote }}
-set -l dotnet_channel {{ .toolchains.dotnet | quote }}
-set -l rust_toolchain {{ .toolchains.rust | quote }}
+set -l node_version {{ .toolchains.node }}
+set -l dotnet_channel {{ .toolchains.dotnet }}
+set -l rust_toolchain {{ .toolchains.rust }}
 set -l npm_globals
 {{- range .toolchains.npm_globals }}
-set -a npm_globals {{ . | quote }}
+set -a npm_globals {{ . }}
 {{- end }}
 set -l cargo_packages
 {{- range .toolchains.cargo_packages }}
-set -a cargo_packages {{ . | quote }}
+set -a cargo_packages {{ . }}
 {{- end }}
+
+set -gx PATH \
+    "$HOME/.local/bin" \
+    "$HOME/.local/share/fnm" \
+    "$HOME/.cargo/bin" \
+    "$HOME/.atuin/bin" \
+    $PATH
 
 function run_step --argument-names label
     set -e argv[1]
