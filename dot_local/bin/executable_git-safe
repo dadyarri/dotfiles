@@ -1,0 +1,187 @@
+#!/usr/bin/env fish
+
+function __git_safe_usage
+    printf '%s\n' \
+        'Usage: git-safe ACTION [ARGUMENTS]' \
+        '' \
+        'Actions:' \
+        '  rollback [TARGET]  Hard-reset tracked files and HEAD to TARGET (default: HEAD).' \
+        '  undo               Remove the latest commit and keep its changes staged.' \
+        '  amend              Amend the latest commit without changing its message.' \
+        '  save [COMMIT_ARGS]  Stage all changes, then run git commit with COMMIT_ARGS.'
+end
+
+function __git_safe_describe
+    if type -q gum
+        gum style --bold --foreground 212 -- "$argv[1]"
+    else
+        printf '%s\n' "$argv[1]"
+    end
+end
+
+function __git_safe_confirm
+    set -l prompt $argv[1]
+
+    if type -q gum
+        gum confirm \
+            --affirmative Continue \
+            --negative Cancel \
+            "$prompt"
+        return $status
+    end
+
+    read -l -P "$prompt [y/N] " answer
+    string match -rqi '^(y|yes)$' -- "$answer"
+end
+
+function __git_safe_require_repo
+    git rev-parse --is-inside-work-tree >/dev/null 2>&1
+    or begin
+        echo 'Not inside a Git working tree.' >&2
+        return 1
+    end
+end
+
+if test (count $argv) -eq 0
+    __git_safe_usage
+    exit 2
+end
+
+set -l action $argv[1]
+set -e argv[1]
+
+switch "$action"
+    case rollback
+        argparse --name='git rollback' --max-args=1 'h/help' -- $argv
+        or exit 2
+
+        if set -q _flag_help
+            printf '%s\n' \
+                'Usage: git rollback [TARGET]' \
+                '' \
+                'Reset HEAD, the index, and tracked working-tree files to TARGET.' \
+                'Untracked files are not removed. TARGET defaults to HEAD.'
+            exit 0
+        end
+
+        __git_safe_require_repo; or exit $status
+
+        set -l target HEAD
+        set -q argv[1]; and set target $argv[1]
+        set -l target_oid (git rev-parse --verify "$target^{commit}" 2>/dev/null)
+        or begin
+            echo "Unknown commit: $target" >&2
+            exit 2
+        end
+
+        __git_safe_describe \
+            "Hard reset to $target. Tracked working-tree and staged changes will be discarded; untracked files remain."
+        git status --short
+        printf 'Target: %s\n' (git show -s --format='%h %s' "$target_oid")
+        __git_safe_confirm "Discard tracked changes and reset to $target?"
+        or begin
+            echo 'Cancelled.'
+            exit 0
+        end
+
+        git reset --hard "$target_oid"
+
+    case undo
+        argparse --name='git undo' --max-args=0 'h/help' -- $argv
+        or exit 2
+
+        if set -q _flag_help
+            printf '%s\n' \
+                'Usage: git undo' \
+                '' \
+                'Remove the latest local commit while keeping its changes staged.'
+            exit 0
+        end
+
+        __git_safe_require_repo; or exit $status
+        set -l target_oid (git rev-parse --verify 'HEAD^' 2>/dev/null)
+        or begin
+            echo 'HEAD has no parent commit to reset to.' >&2
+            exit 1
+        end
+
+        __git_safe_describe \
+            'Undo the latest commit with a soft reset. Files stay unchanged and the commit changes remain staged.'
+        git show -s --format='Commit: %h %s' HEAD
+        __git_safe_confirm 'Remove this commit and keep its changes staged?'
+        or begin
+            echo 'Cancelled.'
+            exit 0
+        end
+
+        git reset --soft "$target_oid"
+
+    case amend
+        argparse --name='git amend' --max-args=0 'h/help' -- $argv
+        or exit 2
+
+        if set -q _flag_help
+            printf '%s\n' \
+                'Usage: git amend' \
+                '' \
+                'Rewrite the latest commit with currently staged changes and keep its message.'
+            exit 0
+        end
+
+        __git_safe_require_repo; or exit $status
+        git rev-parse --verify HEAD >/dev/null 2>&1
+        or begin
+            echo 'There is no commit to amend.' >&2
+            exit 1
+        end
+
+        __git_safe_describe \
+            'Amend rewrites the latest commit. Currently staged changes will be added; the commit message stays unchanged.'
+        git show -s --format='Commit: %h %s' HEAD
+        git diff --cached --stat
+        __git_safe_confirm 'Rewrite the latest commit?'
+        or begin
+            echo 'Cancelled.'
+            exit 0
+        end
+
+        git commit --amend --no-edit
+
+    case save
+        __git_safe_require_repo; or exit $status
+
+        if contains -- --help $argv; or contains -- -h $argv
+            printf '%s\n' \
+                'Usage: git save [COMMIT_ARGS]' \
+                '' \
+                'Stage all tracked and untracked changes, then run git commit.' \
+                'COMMIT_ARGS are passed directly to git commit.'
+            exit 0
+        end
+
+        set -l changes (git status --porcelain)
+        if not set -q changes[1]
+            echo 'Nothing to save.'
+            exit 0
+        end
+
+        __git_safe_describe \
+            'Save stages every tracked and untracked change in the repository, then creates a commit.'
+        git status --short
+        __git_safe_confirm 'Stage all listed changes and continue to git commit?'
+        or begin
+            echo 'Cancelled.'
+            exit 0
+        end
+
+        git add -A; or exit $status
+        git commit $argv
+
+    case help -h --help
+        __git_safe_usage
+
+    case '*'
+        echo "Unknown action: $action" >&2
+        __git_safe_usage >&2
+        exit 2
+end

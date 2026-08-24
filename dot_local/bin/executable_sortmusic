@@ -13,7 +13,7 @@
 # Dependencies:
 #   exiftool
 
-argparse 'dry-run' 'copy' -- $argv
+argparse --max-args=1 'dry-run' 'copy' -- $argv
 or exit 1
 
 set source_dir "."
@@ -126,6 +126,7 @@ end
 
 set moved_count 0
 set skipped_count 0
+set failed_count 0
 
 for file in $files
     set album_artist (first_non_empty \
@@ -178,12 +179,22 @@ for file in $files
             echo "  -> $target_file"
         end
     else
-        mkdir -p "$target_dir"
+        if not mkdir -p -- "$target_dir"
+            echo "FAIL: could not create target directory: $target_dir" >&2
+            set failed_count (math $failed_count + 1)
+            continue
+        end
 
         if set -q _flag_copy
             cp -n -- "$file" "$target_file"
         else
             mv -n -- "$file" "$target_file"
+        end
+
+        if test $status -ne 0
+            echo "FAIL: could not process: $file" >&2
+            set failed_count (math $failed_count + 1)
+            continue
         end
 
         echo "OK: "(basename "$file")" -> "(basename "$target_dir")
@@ -202,3 +213,6 @@ end
 echo "Processed: "(count $files)
 echo "Moved/copied: $moved_count"
 echo "Skipped: $skipped_count"
+echo "Failed: $failed_count"
+
+test $failed_count -eq 0

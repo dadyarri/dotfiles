@@ -21,7 +21,7 @@ function __upd_update_mirrors
         return 127
     end
 
-    __upd_run "Updating Arch and CachyOS mirrors" sudo cachyos-rate-mirrors && sudo pacman -Sy
+    __upd_run "Updating Arch and CachyOS mirrors" sudo cachyos-rate-mirrors
 end
 
 function __upd_update_dotnet

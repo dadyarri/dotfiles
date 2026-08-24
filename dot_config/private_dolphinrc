@@ -1,12 +1,6 @@
-[ExtractDialog]
-2 screens: Height=480
-2 screens: Width=892
-DirHistory[$e]=$HOME/Desktop/bachelorette-party/polaroid-cards/,/mnt/games/PiratedLibrary/
-
 [General]
 TerminalApplication=alacritty
 Version=202
-ViewPropsTimestamp=2026,1,10,0,33,44.324
 
 [IconsMode]
 PreviewSize=48
