@@ -1,6 +1,5 @@
 tries_path = "/home/dadyarri/work/tries"
 theme = "Nord"
-editor = "/home/dadyarri/.local/zed.app/bin/zed --wait"
 transparent_background = true
 show_disk = true
 show_preview = true
