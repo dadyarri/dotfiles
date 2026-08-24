@@ -1,0 +1,120 @@
+{{- if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "cachyos") -}}
+#!/usr/bin/env fish
+
+set -l node_version {{ .toolchains.node | quote }}
+set -l dotnet_channel {{ .toolchains.dotnet | quote }}
+set -l rust_toolchain {{ .toolchains.rust | quote }}
+set -l npm_globals
+{{- range .toolchains.npm_globals }}
+set -a npm_globals {{ . | quote }}
+{{- end }}
+set -l cargo_packages
+{{- range .toolchains.cargo_packages }}
+set -a cargo_packages {{ . | quote }}
+{{- end }}
+
+function run_step --argument-names label
+    set -e argv[1]
+    echo
+    echo "$label..."
+    $argv
+end
+
+if not type -q fnm
+    echo 'fnm is not installed.' >&2
+    exit 1
+end
+
+run_step "Installing Node.js $node_version" \
+    fnm install "$node_version"
+or exit $status
+
+run_step "Setting Node.js $node_version as default" \
+    fnm default "$node_version"
+or exit $status
+
+if set -q npm_globals[1]
+    run_step 'Installing global npm tools' \
+        fnm exec --using "$node_version" \
+        npm install --global $npm_globals
+    or exit $status
+end
+
+run_step 'Enabling Corepack shims' \
+    fnm exec --using "$node_version" corepack enable
+or exit $status
+
+run_step 'Installing the latest pnpm through Corepack' \
+    fnm exec --using "$node_version" \
+    corepack install --global pnpm@latest
+or exit $status
+
+set -l dotnet_installer "$HOME/.local/libexec/dotnet-install"
+
+if not test -x "$dotnet_installer"
+    echo "Missing .NET installer: $dotnet_installer" >&2
+    exit 1
+end
+
+run_step "Installing .NET SDK channel $dotnet_channel" \
+    "$dotnet_installer" \
+    --channel "$dotnet_channel" \
+    --quality GA \
+    --install-dir "$HOME/.dotnet"
+or exit $status
+
+if not type -q rustup
+    echo 'rustup is not installed.' >&2
+    exit 1
+end
+
+run_step "Installing Rust $rust_toolchain" \
+    rustup toolchain install "$rust_toolchain"
+or exit $status
+
+run_step "Setting Rust $rust_toolchain as default" \
+    rustup default "$rust_toolchain"
+or exit $status
+
+if set -q cargo_packages[1]
+    run_step 'Installing Cargo tools' \
+        cargo install --locked $cargo_packages
+    or exit $status
+end
+
+set -l fisher_file "$HOME/.config/fish/functions/fisher.fish"
+
+if not test -f "$fisher_file"
+    set -l fisher_bootstrap (mktemp -t fisher.XXXXXXXX.fish)
+    or begin
+        echo 'Could not create a temporary file for Fisher.' >&2
+        exit 1
+    end
+
+    curl \
+        --proto '=https' \
+        --tlsv1.2 \
+        --fail \
+        --silent \
+        --show-error \
+        --location \
+        https://raw.githubusercontent.com/jorgebucaran/fisher/4.4.8/functions/fisher.fish \
+        --output "$fisher_bootstrap"
+    or exit $status
+
+    source "$fisher_bootstrap"
+    rm -f -- "$fisher_bootstrap"
+
+    fisher install jorgebucaran/fisher@4.4.8
+    or exit $status
+else
+    source "$fisher_file"
+end
+
+run_step 'Synchronizing Fish plugins' fisher update
+or exit $status
+
+echo
+echo 'Toolchain bootstrap completed.'
+echo 'Start a new login session before checking environment.d changes.'
+{{- end }}

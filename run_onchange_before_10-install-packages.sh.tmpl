@@ -1,0 +1,50 @@
+{{- if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "cachyos") -}}
+#!/bin/sh
+set -eu
+
+repo_packages='{{ range .packages.cachyos.repo }}
+{{ . }}{{ end }}'
+
+aur_packages='{{ range .packages.cachyos.aur }}
+{{ . }}{{ end }}'
+
+flatpak_apps='{{ range .packages.cachyos.flatpak }}
+{{ . }}{{ end }}'
+
+if ! command -v pacman >/dev/null 2>&1; then
+    echo 'This bootstrap requires CachyOS or another pacman-based system.' >&2
+    exit 1
+fi
+
+# A full upgrade and package installation happen in one transaction to avoid
+# unsupported partial upgrades on Arch-based systems.
+echo 'Installing repository packages...'
+# shellcheck disable=SC2086
+sudo pacman -Syu --needed $repo_packages
+
+if [ -n "$aur_packages" ]; then
+    if ! command -v paru >/dev/null 2>&1; then
+        echo 'paru was not installed by pacman; cannot install AUR packages.' >&2
+        exit 1
+    fi
+
+    echo 'Installing AUR packages...'
+    # shellcheck disable=SC2086
+    paru -S --needed $aur_packages
+fi
+
+if [ -n "$flatpak_apps" ]; then
+    echo 'Installing Flatpak applications...'
+    flatpak remote-add \
+        --if-not-exists \
+        flathub \
+        https://flathub.org/repo/flathub.flatpakrepo
+
+    # shellcheck disable=SC2086
+    flatpak install \
+        --assumeyes \
+        --or-update \
+        flathub \
+        $flatpak_apps
+fi
+{{- end }}

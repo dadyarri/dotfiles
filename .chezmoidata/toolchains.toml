@@ -1,0 +1,15 @@
+[toolchains]
+node = "26"
+dotnet = "10.0"
+rust = "stable"
+
+npm_globals = [
+    "@openai/codex@latest",
+    "corepack@latest",
+]
+
+cargo_packages = [
+    "cargo-release",
+    "kickstart",
+    "mdbook",
+]
