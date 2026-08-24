@@ -3,6 +3,7 @@ if type -q xdg-user-dir
 end
 
 if status is-interactive
-    atuin init fish | source
-    zoxide init fish | source
+    type -q atuin; and atuin init fish | source
+    type -q zoxide; and zoxide init fish | source
+    type -q starship; and starship init fish | source; and enable_transience
 end
