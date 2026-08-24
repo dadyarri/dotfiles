@@ -15,8 +15,7 @@ right_format = """
 $dotnet\
 $golang\
 $nodejs\
-$python\
-$os
+$python
 """
 
 [os]
