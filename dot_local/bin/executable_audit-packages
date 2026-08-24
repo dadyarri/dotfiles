@@ -1,0 +1,189 @@
+#!/usr/bin/env python3
+
+"""Report package-manager state that differs from the chezmoi declarations."""
+
+import argparse
+import shutil
+import subprocess
+import sys
+from dataclasses import dataclass
+from pathlib import Path
+from typing import Protocol, cast
+
+import tomllib
+
+
+@dataclass(frozen=True)
+class PackageManifest:
+    repository: frozenset[str]
+    aur: frozenset[str]
+    flatpak: frozenset[str]
+
+    @property
+    def pacman(self) -> frozenset[str]:
+        return self.repository | self.aur
+
+
+class Arguments(Protocol):
+    fail_on_drift: bool
+    manifest: Path | None
+    verbose: bool
+
+
+def require_mapping(value: object, location: str) -> dict[str, object]:
+    if not isinstance(value, dict):
+        raise TypeError(f"{location} must be a table")
+
+    mapping: dict[str, object] = {}
+    for key, item in cast(dict[object, object], value).items():
+        if not isinstance(key, str):
+            raise TypeError(f"{location} contains a non-string key")
+        mapping[key] = item
+    return mapping
+
+
+def require_string_set(value: object, location: str) -> frozenset[str]:
+    if not isinstance(value, list):
+        raise TypeError(f"{location} must be an array of strings")
+
+    result: set[str] = set()
+    for item in cast(list[object], value):
+        if not isinstance(item, str) or not item:
+            raise TypeError(f"{location} must contain only non-empty strings")
+        result.add(item)
+    return frozenset(result)
+
+
+def load_manifest(path: Path) -> PackageManifest:
+    with path.open("rb") as stream:
+        raw_root: object = tomllib.load(stream)
+
+    root = require_mapping(raw_root, "root")
+    packages = require_mapping(root.get("packages"), "packages")
+    cachyos = require_mapping(packages.get("cachyos"), "packages.cachyos")
+
+    return PackageManifest(
+        repository=require_string_set(cachyos.get("repo"), "packages.cachyos.repo"),
+        aur=require_string_set(cachyos.get("aur"), "packages.cachyos.aur"),
+        flatpak=require_string_set(cachyos.get("flatpak"), "packages.cachyos.flatpak"),
+    )
+
+
+def capture_lines(
+    command: list[str], empty_exit_codes: set[int] | None = None
+) -> set[str]:
+    completed = subprocess.run(
+        command,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    allowed = empty_exit_codes or set()
+    if completed.returncode in allowed:
+        return set()
+    if completed.returncode != 0:
+        message = completed.stderr.strip() or completed.stdout.strip()
+        command_text = " ".join(command)
+        error = f"{command_text} failed with exit status {completed.returncode}"
+        raise RuntimeError(f"{error}: {message}")
+    return {line for line in completed.stdout.splitlines() if line}
+
+
+def default_manifest_path() -> Path:
+    source_lines = capture_lines(["chezmoi", "source-path"])
+    if len(source_lines) != 1:
+        raise RuntimeError("chezmoi source-path did not return exactly one path")
+    return Path(source_lines.pop()) / ".chezmoidata/packages.toml"
+
+
+def print_section(title: str, values: set[str] | frozenset[str]) -> None:
+    print(f"\n{title} ({len(values)}):")
+    if not values:
+        print("  none")
+        return
+    for value in sorted(values):
+        print(f"  {value}")
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(
+        description="Report package drift without changing installed packages."
+    )
+    _ = parser.add_argument(
+        "--manifest",
+        type=Path,
+        help="path to packages.toml; defaults to the active chezmoi source",
+    )
+    _ = parser.add_argument(
+        "--verbose",
+        action="store_true",
+        help="list official explicit packages outside the manifest",
+    )
+    _ = parser.add_argument(
+        "--fail-on-drift",
+        action="store_true",
+        help="return exit status 1 when actionable findings exist",
+    )
+    arguments = cast(Arguments, cast(object, parser.parse_args()))
+
+    try:
+        manifest_path = arguments.manifest or default_manifest_path()
+        manifest = load_manifest(manifest_path)
+        installed = capture_lines(["pacman", "-Qq"])
+        explicit = capture_lines(["pacman", "-Qqe"])
+        explicit_foreign = capture_lines(["pacman", "-Qqem"])
+        orphans = capture_lines(["pacman", "-Qtdq"], {1})
+
+        if shutil.which("flatpak") is None:
+            installed_flatpaks: set[str] = set()
+        else:
+            installed_flatpaks = capture_lines(
+                ["flatpak", "list", "--app", "--columns=application"]
+            )
+    except (OSError, RuntimeError, TypeError, tomllib.TOMLDecodeError) as error:
+        print(f"Package audit failed: {error}", file=sys.stderr)
+        return 2
+
+    missing_packages = set(manifest.pacman - installed)
+    undeclared_foreign = explicit_foreign - manifest.pacman
+    missing_flatpaks = set(manifest.flatpak - installed_flatpaks)
+    undeclared_flatpaks = installed_flatpaks - manifest.flatpak
+    official_explicit = explicit - explicit_foreign - manifest.pacman
+
+    print(f"Manifest: {manifest_path}")
+    print_section("Missing declared pacman packages", missing_packages)
+    print_section("Undeclared explicit foreign packages", undeclared_foreign)
+    print_section("Missing declared Flatpak applications", missing_flatpaks)
+    print_section("Undeclared Flatpak applications", undeclared_flatpaks)
+    print_section("Orphaned pacman packages", orphans)
+
+    print(
+        f"\nOfficial explicit packages outside the manifest: {len(official_explicit)}"
+    )
+    print(
+        "These include the CachyOS base, desktop, drivers, and host-specific packages."
+    )
+    if arguments.verbose:
+        print_section(
+            "Official explicit packages outside the manifest", official_explicit
+        )
+
+    drift = any(
+        (
+            missing_packages,
+            undeclared_foreign,
+            missing_flatpaks,
+            undeclared_flatpaks,
+            orphans,
+        )
+    )
+    if drift:
+        print("\nPackage audit completed with findings.")
+        return 1 if arguments.fail_on_drift else 0
+
+    print("\nPackage audit completed without findings.")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

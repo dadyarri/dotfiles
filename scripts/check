@@ -1,0 +1,62 @@
+#!/bin/sh
+set -eu
+
+repository=$(CDPATH='' cd -- "$(dirname -- "$0")/.." && pwd)
+cd "$repository"
+
+for command in chezmoi fish shellcheck uvx; do
+    if ! command -v "$command" >/dev/null 2>&1; then
+        echo "Required validation command not found: $command" >&2
+        exit 127
+    fi
+done
+
+temporary_directory=$(mktemp -d -t dotfiles-check.XXXXXXXX)
+trap 'rm -rf -- "$temporary_directory"' EXIT HUP INT TERM
+
+cachyos_data='{"chezmoi":{"os":"linux","osRelease":{"id":"cachyos"}}}'
+
+chezmoi --source "$repository" data >/dev/null
+chezmoi --source "$repository" managed >/dev/null
+
+chezmoi execute-template \
+    --source "$repository" \
+    --override-data "$cachyos_data" \
+    --file run_onchange_before_10-install-packages.sh.tmpl \
+    > "$temporary_directory/install-packages.sh"
+chezmoi execute-template \
+    --source "$repository" \
+    --override-data "$cachyos_data" \
+    --file run_onchange_after_15-install-standalone-tools.sh.tmpl \
+    > "$temporary_directory/install-standalone-tools.sh"
+chezmoi execute-template \
+    --source "$repository" \
+    --override-data "$cachyos_data" \
+    --file run_onchange_after_20-install-toolchains.fish.tmpl \
+    > "$temporary_directory/install-toolchains.fish"
+
+shellcheck \
+    scripts/check \
+    "$temporary_directory/install-packages.sh" \
+    "$temporary_directory/install-standalone-tools.sh"
+fish -n "$temporary_directory/install-toolchains.fish"
+
+python_sources='dot_local/bin/executable_audit-packages dot_local/bin/executable_update-standalone'
+
+# shellcheck disable=SC2086
+uvx ruff@0.16.4 check $python_sources tests
+# shellcheck disable=SC2086
+uvx ruff@0.16.4 format --check $python_sources tests
+# shellcheck disable=SC2086
+uvx basedpyright@1.39.10 $python_sources
+
+python3 -m unittest discover --start-directory tests --verbose
+python3 dot_local/bin/executable_audit-packages --help >/dev/null
+
+validation_home="$temporary_directory/home"
+mkdir -p "$validation_home"
+HOME="$validation_home" \
+XDG_CONFIG_HOME="$repository/dot_config" \
+    python3 dot_local/bin/executable_update-standalone >/dev/null
+
+echo 'All dotfile checks passed.'

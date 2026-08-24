@@ -1,0 +1,34 @@
+name: Validate dotfiles
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@d0d8abe699bfb85fec6de9f7adb5ae17292296ff # v6
+
+      - name: Install system validation tools
+        run: sudo apt-get update && sudo apt-get install --yes fish shellcheck
+
+      - name: Install chezmoi
+        run: |
+          curl --fail --silent --show-error --location \
+            https://get.chezmoi.io \
+            --output /tmp/install-chezmoi.sh
+          sh /tmp/install-chezmoi.sh -b "$HOME/.local/bin"
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+
+      - name: Run validation
+        run: scripts/check

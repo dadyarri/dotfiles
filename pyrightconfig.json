@@ -1,0 +1,10 @@
+{
+  "include": [
+    "dot_local/bin/executable_audit-packages",
+    "dot_local/bin/executable_update-standalone"
+  ],
+  "pythonVersion": "3.11",
+  "typeCheckingMode": "strict",
+  "reportImplicitStringConcatenation": "error",
+  "reportUninitializedInstanceVariable": "error"
+}

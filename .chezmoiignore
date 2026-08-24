@@ -1,2 +1,6 @@
 README.md
+.github/**
+scripts/**
+tests/**
+pyrightconfig.json
 **/__pycache__

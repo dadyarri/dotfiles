@@ -25,16 +25,29 @@ Currently managed toolchains:
 - stable Rust through rustup
 - Cargo tools and Fisher plugins declared in the repository
 
-Atuin, fnm, Starship, uv, rustup, Zed, and Zen Browser are installed using
-their official upstream installers. This keeps the system package database free
-of duplicate language runtimes such as the `nodejs` and `npm` dependencies of
-Arch's Zed package.
+Atuin, fnm, Starship, uv, the .NET installer, rustup, Zed, and Zen Browser are
+installed using their official upstream installers. This keeps the system
+package database free of duplicate language runtimes such as the `nodejs` and
+`npm` dependencies of Arch's Zed package.
 
 `upd` updates repository/AUR packages, Flatpaks, upstream-managed standalone
 tools, language package managers, and Fish plugins. The standalone part can be
 run independently with `update-standalone`; Zed and Zen Browser are omitted
 after bootstrap because their official builds update themselves in the
 background.
+
+`audit-packages` compares the current system with the package manifest without
+changing anything. It reports missing declarations, explicit foreign packages,
+Flatpak drift, and orphaned pacman packages. Use `--verbose` to also list
+official explicit packages outside the manifest, or `--fail-on-drift` for a
+non-zero exit status when actionable findings exist.
+
+## Validation
+
+Run `scripts/check` from the source directory before pushing changes. It
+validates the chezmoi source and rendered CachyOS scripts, runs ShellCheck and Fish
+syntax checks, checks Python with Ruff and Basedpyright, and executes regression
+tests for `update-standalone`. The same command runs in GitHub Actions.
 
 Authentication, secrets, hardware drivers, disk layout, and host-specific
 system services are intentionally not automated.
