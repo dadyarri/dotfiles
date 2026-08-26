@@ -7,3 +7,6 @@ if status is-interactive
     type -q zoxide; and zoxide init fish | source
     type -q starship; and starship init fish | source; and enable_transience
 end
+
+bind ctrl-left __camel_backward
+bind ctrl-right __camel_forward
