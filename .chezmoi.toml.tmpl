@@ -1,2 +1,9 @@
+{{- $profiles := list "full" "personal" "work" "minimal" -}}
+{{- $packageProfile := promptChoiceOnce . "packageProfile" "Package profile" $profiles "full" -}}
+{{- $optionalPackageExcludes := get . "optionalPackageExcludes" | default (list) -}}
 [git]
 autocommit = true
+
+[data]
+packageProfile = {{ $packageProfile | quote }}
+optionalPackageExcludes = {{ $optionalPackageExcludes | toToml }}

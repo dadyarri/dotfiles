@@ -1,15 +1,35 @@
 {{- if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "cachyos") -}}
+{{- $packageProfile := dig "packageProfile" "full" . -}}
+{{- $optionalPackageExcludes := dig "optionalPackageExcludes" (list) . -}}
+{{- if not (has $packageProfile (list "full" "personal" "work" "minimal")) -}}
+{{- fail (printf "invalid packageProfile %q" $packageProfile) -}}
+{{- end -}}
+{{- $optionalGroups := list -}}
+{{- if ne $packageProfile "minimal" -}}
+{{- $optionalGroups = append $optionalGroups .packages.cachyos.shared -}}
+{{- end -}}
+{{- if or (eq $packageProfile "personal") (eq $packageProfile "full") -}}
+{{- $optionalGroups = append $optionalGroups .packages.cachyos.personal -}}
+{{- end -}}
+{{- if or (eq $packageProfile "work") (eq $packageProfile "full") -}}
+{{- $optionalGroups = append $optionalGroups .packages.cachyos.work -}}
+{{- end -}}
 #!/bin/sh
 set -eu
 
-repo_packages='{{ range .packages.cachyos.repo }}
-{{ . }}{{ end }}'
+package_profile='{{ $packageProfile }}'
 
-aur_packages='{{ range .packages.cachyos.aur }}
-{{ . }}{{ end }}'
+repo_packages='{{ range .packages.cachyos.core.repo }}
+{{ . }}{{ end }}{{ range $optionalGroups }}{{ range .repo }}{{ if not (has . $optionalPackageExcludes) }}
+{{ . }}{{ end }}{{ end }}{{ end }}'
 
-flatpak_apps='{{ range .packages.cachyos.flatpak }}
-{{ . }}{{ end }}'
+aur_packages='{{ range .packages.cachyos.core.aur }}
+{{ . }}{{ end }}{{ range $optionalGroups }}{{ range .aur }}{{ if not (has . $optionalPackageExcludes) }}
+{{ . }}{{ end }}{{ end }}{{ end }}'
+
+flatpak_apps='{{ range .packages.cachyos.core.flatpak }}
+{{ . }}{{ end }}{{ range $optionalGroups }}{{ range .flatpak }}{{ if not (has . $optionalPackageExcludes) }}
+{{ . }}{{ end }}{{ end }}{{ end }}'
 
 if ! command -v pacman >/dev/null 2>&1; then
     echo 'This bootstrap requires CachyOS or another pacman-based system.' >&2
@@ -18,7 +38,7 @@ fi
 
 # A full upgrade and package installation happen in one transaction to avoid
 # unsupported partial upgrades on Arch-based systems.
-echo 'Installing repository packages...'
+echo "Installing repository packages for the $package_profile profile..."
 # shellcheck disable=SC2086
 sudo pacman -Syu --needed $repo_packages
 

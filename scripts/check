@@ -14,16 +14,29 @@ done
 temporary_directory=$(mktemp -d -t dotfiles-check.XXXXXXXX)
 trap 'rm -rf -- "$temporary_directory"' EXIT HUP INT TERM
 
-cachyos_data='{"chezmoi":{"os":"linux","osRelease":{"id":"cachyos"}}}'
-
 chezmoi --source "$repository" data >/dev/null
 chezmoi --source "$repository" managed >/dev/null
 
 chezmoi execute-template \
     --source "$repository" \
-    --override-data "$cachyos_data" \
-    --file run_onchange_before_10-install-packages.sh.tmpl \
-    > "$temporary_directory/install-packages.sh"
+    --init \
+    --promptChoice 'Package profile=personal' \
+    --file .chezmoi.toml.tmpl \
+    > "$temporary_directory/chezmoi.toml"
+
+set -- scripts/check "$temporary_directory/install-standalone-tools.sh"
+for profile in full personal work minimal; do
+    cachyos_data="{\"chezmoi\":{\"os\":\"linux\",\"osRelease\":{\"id\":\"cachyos\"}},\"packageProfile\":\"$profile\",\"optionalPackageExcludes\":[\"obsidian\"]}"
+    install_package_script="$temporary_directory/install-packages-$profile.sh"
+    chezmoi execute-template \
+        --source "$repository" \
+        --override-data "$cachyos_data" \
+        --file run_onchange_before_10-install-packages.sh.tmpl \
+        > "$install_package_script"
+    set -- "$@" "$install_package_script"
+done
+
+cachyos_data='{"chezmoi":{"os":"linux","osRelease":{"id":"cachyos"}}}'
 chezmoi execute-template \
     --source "$repository" \
     --override-data "$cachyos_data" \
@@ -35,10 +48,7 @@ chezmoi execute-template \
     --file run_onchange_after_20-install-toolchains.fish.tmpl \
     > "$temporary_directory/install-toolchains.fish"
 
-shellcheck \
-    scripts/check \
-    "$temporary_directory/install-packages.sh" \
-    "$temporary_directory/install-standalone-tools.sh"
+shellcheck "$@"
 fish -n "$temporary_directory/install-toolchains.fish"
 
 python_sources='dot_local/bin/executable_audit-packages dot_local/bin/executable_update-standalone'

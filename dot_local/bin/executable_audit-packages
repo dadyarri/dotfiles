@@ -3,6 +3,7 @@
 """Report package-manager state that differs from the chezmoi declarations."""
 
 import argparse
+import json
 import shutil
 import subprocess
 import sys
@@ -24,10 +25,29 @@ class PackageManifest:
         return self.repository | self.aur
 
 
+@dataclass(frozen=True)
+class PackageSection:
+    repository: frozenset[str]
+    aur: frozenset[str]
+    flatpak: frozenset[str]
+
+    def without(self, excluded: frozenset[str]) -> "PackageSection":
+        return PackageSection(
+            repository=self.repository - excluded,
+            aur=self.aur - excluded,
+            flatpak=self.flatpak - excluded,
+        )
+
+
 class Arguments(Protocol):
+    exclude: list[str]
     fail_on_drift: bool
     manifest: Path | None
+    profile: str | None
     verbose: bool
+
+
+VALID_PROFILES = ("full", "personal", "work", "minimal")
 
 
 def require_mapping(value: object, location: str) -> dict[str, object]:
@@ -54,7 +74,18 @@ def require_string_set(value: object, location: str) -> frozenset[str]:
     return frozenset(result)
 
 
-def load_manifest(path: Path) -> PackageManifest:
+def load_section(value: object, location: str) -> PackageSection:
+    section = require_mapping(value, location)
+    return PackageSection(
+        repository=require_string_set(section.get("repo"), f"{location}.repo"),
+        aur=require_string_set(section.get("aur"), f"{location}.aur"),
+        flatpak=require_string_set(section.get("flatpak"), f"{location}.flatpak"),
+    )
+
+
+def load_manifest(
+    path: Path, profile: str, excluded: frozenset[str]
+) -> PackageManifest:
     with path.open("rb") as stream:
         raw_root: object = tomllib.load(stream)
 
@@ -62,11 +93,52 @@ def load_manifest(path: Path) -> PackageManifest:
     packages = require_mapping(root.get("packages"), "packages")
     cachyos = require_mapping(packages.get("cachyos"), "packages.cachyos")
 
-    return PackageManifest(
-        repository=require_string_set(cachyos.get("repo"), "packages.cachyos.repo"),
-        aur=require_string_set(cachyos.get("aur"), "packages.cachyos.aur"),
-        flatpak=require_string_set(cachyos.get("flatpak"), "packages.cachyos.flatpak"),
+    sections = [load_section(cachyos.get("core"), "packages.cachyos.core")]
+    optional_names: list[str] = []
+    if profile != "minimal":
+        optional_names.append("shared")
+    if profile in ("personal", "full"):
+        optional_names.append("personal")
+    if profile in ("work", "full"):
+        optional_names.append("work")
+    sections.extend(
+        load_section(cachyos.get(name), f"packages.cachyos.{name}").without(excluded)
+        for name in optional_names
     )
+
+    repository: set[str] = set()
+    aur: set[str] = set()
+    flatpak: set[str] = set()
+    for section in sections:
+        repository.update(section.repository)
+        aur.update(section.aur)
+        flatpak.update(section.flatpak)
+
+    return PackageManifest(
+        repository=frozenset(repository),
+        aur=frozenset(aur),
+        flatpak=frozenset(flatpak),
+    )
+
+
+def load_machine_selection() -> tuple[str, frozenset[str]]:
+    completed = subprocess.run(
+        ["chezmoi", "data", "--format", "json"],
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    if completed.returncode != 0:
+        message = completed.stderr.strip() or completed.stdout.strip()
+        raise RuntimeError(f"chezmoi data failed: {message}")
+
+    raw_data: object = json.loads(completed.stdout)
+    data = require_mapping(raw_data, "chezmoi data")
+    raw_profile = data.get("packageProfile", "full")
+    if not isinstance(raw_profile, str) or raw_profile not in VALID_PROFILES:
+        raise TypeError("packageProfile must be one of: " + ", ".join(VALID_PROFILES))
+    raw_excluded = data.get("optionalPackageExcludes", [])
+    return raw_profile, require_string_set(raw_excluded, "optionalPackageExcludes")
 
 
 def capture_lines(
@@ -115,6 +187,18 @@ def main() -> int:
         help="path to packages.toml; defaults to the active chezmoi source",
     )
     _ = parser.add_argument(
+        "--profile",
+        choices=VALID_PROFILES,
+        help="package profile; defaults to this machine's chezmoi data",
+    )
+    _ = parser.add_argument(
+        "--exclude",
+        action="append",
+        default=[],
+        metavar="PACKAGE",
+        help="exclude an optional package in addition to machine configuration",
+    )
+    _ = parser.add_argument(
         "--verbose",
         action="store_true",
         help="list official explicit packages outside the manifest",
@@ -127,8 +211,11 @@ def main() -> int:
     arguments = cast(Arguments, cast(object, parser.parse_args()))
 
     try:
+        configured_profile, configured_excluded = load_machine_selection()
+        profile = arguments.profile or configured_profile
+        excluded = configured_excluded | frozenset(arguments.exclude)
         manifest_path = arguments.manifest or default_manifest_path()
-        manifest = load_manifest(manifest_path)
+        manifest = load_manifest(manifest_path, profile, excluded)
         installed = capture_lines(["pacman", "-Qq"])
         explicit = capture_lines(["pacman", "-Qqe"])
         explicit_foreign = capture_lines(["pacman", "-Qqem"])
@@ -140,7 +227,13 @@ def main() -> int:
             installed_flatpaks = capture_lines(
                 ["flatpak", "list", "--app", "--columns=application"]
             )
-    except (OSError, RuntimeError, TypeError, tomllib.TOMLDecodeError) as error:
+    except (
+        json.JSONDecodeError,
+        OSError,
+        RuntimeError,
+        TypeError,
+        tomllib.TOMLDecodeError,
+    ) as error:
         print(f"Package audit failed: {error}", file=sys.stderr)
         return 2
 
@@ -151,6 +244,9 @@ def main() -> int:
     official_explicit = explicit - explicit_foreign - manifest.pacman
 
     print(f"Manifest: {manifest_path}")
+    print(f"Package profile: {profile}")
+    if excluded:
+        print("Excluded optional packages: " + ", ".join(sorted(excluded)))
     print_section("Missing declared pacman packages", missing_packages)
     print_section("Undeclared explicit foreign packages", undeclared_foreign)
     print_section("Missing declared Flatpak applications", missing_flatpaks)
