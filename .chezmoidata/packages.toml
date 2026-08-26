@@ -1,103 +1,78 @@
-[packages.cachyos.core]
-repo = [
-    "base-devel",
-    "curl",
-    "fish",
-    "git",
-    "openssl",
-    "paru",
-    "python",
-    "python-pipx",
-    "rsync",
-    "unzip",
-    "wget",
-    "xdg-user-dirs",
-]
-
-aur = []
-flatpak = []
-
-[packages.cachyos.shared]
+[packages.cachyos]
 repo = [
     "alacritty",
+    "base-devel",
     "bat",
     "borg",
     "btop",
     "cachyos-rate-mirrors",
+    "curl",
     "direnv",
+    "docker",
+    "docker-buildx",
+    "docker-compose",
     "duf",
+    "easytag",
     "eza",
     "fd",
+    "ffmpeg",
+    "fish",
     "flatpak",
     "fzf",
+    "gifsicle",
+    "git",
     "git-delta",
     "github-cli",
     "glances",
     "glow",
     "gum",
+    "imagemagick",
     "iproute2",
     "jq",
+    "meld",
     "micro",
+    "obs-studio",
+    "obsidian",
+    "openssl",
     "ouch",
+    "paru",
+    "perl-image-exiftool",
+    "python",
+    "python-pipx",
+    "qbittorrent",
     "ripgrep",
+    "rsync",
     "sd",
     "shellcheck",
     "spectacle",
     "syncthing",
+    "telegram-desktop",
     "television",
     "tokei",
     "trash-cli",
     "tree",
     "unrar",
+    "unzip",
+    "vlc",
+    "wget",
     "wl-clipboard",
     "xclip",
+    "xdg-user-dirs",
+    "yt-dlp",
     "zellij",
     "zoxide",
 ]
 
 aur = [
-    "try-rs-bin",
-]
-
-flatpak = []
-
-[packages.cachyos.personal]
-repo = [
-    "easytag",
-    "ffmpeg",
-    "gifsicle",
-    "imagemagick",
-    "obs-studio",
-    "obsidian",
-    "perl-image-exiftool",
-    "qbittorrent",
-    "telegram-desktop",
-    "vlc",
-    "yt-dlp",
-]
-
-aur = [
-    "localsend-bin",
     "openlogi-bin",
+    "localsend-bin",
     "syncthingtray-qt6",
     "ungoogled-chromium-bin",
+    "try-rs-bin",
+    "visual-studio-code-bin",
 ]
 
 flatpak = [
     "it.mijorus.gearlever",
     "org.musicbrainz.Picard",
 ]
-
-[packages.cachyos.work]
-repo = [
-    "docker",
-    "docker-buildx",
-    "docker-compose",
-    "meld",
-]
-
-aur = [
-    "visual-studio-code-bin",
-]
-
-flatpak = []

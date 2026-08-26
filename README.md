@@ -9,34 +9,9 @@ Personal dotfiles for CachyOS, managed by
 sh -c "$(curl -fsLS https://get.chezmoi.io/lb)" -- init --apply dadyarri
 ```
 
-During initialization, choose a package profile and then confirm the apply. The
-first apply performs a full system upgrade, installs the selected Arch, AUR,
-and Flatpak packages, applies the dotfiles, and then installs standalone tools,
-language toolchains, and Fish plugins.
-
-Package profiles are machine-local:
-
-- `minimal` installs only the bootstrap/core packages.
-- `personal` adds shared command-line/desktop tools and personal applications.
-- `work` adds shared tools and work applications.
-- `full` installs every group and preserves the original bootstrap behavior.
-
-The selection is stored as `data.packageProfile` in
-`~/.config/chezmoi/chezmoi.toml`. Set
-`data.optionalPackageExcludes` there to skip individual non-core packages, for
-example:
-
-```toml
-[data]
-packageProfile = "work"
-optionalPackageExcludes = ["try-rs-bin", "visual-studio-code-bin"]
-```
-
-Run `chezmoi init` after pulling this feature into an existing checkout; it
-prompts when that machine does not have a profile yet. To change an existing
-selection, use `chezmoi edit-config`. Changing the profile or exclusions causes
-the package installer to run on the next `chezmoi apply`. It never uninstalls
-packages that are already present.
+The first apply performs a full system upgrade, installs the declared Arch,
+AUR, and Flatpak packages, applies the dotfiles, and then installs standalone
+tools, language toolchains, and Fish plugins.
 
 Package and toolchain manifests live in `.chezmoidata/`; standalone tools are
 declared in `.config/update-standalone/tools.toml`. Their installation scripts
@@ -61,12 +36,11 @@ run independently with `update-standalone`; Zed and Zen Browser are omitted
 after bootstrap because their official builds update themselves in the
 background.
 
-`audit-packages` compares the current system with the effective package profile
-and exclusion list without changing anything. It reports missing declarations,
-explicit foreign packages, Flatpak drift, and orphaned pacman packages. Use
-`--profile` and `--exclude` to preview another selection, `--verbose` to also
-list official explicit packages outside the manifest, or `--fail-on-drift` for
-a non-zero exit status when actionable findings exist.
+`audit-packages` compares the current system with the package manifest without
+changing anything. It reports missing declarations, explicit foreign packages,
+Flatpak drift, and orphaned pacman packages. Use `--verbose` to also list
+official explicit packages outside the manifest, or `--fail-on-drift` for a
+non-zero exit status when actionable findings exist.
 
 ## Validation
 
