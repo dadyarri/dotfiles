@@ -46,6 +46,7 @@ function freep --description 'Interactively terminate processes using a network 
     end
 
     set -l signal TERM
+
     if set -q _flag_signal
         set signal $_flag_signal
     end
@@ -54,14 +55,15 @@ function freep --description 'Interactively terminate processes using a network 
         (lsof -nP -t -iTCP:"$port" -sTCP:LISTEN 2>/dev/null) \
         (lsof -nP -t -iUDP:"$port" 2>/dev/null)
 
-    set pids (printf '%s\n' $pids | sort -nu)
-
     if not set -q pids[1]
         echo "No process is using port $port."
         return 0
     end
 
+    set pids (printf '%s\n' $pids | sort -nu)
+
     ps -o pid,user,comm,args -p (string join ',' $pids)
+
     echo
 
     __confirm "Send SIG$signal to "(count $pids)" process(es) using port $port?"
